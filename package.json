@@ -1,0 +1,30 @@
+{
+  "name": "closure-coffee-stack",
+  "version": "0.0.1",
+  "description": "Google Closure Library stack with CoffeeScript support",
+  "author": "Fatih Acet <fatih@fatihacet.com>",
+  "private": true,
+  "keywords": [ "CoffeeScript", "Google", "Closure" ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fatihacet/closure-coffee-stack.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-coffee": "~0.10.0",
+    "grunt-contrib-stylus": "~0.11.0",
+    "grunt-mkdir": "0.1.1",
+    "grunt-closure-coffee-stack": "0.0.6",
+    "grunt-npm": "0.0.2",
+    "grunt-release": "~0.6.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "engines": {
+    "node": "v0.10.x"
+  },
+  "license": "MIT"
+}
