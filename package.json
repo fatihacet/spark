@@ -4,7 +4,11 @@
   "description": "Google Closure Library stack with CoffeeScript support",
   "author": "Fatih Acet <fatih@fatihacet.com>",
   "private": true,
-  "keywords": [ "CoffeeScript", "Google", "Closure" ],
+  "keywords": [
+    "CoffeeScript",
+    "Google",
+    "Closure"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/fatihacet/closure-coffee-stack.git"
@@ -18,7 +22,11 @@
     "grunt-mkdir": "0.1.1",
     "grunt-closure-coffee-stack": "0.0.6",
     "grunt-npm": "0.0.2",
-    "grunt-release": "~0.6.0"
+    "grunt-release": "~0.6.0",
+    "karma": "^0.12.17",
+    "karma-jasmine": "^0.1.5",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-phantomjs-launcher": "^0.1.4"
   },
   "scripts": {
     "test": "grunt test"
