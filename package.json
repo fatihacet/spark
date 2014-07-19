@@ -26,7 +26,8 @@
     "karma": "^0.12.17",
     "karma-jasmine": "^0.1.5",
     "karma-chrome-launcher": "^0.1.4",
-    "karma-phantomjs-launcher": "^0.1.4"
+    "karma-phantomjs-launcher": "^0.1.4",
+    "grunt-karma": "^0.8.3"
   },
   "scripts": {
     "test": "grunt test"

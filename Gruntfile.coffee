@@ -84,6 +84,10 @@ module.exports = (grunt) ->
           prefix     : '<%= deps.all.options.prefix %>'
         src          : 'build/js/**/*_test.js'
 
+    karma            :
+      unit           :
+        configFile   : 'karma.conf.js'
+
     builder              :
       all                :
         options          :
@@ -115,6 +119,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-mkdir'
+  grunt.loadNpmTasks 'grunt-karma'
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
   grunt.loadNpmTasks 'grunt-npm'
 
@@ -131,6 +136,19 @@ module.exports = (grunt) ->
       'builder'
     ]
 
+  grunt.registerTask 'build', 'Build stack.', (app = 'app') ->
+    grunt.task.run [
+      'clean'
+      'mkdir'
+      'sprites'
+      'coffee'
+      'coffee2closure'
+      'stylus'
+      'templates'
+      'deps'
+      'builder'
+    ]
+
   grunt.registerTask 'default', 'Build stack.', (app = 'app') ->
     grunt.task.run [
       'clean'
@@ -142,4 +160,5 @@ module.exports = (grunt) ->
       'templates'
       'deps'
       'builder'
+      'karma'
     ]
