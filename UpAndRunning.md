@@ -1,6 +1,6 @@
-Steps to up and running
+Things to do after cloning the
 ======
+
 * `bower install`
 * `npm install`
 * `grunt`
-

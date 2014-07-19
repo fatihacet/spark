@@ -1,3 +1,3 @@
-# closure-coffee-stack
+# Spark
 
-Google Closure Library with CoffeeScript
+A brand new JavaScript framework for modern web development.
