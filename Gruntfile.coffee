@@ -132,7 +132,7 @@ module.exports = (grunt) ->
       'stylus'
       'templates'
       'deps'
-      'tests'
+      'karma'
       'builder'
     ]
 
