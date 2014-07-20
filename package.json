@@ -1,17 +1,18 @@
 {
-  "name": "closure-coffee-stack",
+  "name": "Spark",
   "version": "0.0.1",
-  "description": "Google Closure Library stack with CoffeeScript support",
+  "description": "Spark: Modern web framework",
   "author": "Fatih Acet <fatih@fatihacet.com>",
   "private": true,
   "keywords": [
+    "Spark",
     "CoffeeScript",
     "Google",
     "Closure"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/fatihacet/closure-coffee-stack.git"
+    "url": "https://bitbucket.org/fatihacet/spark"
   },
   "dependencies": {},
   "devDependencies": {
