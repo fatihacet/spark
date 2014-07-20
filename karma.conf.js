@@ -4,17 +4,20 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: 'src/',
+    basePath: '',
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'closure'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      '**/*.js'
+      'bower_components/closure-library/closure/goog/base.js',
+      'build/js/**/test_*.js',
+      { pattern: 'build/js/**/*.js', included: false },
+      { pattern: 'bower_components/closure-library/closure/goog/deps.js', included: false, served: false }
     ],
 
 
@@ -25,7 +28,12 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    // preprocessors: {
+    // },
     preprocessors: {
+      'build/js/**/test_*.js': ['closure', 'closure-iit'], // tests are preprocessed for dependencies (closure) and for iits
+      'build/js/**/*.js': ['closure'], // source files are preprocessed for dependencies
+      'bower_components/closure-library/closure/goog/deps.js': ['closure-deps'] // external deps
     },
 
 
