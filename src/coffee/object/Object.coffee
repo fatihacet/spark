@@ -14,7 +14,7 @@ class spark.object.Object extends goog.events.EventTarget
     @param   {*} data Class data
     @extends {goog.events.EventTarget}
   ###
-  constructor: (options = {}, data = null) ->
+  constructor: (options = {}, data) ->
 
     super options, data
 
