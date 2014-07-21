@@ -21,15 +21,20 @@ class spark.object.Object extends goog.events.EventTarget
     @setOptions options  if options
     @setData data        if data
 
-  setOptions: (options) -> @options = options
+  setOptions: (options) ->
+    @options = options
 
-  getOptions: -> return @options
+  getOptions: ->
+    return @options
 
-  getOption: (key) -> return @options[key] or null
+  getOption: (key) ->
+    return @options[key] or null
 
-  setData: (data) -> @data = data
+  setData: (data) ->
+    @data = data
 
-  getData: -> return @data
+  getData: ->
+    return @data
 
   on: (eventName, callback) ->
     goog.events.listen this, eventName, callback
