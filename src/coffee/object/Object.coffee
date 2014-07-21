@@ -25,7 +25,7 @@ class spark.object.Object extends goog.events.EventTarget
 
   getOptions: -> return @options
 
-  getOptions: (key) -> return @options[key] or null
+  getOption: (key) -> return @options[key] or null
 
   setData: (data) -> @data = data
 
