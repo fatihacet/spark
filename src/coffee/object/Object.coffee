@@ -31,6 +31,14 @@ class spark.object.Object extends goog.events.EventTarget
 
   getData: -> return @data
 
-  on: (eventName, options, callback) ->
+  on: (eventName, callback) ->
+    goog.events.listen this, eventName, callback
 
-  emit: (eventName, options) ->
+  once: (eventName, callback) ->
+    goog.events.listenOnce this, eventName, callback
+
+  emit: (eventName, data) ->
+    @dispatchEvent { type: eventName, data }
+
+  off: (eventName, callback) ->
+    return @unlisten eventName, callback
