@@ -88,6 +88,18 @@ module.exports = (grunt) ->
       unit           :
         configFile   : 'karma.conf.js'
 
+    watch            :
+      configFiles    :
+        files        : [ 'Gruntfile.coffee', 'karma.conf.js' ]
+        options      :
+          reload     : yes
+      src            :
+        files        : [ '**/*.coffee' ]
+        tasks        : [ 'clean', 'mkdir', 'coffee', 'coffee2closure', 'deps', 'karma' ]
+      styl           :
+        files        : [ '*.styl' ]
+        tasks        : [ 'stylus' ]
+
     builder              :
       all                :
         options          :
@@ -118,6 +130,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-stylus'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-mkdir'
   grunt.loadNpmTasks 'grunt-karma'
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
@@ -161,4 +174,5 @@ module.exports = (grunt) ->
       'deps'
       'builder'
       'karma'
+      'watch'
     ]
