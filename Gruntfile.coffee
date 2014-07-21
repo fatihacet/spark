@@ -143,7 +143,6 @@ module.exports = (grunt) ->
       'coffee'
       'coffee2closure'
       'stylus'
-      # 'templates'
       'deps'
       'karma'
       'builder'
@@ -157,7 +156,6 @@ module.exports = (grunt) ->
       'coffee'
       'coffee2closure'
       'stylus'
-      # 'templates'
       'deps'
       'builder'
     ]
@@ -170,9 +168,7 @@ module.exports = (grunt) ->
       'coffee'
       'coffee2closure'
       'stylus'
-      # 'templates'
       'deps'
-      'builder'
       'karma'
       'watch'
     ]
