@@ -14,6 +14,7 @@ describe 'spark.object.Object', ->
     expect(object.options).toBe options
     expect(object.options.name).toBe 'Fatih'
 
+
   it 'should set data passed to constructor', ->
     data   = name: 'Fatih', age: 27
     object = new spark.object.Object null, data
@@ -21,6 +22,7 @@ describe 'spark.object.Object', ->
     expect(object.data).toBe data
     expect(object.data.name).toBe 'Fatih'
     expect(object.data.age).not.toBe 20
+
 
   it 'should set options with setOptions method', ->
     options = name: 'Fatih'
@@ -32,7 +34,8 @@ describe 'spark.object.Object', ->
 
     expect(object.options.name).toBe 'Fatih'
 
-  it 'should set options with setOptions method', ->
+
+  it 'should set data with setData method', ->
     data   = name: 'Fatih'
     object = new spark.object.Object
 
@@ -42,17 +45,20 @@ describe 'spark.object.Object', ->
 
     expect(object.data.name).toBe 'Fatih'
 
+
   it 'should get options with getOptions method', ->
     options = name: 'Fatih'
     object  = new spark.object.Object options
 
     expect(object.getOptions()).toBe options
 
+
   it 'should get an option with getOption method', ->
     options = name: 'Fatih'
     object  = new spark.object.Object options
 
     expect(object.getOption('name')).toBe 'Fatih'
+
 
   it 'should get data with getData method', ->
     data   = name: 'Fatih'
