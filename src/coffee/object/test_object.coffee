@@ -65,3 +65,58 @@ describe 'spark.object.Object', ->
     object = new spark.object.Object null, data
 
     expect(object.getData()).toBe data
+
+
+  it 'should listen and fire events', ->
+    object = new spark.object.Object
+    value  = null
+    data   = hello: 'world'
+
+    object.on   'EventName', -> value = 12
+    object.emit 'EventName'
+
+    expect(value).toBe 12
+
+    object.on   'AnotherEvent', (e) -> value = e.data
+    object.emit 'AnotherEvent', data
+
+    expect(value).toBe data
+
+
+  it 'should listen and immediately unlisten the event if listened by once', ->
+    object = new spark.object.Object
+    value  = null
+
+    object.on   'EventName', -> value = 12
+    object.emit 'EventName'
+
+    expect(value).toBe 12
+
+    object.once 'AnotherEvent', -> value = 22
+    object.emit 'AnotherEvent'
+
+    expect(value).toBe 22
+
+    object.emit 'EventName'
+    expect(value).toBe 12
+
+    object.emit 'AnotherEvent'
+    expect(value).not.toBe 22
+    expect(value).toBe 12
+
+
+  it 'should unlisten event with off', ->
+    object = new spark.object.Object
+    value  = null
+    cb     = -> value = 12
+
+    object.on   'EventName', cb
+    object.emit 'EventName'
+
+    expect(value).toBe 12
+
+    shouldNotUnlistened = object.off 'EventName' # cb is missing
+    expect(shouldUnlistened).toBeFalsy()
+
+    shouldUnlistened = object.off 'EventName', cb
+    expect(shouldUnlistened).toBeTruthy()
