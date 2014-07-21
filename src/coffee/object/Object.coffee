@@ -14,20 +14,20 @@ class spark.object.Object extends goog.events.EventTarget
     @param   {*} data Class data
     @extends {goog.events.EventTarget}
   ###
-  constructor: (options, data) ->
+  constructor: (options = {}, data = null) ->
 
     super options, data
 
     @setOptions options  if options
     @setData data        if data
 
-  setOptions: (options = {}) -> @options = options
+  setOptions: (options) -> @options = options
 
   getOptions: -> return @options
 
   getOptions: (key) -> return @options[key] or null
 
-  setData: (data = null) -> @data = data
+  setData: (data) -> @data = data
 
   getData: -> return @data
 
