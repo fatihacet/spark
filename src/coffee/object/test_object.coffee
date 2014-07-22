@@ -120,3 +120,19 @@ describe 'spark.object.Object', ->
 
     shouldUnlistened = object.off 'EventName', cb
     expect(shouldUnlistened).toBeTruthy()
+
+  it 'should call multiple listeners', ->
+    object  = new spark.object.Object
+    results = []
+
+    object.on 'Add', -> results.push 1
+    object.on 'Add', -> results.push 2
+    object.on 'Add', -> results.push 3
+
+    object.emit 'Add'
+
+    expect(results.length).toEqual 3
+
+    object.emit 'Add'
+
+    expect(results.length).toEqual 6
