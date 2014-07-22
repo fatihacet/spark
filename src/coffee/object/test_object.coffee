@@ -130,9 +130,6 @@ describe 'spark.object.Object', ->
     object.on 'Add', -> results.push 3
 
     object.emit 'Add'
-
-    expect(results.length).toEqual 3
-
     object.emit 'Add'
 
     expect(results.length).toEqual 6
