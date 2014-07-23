@@ -8,5 +8,5 @@ goog.provide 'spark.utils'
   @param {...*} var_args A list of strings to concatenate.
   @return {string} The concatenation of {@code var_args}.
 ###
-spark.utils.concatString = ->
+spark.utils.concatString = (var_args) ->
   return Array.prototype.join.call arguments, ' '

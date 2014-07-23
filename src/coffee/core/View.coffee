@@ -10,9 +10,9 @@ class spark.core.View extends spark.core.Object
 
   ###*
     @constructor
-    @param   {Object} options Class options.
-    @param   {*} data Class data
-    @extends {goog.object.Object}
+    @param   {Object=} options Class options.
+    @param   {*=} data Class data
+    @extends {spark.core.Object}
   ###
 
   constructor: (options, data) ->

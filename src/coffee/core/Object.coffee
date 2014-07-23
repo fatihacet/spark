@@ -10,8 +10,8 @@ class spark.core.Object extends goog.events.EventTarget
 
   ###*
     @constructor
-    @param   {Object} options Class options.
-    @param   {*} data Class data
+    @param   {Object=} options Class options.
+    @param   {*=} data Class data
     @extends {goog.events.EventTarget}
   ###
   constructor: (options = {}, data) ->
@@ -85,7 +85,7 @@ class spark.core.Object extends goog.events.EventTarget
     See also {@link goog.events.Listenable.prototype.listen}
     @param {!string} eventName Name of the event.
     @param {!Function} callback Callback function for the event.
-    @return {goog.events.ListenableKey} Unique key for the listener.
+    @return {goog.events.ListenableKey|number} Unique key for the listener.
   ###
   on: (eventName, callback) ->
     return goog.events.listen this, eventName, callback
@@ -96,7 +96,7 @@ class spark.core.Object extends goog.events.EventTarget
     fired once. See also {@link goog.events.Listenable.prototype.listenOnce}
     @param {!string} eventName Name of the event.
     @param {!Function} callback Callback function for the event.
-    @return {goog.events.ListenableKey} Unique key for the listener.
+    @return {goog.events.ListenableKey|number} Unique key for the listener.
   ###
   once: (eventName, callback) ->
     return goog.events.listenOnce this, eventName, callback
@@ -106,7 +106,7 @@ class spark.core.Object extends goog.events.EventTarget
     Dispatches an event and calls all listeners listening for events of this
     event. See also {@link goog.events.Listenable.prototype.dispatchEvent}
     @param {!string} eventName Name of the event.
-    @param {!Function} callback Callback function for the event.
+    @param {*=} data Data which will passed to listeners
   ###
   emit: (eventName, data) ->
     @dispatchEvent { type: eventName, data }
@@ -117,7 +117,7 @@ class spark.core.Object extends goog.events.EventTarget
     See also {@link goog.events.Listenable.prototype.unlisten}
     @param {!string} eventName Name of the event.
     @param {!Function} callback Callback function for the event.
-    @return {Boolean} Whether any listener was removed.
+    @return {boolean} Whether any listener was removed.
   ###
   off: (eventName, callback) ->
     return @unlisten eventName, callback
