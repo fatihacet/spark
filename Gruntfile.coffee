@@ -108,6 +108,7 @@ module.exports = (grunt) ->
       options            :
         root             : '<%= deps.all.options.root %>'
         depsPath         : '<%= deps.all.options.outputFile %>'
+        namespace        : 'spark.Bootstrapper'
         compilerFlags    : [
           '--output_wrapper="(function(){%output%})();"'
           '--compilation_level="ADVANCED_OPTIMIZATIONS"'
