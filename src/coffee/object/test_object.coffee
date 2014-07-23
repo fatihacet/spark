@@ -4,8 +4,6 @@ goog.require 'goog.events.EventTarget'
 
 describe 'spark.object.Object', ->
 
-  # beforeEach ->
-  #   object = new spark.object.Object
 
   it 'should set options passed to constructor', ->
     options = name: 'Fatih', age: 27
