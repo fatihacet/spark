@@ -1,9 +1,9 @@
-goog.require 'spark.object.Object'
-goog.require 'spark.view.View'
+goog.require 'spark.core.Object'
+goog.require 'spark.core.View'
 goog.require 'spark.utils'
 
 
-describe 'spark.view.View', ->
+describe 'spark.core.View', ->
 
 
   view    = null
@@ -17,7 +17,7 @@ describe 'spark.view.View', ->
       domId    : 'world'
       template : '<p>Hello World</p>'
 
-    view       = new spark.view.View options
+    view       = new spark.core.View options
     element    = view.getElement()
 
 

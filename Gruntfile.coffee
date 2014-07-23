@@ -28,8 +28,8 @@ module.exports = (grunt) ->
           bare       : yes
         files        : [
           expand     : yes
-          cwd        : 'src/coffee'
-          src        : ['**/*.coffee']
+          cwd        : 'src'
+          src        : [ 'coffee/**/*.coffee', 'tests/**/*.coffee' ]
           dest       : 'build/js/'
           ext        : '.js'
         ]

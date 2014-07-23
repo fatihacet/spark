@@ -1,13 +1,13 @@
-goog.require 'spark.object.Object'
+goog.require 'spark.core.Object'
 goog.require 'goog.events'
 goog.require 'goog.events.EventTarget'
 
-describe 'spark.object.Object', ->
+describe 'spark.core.Object', ->
 
 
   it 'should set options passed to constructor', ->
     options = name: 'Fatih', age: 27
-    object  = new spark.object.Object options
+    object  = new spark.core.Object options
 
     expect(object.options).toBe options
     expect(object.options.name).toBe 'Fatih'
@@ -15,7 +15,7 @@ describe 'spark.object.Object', ->
 
   it 'should set data passed to constructor', ->
     data   = name: 'Fatih', age: 27
-    object = new spark.object.Object null, data
+    object = new spark.core.Object null, data
 
     expect(object.data).toBe data
     expect(object.data.name).toBe 'Fatih'
@@ -24,7 +24,7 @@ describe 'spark.object.Object', ->
 
   it 'should set options with setOptions method', ->
     options = name: 'Fatih'
-    object  = new spark.object.Object
+    object  = new spark.core.Object
 
     expect(object.options.name).toBeUndefined()
 
@@ -35,7 +35,7 @@ describe 'spark.object.Object', ->
 
   it 'should set data with setData method', ->
     data   = name: 'Fatih'
-    object = new spark.object.Object
+    object = new spark.core.Object
 
     expect(object.data).toBeUndefined()
 
@@ -46,27 +46,27 @@ describe 'spark.object.Object', ->
 
   it 'should get options with getOptions method', ->
     options = name: 'Fatih'
-    object  = new spark.object.Object options
+    object  = new spark.core.Object options
 
     expect(object.getOptions()).toBe options
 
 
   it 'should get an option with getOption method', ->
     options = name: 'Fatih'
-    object  = new spark.object.Object options
+    object  = new spark.core.Object options
 
     expect(object.getOption('name')).toBe 'Fatih'
 
 
   it 'should get data with getData method', ->
     data   = name: 'Fatih'
-    object = new spark.object.Object null, data
+    object = new spark.core.Object null, data
 
     expect(object.getData()).toBe data
 
 
   it 'should listen and fire events', ->
-    object = new spark.object.Object
+    object = new spark.core.Object
     value  = null
     data   = hello: 'world'
 
@@ -82,7 +82,7 @@ describe 'spark.object.Object', ->
 
 
   it 'should listen and immediately unlisten the event if listened by once', ->
-    object = new spark.object.Object
+    object = new spark.core.Object
     value  = null
 
     object.on   'EventName', -> value = 12
@@ -104,7 +104,7 @@ describe 'spark.object.Object', ->
 
 
   it 'should unlisten event with off', ->
-    object = new spark.object.Object
+    object = new spark.core.Object
     value  = null
     cb     = -> value = 12
 
@@ -120,7 +120,7 @@ describe 'spark.object.Object', ->
     expect(shouldUnlistened).toBeTruthy()
 
   it 'should call multiple listeners', ->
-    object  = new spark.object.Object
+    object  = new spark.core.Object
     results = []
 
     object.on 'Add', -> results.push 1

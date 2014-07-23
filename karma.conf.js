@@ -15,7 +15,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'bower_components/closure-library/closure/goog/base.js',
-      'build/js/**/test_*.js',
+      'build/js/tests/**/test_*.js',
       { pattern: 'build/js/**/*.js', included: false },
       { pattern: 'bower_components/closure-library/closure/goog/deps.js', included: false, served: false }
     ],

@@ -1,12 +1,12 @@
-goog.provide 'spark.view.View'
-goog.require 'spark.object.Object'
+goog.provide 'spark.core.View'
+goog.require 'spark.core.Object'
 goog.require 'spark.utils'
 
 
 ###*
   Main View class of Spark Framework.
 ###
-class spark.view.View extends spark.object.Object
+class spark.core.View extends spark.core.Object
 
   ###*
     @constructor

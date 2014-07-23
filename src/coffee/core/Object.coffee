@@ -1,4 +1,4 @@
-goog.provide 'spark.object.Object'
+goog.provide 'spark.core.Object'
 goog.require 'goog.events.EventTarget'
 
 
@@ -6,7 +6,7 @@ goog.require 'goog.events.EventTarget'
   Base object class which provides custom event management.
   In theory, every framework class should extend this class.
 ###
-class spark.object.Object extends goog.events.EventTarget
+class spark.core.Object extends goog.events.EventTarget
 
   ###*
     @constructor
