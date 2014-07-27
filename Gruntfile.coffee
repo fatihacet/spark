@@ -140,18 +140,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
   grunt.loadNpmTasks 'grunt-npm'
 
-  grunt.registerTask 'test', 'Build stack with tests', ->
-    grunt.task.run [
-      'clean'
-      'mkdir'
-      'coffee'
-      'coffee2closure'
-      'stylus'
-      'deps'
-      'karma'
-      'builder'
-    ]
-
   grunt.registerTask 'build', 'Build stack.', (app = 'app') ->
     grunt.task.run [
       'clean'
