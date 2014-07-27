@@ -15,7 +15,7 @@ class spark.core.View extends spark.core.Object
     @extends {spark.core.Object}
   ###
 
-  constructor: (options, data) ->
+  constructor: (options = {}, data) ->
 
     options.cssClass     = "#{spark.utils.concatString 'view', options.cssClass}"
     options.tagName    or= 'div'
