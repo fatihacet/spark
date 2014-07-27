@@ -149,6 +149,7 @@ module.exports = (grunt) ->
       'coffee2closure'
       'stylus'
       'deps'
+      'karma'
       'builder'
     ]
 
