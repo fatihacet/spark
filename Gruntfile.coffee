@@ -19,6 +19,7 @@ module.exports = (grunt) ->
             'src/templates'
             'src/third-party'
             'build'
+            'build/compiled'
             'build/images'
           ]
 
@@ -104,7 +105,7 @@ module.exports = (grunt) ->
       all                :
         options          :
           namespace      : '*'
-          outputFilePath : 'build/compiled.js'
+          outputFilePath : 'build/compiled/compiled.js'
       options            :
         root             : '<%= deps.all.options.root %>'
         depsPath         : '<%= deps.all.options.outputFile %>'
@@ -113,9 +114,9 @@ module.exports = (grunt) ->
           '--output_wrapper="(function(){%output%})();"'
           '--compilation_level="ADVANCED_OPTIMIZATIONS"'
           '--warning_level="VERBOSE"'
-          '--create_source_map="build/source_map.js"'
-          '--property_renaming_report="build/properties.out"'
-          '--variable_renaming_report="build/variables.out"'
+          '--create_source_map="build/compiled/source_map.js"'
+          '--property_renaming_report="build/compiled/properties.out"'
+          '--variable_renaming_report="build/compiled/variables.out"'
           # '--externs=src/externs/externs.js'
           '--jscomp_error=accessControls'
           '--jscomp_error=checkRegExp'
