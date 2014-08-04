@@ -13,6 +13,13 @@ class spark.Bootstrapper
   constructor: ->
     o = new spark.core.Object
     v = new spark.core.View
+      tagName   : 'header'
+      cssClass  : 'main'
+      domId     : 'big-header'
+      template  : '<h3>HELLO SPARK</h3>'
+
+    goog.exportSymbol 'obj', o
+    goog.exportSymbol 'vvv', v
 
 
 window.addEventListener "load", (->
