@@ -90,10 +90,14 @@ module.exports = (grunt) ->
         configFile   : 'karma.conf.js'
 
     watch            :
+      options            :
+        livereload       : yes
       configFiles    :
         files        : [ 'Gruntfile.coffee', 'karma.conf.js' ]
         options      :
           reload     : yes
+      html               :
+        files            : [ '*.html' ]
       src            :
         files        : [ '**/*.coffee' ]
         tasks        : [ 'clean', 'mkdir', 'coffee', 'coffee2closure', 'deps', 'karma' ]
