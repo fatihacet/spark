@@ -112,6 +112,7 @@ class spark.core.View extends spark.core.Object
   setTemplate: (template) ->
     @getElement().innerHTML = template
 
+
 goog.exportSymbol 'View', spark.core.View
 goog.exportSymbol 'View.prototype.setTemplate',  spark.core.View.prototype.setTemplate
 goog.exportSymbol 'View.prototype.removeClass',  spark.core.View.prototype.removeClass
