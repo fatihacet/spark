@@ -89,6 +89,17 @@ module.exports = (grunt) ->
       unit           :
         configFile   : 'karma.conf.js'
 
+    "http-server"        :
+      debug              :
+        root             : './public/debug/'
+        host             : '127.0.0.1'
+        port             : 1111
+        runInBackground  : yes
+      compiled           :
+        root             : './public/compiled/'
+        host             : '127.0.0.1'
+        port             : 2222
+
     watch            :
       options            :
         livereload       : yes
@@ -143,6 +154,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-mkdir'
   grunt.loadNpmTasks 'grunt-karma'
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
+  grunt.loadNpmTasks 'grunt-http-server'
   grunt.loadNpmTasks 'grunt-npm'
 
   grunt.registerTask 'build', 'Build stack.', (app = 'app') ->
@@ -156,6 +168,7 @@ module.exports = (grunt) ->
       'deps'
       'karma'
       'builder'
+      'http-server:compiled'
     ]
 
   grunt.registerTask 'default', 'Build stack.', (app = 'app') ->
@@ -168,5 +181,6 @@ module.exports = (grunt) ->
       'stylus'
       'deps'
       'karma'
+      'http-server:debug'
       'watch'
     ]

@@ -31,7 +31,8 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "grunt-karma": "^0.8.3",
     "grunt-contrib-watch": "^0.6.1",
-    "karma-notify-reporter": "^0.1.1"
+    "karma-notify-reporter": "^0.1.1",
+    "grunt-http-server": "0.0.5"
   },
   "scripts": {
     "test": "grunt test"
