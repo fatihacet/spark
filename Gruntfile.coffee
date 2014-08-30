@@ -2,16 +2,16 @@ module.exports = (grunt) ->
 
   grunt.initConfig
 
-    clean            :
-      all            :
-        options      :
-          force      : yes
-        src          : 'build'
+    clean                :
+      all                :
+        options          :
+          force          : yes
+        src              : 'build'
 
-    mkdir            :
-      all            :
-        options      :
-          create     : [
+    mkdir                :
+      all                :
+        options          :
+          create         : [
             'src/coffee'
             'src/externs'
             'src/images'
@@ -23,98 +23,71 @@ module.exports = (grunt) ->
             'build/images'
           ]
 
-    coffee           :
-      all            :
-        options      :
-          bare       : yes
-        files        : [
-          expand     : yes
-          cwd        : 'src'
-          src        : [ 'coffee/**/*.coffee', 'tests/**/*.coffee' ]
-          dest       : 'build/js/'
-          ext        : '.js'
+    coffee               :
+      all                :
+        options          :
+          bare           : yes
+        files            : [
+          expand         : yes
+          cwd            : 'src'
+          src            : [ 'coffee/**/*.coffee', 'tests/**/*.coffee' ]
+          dest           : 'build/js/'
+          ext            : '.js'
         ]
 
-    sprites          :
-      all            :
-        files        :
-          src        : 'src/images'
-          dest       : 'build/images'
+    sprites              :
+      all                :
+        files            :
+          src            : 'src/images'
+          dest           : 'build/images'
 
-    coffee2closure   :
-      all            :
-        files        : [
-          expand     : yes
-          src        : 'build/js/**/*.js'
-          ext        : '.js'
+    coffee2closure       :
+      all                :
+        files            : [
+          expand         : yes
+          src            : 'build/js/**/*.js'
+          ext            : '.js'
         ]
 
-    stylus           :
-      options        :
-        'include css': true
-        'compress'   : false
-      all            :
-        files        : [
-          expand     : true
-          src        : [ '*.styl' ]
-          ext        : '.css'
-          cwd        : 'src/styl'
-          dest       : 'build/css'
+    stylus               :
+      options            :
+        'include css'    : true
+        'compress'       : false
+      all                :
+        files            : [
+          expand         : true
+          src            : [ '*.styl' ]
+          ext            : '.css'
+          cwd            : 'src/styl'
+          dest           : 'build/css'
         ]
 
-    templates        :
-      all            :
-        src          : 'src/templates/**/*.soy'
-        dest         : 'build/templates/'
+    templates            :
+      all                :
+        src              : 'src/templates/**/*.soy'
+        dest             : 'build/templates/'
 
-    deps             :
-      all            :
-        options      :
-          outputFile : 'build/deps.js'
-          prefix     : '../../../../'
-          root       : [
+    deps                 :
+      all                :
+        options          :
+          outputFile     : 'build/deps.js'
+          prefix         : '../../../../'
+          root           : [
             'bower_components/closure-library'
             'bower_components/closure-templates'
             'build'
           ]
 
-    tests            :
-      app            :
-        options      :
-          depsPath   : '<%= deps.all.options.outputFile %>'
-          prefix     : '<%= deps.all.options.prefix %>'
-        src          : 'build/js/**/*_test.js'
+    tests                :
+      app                :
+        options          :
+          depsPath       : '<%= deps.all.options.outputFile %>'
+          prefix         : '<%= deps.all.options.prefix %>'
+        src              : 'build/js/**/*_test.js'
 
-    karma            :
-      unit           :
-        configFile   : 'karma.conf.js'
-
-    "http-server"        :
-      debug              :
-        root             : './public/debug/'
-        host             : '127.0.0.1'
-        port             : 1111
-        runInBackground  : yes
-      compiled           :
-        root             : './public/compiled/'
-        host             : '127.0.0.1'
-        port             : 2222
-
-    watch            :
-      options            :
-        livereload       : yes
-      configFiles    :
-        files        : [ 'Gruntfile.coffee', 'karma.conf.js' ]
-        options      :
-          reload     : yes
-      html               :
-        files            : [ '*.html' ]
-      src            :
-        files        : [ '**/*.coffee' ]
-        tasks        : [ 'clean', 'mkdir', 'coffee', 'coffee2closure', 'deps', 'karma' ]
-      styl           :
-        files        : [ '*.styl' ]
-        tasks        : [ 'stylus' ]
+    karma                :
+      unit               :
+        configFile       : 'karma.conf.js'
 
     builder              :
       all                :
@@ -147,6 +120,34 @@ module.exports = (grunt) ->
           '--jscomp_error=visibility'
         ]
 
+    "http-server"        :
+      debug              :
+        root             : './public/debug/'
+        host             : '127.0.0.1'
+        port             : 1111
+        runInBackground  : yes
+      compiled           :
+        root             : './public/compiled/'
+        host             : '127.0.0.1'
+        port             : 2222
+
+    watch                :
+      options            :
+        livereload       : yes
+      configFiles        :
+        files            : [ 'Gruntfile.coffee', 'karma.conf.js' ]
+        options          :
+          reload         : yes
+      html               :
+        files            : [ '*.html' ]
+      src                :
+        files            : [ '**/*.coffee' ]
+        tasks            : [ 'clean', 'mkdir', 'coffee', 'coffee2closure', 'deps', 'karma' ]
+      styl               :
+        files            : [ '*.styl' ]
+        tasks            : [ 'stylus' ]
+
+
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-stylus'
@@ -156,6 +157,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
   grunt.loadNpmTasks 'grunt-http-server'
   grunt.loadNpmTasks 'grunt-npm'
+
 
   grunt.registerTask 'build', 'Build stack.', (app = 'app') ->
     grunt.task.run [
@@ -170,6 +172,7 @@ module.exports = (grunt) ->
       'builder'
       'http-server:compiled'
     ]
+
 
   grunt.registerTask 'default', 'Build stack.', (app = 'app') ->
     grunt.task.run [
