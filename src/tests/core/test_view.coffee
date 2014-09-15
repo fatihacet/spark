@@ -6,19 +6,26 @@ goog.require 'spark.utils'
 describe 'spark.core.View', ->
 
 
-  view    = null
-  element = null
+  view      = null
+  element   = null
+  isClicked = null
+  isHovered = null
 
 
   beforeEach ->
-    options    =
-      tagName  : 'span'
-      cssClass : 'hello'
-      domId    : 'world'
-      template : '<p>Hello World</p>'
+    isClicked       = null
+    isHovered       = null
+    options         =
+      tagName       : 'span'
+      cssClass      : 'hello buddy'
+      domId         : 'world'
+      template      : '<p>Hello World</p>'
+      eventHandlers :
+        click       : -> isClicked = yes
+        mouseover   : -> isHovered = yes
 
-    view       = new spark.core.View options
-    element    = view.getElement()
+    view            = new spark.core.View options
+    element         = view.getElement()
 
 
   it 'should create a DOM element with passed options', ->
@@ -32,6 +39,19 @@ describe 'spark.core.View', ->
     # it will throw an error if it couldn't append it to dom
     # there is not assertion needed
     document.body.appendChild element
+
+
+  it 'should bind events in eventHandlers object', ->
+    expect(isClicked).toBe null
+    expect(isHovered).toBe null
+
+    view.emit 'click'
+    view.emit 'mouseover'
+
+    expect(isClicked).toBe yes
+    expect(isHovered).toBe yes
+
+
   it 'should set element template', ->
     expect(element.firstChild.tagName).toBe 'P'
 

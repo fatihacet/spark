@@ -25,6 +25,7 @@ class spark.core.View extends spark.core.Object
     super options, data
 
     @createDomElement()
+    @bindEventHandlers()
 
 
   ###*
@@ -120,6 +121,21 @@ class spark.core.View extends spark.core.Object
   ###
   setTemplate: (template) ->
     @getElement().innerHTML = template
+
+
+  ###*
+    This method is responsible from binding DOM events to the element of this view.
+    It uses native DOM event names which is all lowercase. If your options
+    has an event name and a callback function in eventHandlers object
+    View will bind and listen those events automatically.
+  ###
+  bindEventHandlers: ->
+    map     = goog.object.transpose goog.events.EventType
+    element = @getElement()
+
+    for key, callback of @getOptions().eventHandlers
+      if map[key] and typeof callback is 'function'
+        @on goog.events.EventType[map[key]], callback
 
 
 goog.exportSymbol 'View', spark.core.View
