@@ -122,12 +122,10 @@ module.exports = (grunt) ->
 
     "http-server"        :
       debug              :
-        root             : './public/debug/'
         host             : '127.0.0.1'
         port             : 1111
         runInBackground  : yes
       compiled           :
-        root             : './public/compiled/'
         host             : '127.0.0.1'
         port             : 2222
 
