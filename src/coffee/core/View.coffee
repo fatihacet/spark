@@ -97,6 +97,15 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    Returns true if element has that class name.
+    @param {!string} cssClass Name of the class which will be tested.
+    @return {boolean} Whether element has a class name or not.
+  ###
+  hasClass: (cssClass) ->
+    return @getElement().classList.contains cssClass
+
+
+  ###*
     Returns the DOM element.
     @return {Node} DOM element of this view.
   ###

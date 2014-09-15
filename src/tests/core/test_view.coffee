@@ -32,3 +32,7 @@ describe 'spark.core.View', ->
     # it will throw an error if it couldn't append it to dom
     # there is not assertion needed
     document.body.appendChild element
+  it 'should return true if element has a class name', ->
+    expect(view.hasClass 'class-name').toBeFalsy()
+    expect(view.hasClass 'hello').toBeTruthy()
+
