@@ -3,7 +3,7 @@
   "version": "5.2.35",
   "dependencies": {
     "closure-compiler": "http://dl.google.com/closure-compiler/compiler-latest.zip",
-    "closure-library": "git@github.com:fatihacet/google-closure-library.git",
+    "closure-library": "https://github.com/fatihacet/google-closure-library.git",
     "closure-templates": "http://closure-templates.googlecode.com/files/closure-templates-for-javascript-latest.zip"
   }
 }
