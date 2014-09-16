@@ -1,4 +1,4 @@
-# Spark Framework
+# Spark Framework [![Build Status](https://drone.io/github.com/fatihacet/spark/status.png)](https://drone.io/github.com/fatihacet/spark/latest)
 
 The Spark framework is a brand new JavaScript framework for modern web development. Focused on creating View based components, it aims to be test driven and well documented.
 
@@ -16,4 +16,3 @@ Spark is heavily inspried from [Koding's KD Framework](https://github.com/koding
 
 ### Disclaimer
 Spark is currently under development and not ready for using at production. Tests and/or advanced compilation may fail.
-
