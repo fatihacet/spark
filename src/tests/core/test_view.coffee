@@ -102,3 +102,42 @@ describe 'spark.core.View', ->
     expect(view.hasClass 'class-name').toBeFalsy()
     expect(view.hasClass 'hello').toBeTruthy()
 
+
+  describe 'appendView', ->
+
+    newOne     = new spark.core.View template : '<p>New View</p>'
+    button     = null
+    child      = null
+    innerChild = null
+
+    it 'should allow appending a new view into this view', ->
+      view.appendView newOne
+
+      child      = element.lastChild
+      innerChild = child.firstChild
+
+      expect(child.tagName).toBe 'DIV'
+      expect(innerChild.tagName).toBe 'P'
+      expect(innerChild.innerHTML).toBe 'New View'
+
+
+    it 'should allow appending a new view into a view which is appended a different view', ->
+      button     = new spark.components.Button
+        title    : 'Test Button'
+        cssClass : 'new-button'
+
+      newOne.appendView button
+
+      expect(newOne.getElement().lastChild).toBe button.getElement()
+
+
+    it 'should throw error if a view already appended into this view', ->
+      error = new Error 'This view already appended to target view.'
+      expect( -> newOne.appendView button ).toThrow error
+
+
+    it 'should throw error when view argument is not an instance of spark.View', ->
+      error = new Error 'View should be an instance of spark.core.View'
+      items = [ {}, [], null, undefined, 5, 'some string' ]
+
+      expect( -> newOne.appendView item).toThrow error  for item in items

@@ -24,6 +24,8 @@ class spark.core.View extends spark.core.Object
 
     super options, data
 
+    @children = []
+
     @createDomElement()
     @bindEventHandlers()
 
@@ -121,6 +123,22 @@ class spark.core.View extends spark.core.Object
   ###
   setTemplate: (template) ->
     @getElement().innerHTML = template
+
+
+  ###*
+    Appends a new view into this view's element as a child.
+    @param {!spark.core.View} view A spark.View instance to append.
+  ###
+  appendView: (view) ->
+    unless view instanceof spark.core.View
+      error = 'View should be an instance of spark.core.View'
+    else if @children.indexOf(view) > -1
+      error = 'This view already appended to target view.'
+
+    throw new Error error if error
+
+    @children.push view
+    @getElement().appendChild view.getElement()
 
 
   ###*
