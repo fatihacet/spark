@@ -85,10 +85,11 @@ class spark.core.Object extends goog.events.EventTarget
     See also {@link goog.events.Listenable.prototype.listen}
     @param {!string} eventName Name of the event.
     @param {!Function} callback Callback function for the event.
+    @param {!Object|Element} target Target element to listen the event.
     @return {goog.events.ListenableKey|number} Unique key for the listener.
   ###
-  on: (eventName, callback) ->
-    return goog.events.listen this, eventName, callback
+  on: (eventName, callback, target = this) ->
+    return goog.events.listen target, eventName, callback
 
 
   ###*
@@ -96,10 +97,11 @@ class spark.core.Object extends goog.events.EventTarget
     fired once. See also {@link goog.events.Listenable.prototype.listenOnce}
     @param {!string} eventName Name of the event.
     @param {!Function} callback Callback function for the event.
+    @param {!Object|Element} target Target element to listen the event.
     @return {goog.events.ListenableKey|number} Unique key for the listener.
   ###
-  once: (eventName, callback) ->
-    return goog.events.listenOnce this, eventName, callback
+  once: (eventName, callback, target = this) ->
+    return goog.events.listenOnce target, eventName, callback
 
 
   ###*
