@@ -11,6 +11,10 @@ describe 'spark.core.View', ->
   isClicked = null
   isHovered = null
 
+  fireEvent = (type) ->
+    event = document.createEvent 'MouseEvents'
+    event.initEvent type, yes, yes
+    element.dispatchEvent event
 
   beforeEach ->
     isClicked       = null
@@ -45,8 +49,8 @@ describe 'spark.core.View', ->
     expect(isClicked).toBe null
     expect(isHovered).toBe null
 
-    view.emit 'click'
-    view.emit 'mouseover'
+    fireEvent 'click'
+    fireEvent 'mouseover'
 
     expect(isClicked).toBe yes
     expect(isHovered).toBe yes

@@ -135,7 +135,7 @@ class spark.core.View extends spark.core.Object
 
     for key, callback of @getOptions().eventHandlers
       if map[key] and typeof callback is 'function'
-        @on goog.events.EventType[map[key]], callback
+        @on goog.events.EventType[map[key]], callback, element
 
 
 goog.exportSymbol 'View', spark.core.View
