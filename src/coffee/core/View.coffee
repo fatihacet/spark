@@ -142,6 +142,31 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    Native setAttribute wrapper.
+    @param {!string} name  Atrribute name.
+    @param {!string} value Attribute value.
+  ###
+  setAttribute: (name, value) ->
+    @getElement().setAttribute name, value
+
+
+  ###*
+    Native getAttribute wrapper.
+    @param {!string} name  Atrribute name.
+  ###
+  getAttribute: (name) ->
+    @getElement().getAttribute name
+
+
+  ###*
+    Native removeAttribute wrapper.
+    @param {!string} name  Atrribute name.
+  ###
+  removeAttribute: (name) ->
+    @getElement().removeAttribute name
+
+
+  ###*
     This method is responsible from binding DOM events to the element of this view.
     It uses native DOM event names which is all lowercase. If your options
     has an event name and a callback function in eventHandlers object
