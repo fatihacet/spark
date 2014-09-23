@@ -181,6 +181,18 @@ class spark.core.View extends spark.core.Object
   ###*
     @inheritDoc
     @override
+    Override Object::once to support two way binding for DOM events.
+  ###
+  once: (eventName, callback) ->
+    goog.events.listenOnce this, eventName, callback
+
+    if spark.core.View.EventTypes[eventName]
+      goog.events.listenOnce @getElement(), eventName, callback
+
+
+  ###*
+    @inheritDoc
+    @override
     Override Object::off to remove events binded to DOM element.
   ###
   off: (eventName, callback) ->
