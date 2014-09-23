@@ -173,12 +173,19 @@ class spark.core.View extends spark.core.Object
     View will bind and listen those events automatically.
   ###
   bindEventHandlers: ->
-    map     = goog.object.transpose goog.events.EventType
-    element = @getElement()
+    eventTypes = spark.core.View.EventTypes
+    element    = @getElement()
 
     for key, callback of @getOptions().eventHandlers
-      if map[key] and typeof callback is 'function'
-        @on goog.events.EventType[map[key]], callback, element
+      if eventTypes[key] and typeof callback is 'function'
+        @on goog.events.EventType[eventTypes[key]], callback
+
+
+  ###*
+    A transposed map of goog.events.EventType
+    @enum {string}
+  ###
+  @EventTypes = goog.object.transpose goog.events.EventType
 
 
 # Example of export symbols
