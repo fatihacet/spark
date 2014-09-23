@@ -179,6 +179,16 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    @inheritDoc
+    @override
+    Override Object::off to remove events binded to DOM element.
+  ###
+  off: (eventName, callback) ->
+    @unlisten eventName, callback
+    goog.events.unlisten @getElement(), eventName, callback
+
+
+  ###*
     This method is responsible from binding DOM events to the element of this view.
     It uses native DOM event names which is all lowercase. If your options
     has an event name and a callback function in eventHandlers object
