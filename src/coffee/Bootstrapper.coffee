@@ -18,8 +18,11 @@ class spark.Bootstrapper
       domId     : 'big-header'
       template  : '<h3>HELLO SPARK</h3>'
 
+    b = new spark.components.Button
+
     goog.exportSymbol 'obj', o
     goog.exportSymbol 'vvv', v
+    goog.exportSymbol 'bbb', b
 
 
 window.addEventListener "load", (->
