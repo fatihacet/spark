@@ -16,9 +16,9 @@ class spark.components.Button extends spark.core.View
 
   constructor: (options = {}, data) ->
 
-    options.title          or= 'Button Title'
-    options.cssClass         = "#{spark.utils.concatString 'button', options.cssClass}"
     options.tagName          = 'button'
+    options.cssClass         = "#{spark.utils.concatString 'button', options.cssClass}"
+    options.title          or= 'Button Title'
     options.callback       or= null
     options.template       or= "<span>#{options.title}</span>"
     options.eventHandlers  or= {}
@@ -28,3 +28,30 @@ class spark.components.Button extends spark.core.View
       options.eventHandlers.click = callback
 
     super options, data
+
+
+  ###*
+    Disable button.
+  ###
+  disable: ->
+    disabled = 'disabled'
+    @addClass disabled
+    @setAttribute disabled, disabled
+    @isDisabled = yes
+
+
+  ###*
+    Enable button.
+  ###
+  enable: ->
+    disabled = 'disabled'
+    @removeClass disabled
+    @removeAttribute disabled
+    delete @isDisabled
+
+
+  ###*
+    Toggle button. Disable if enabled, enable if disabled.
+  ###
+  toggle: ->
+    if @isDisabled then @enable() else @disable()
