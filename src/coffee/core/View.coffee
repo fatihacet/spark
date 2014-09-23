@@ -167,6 +167,18 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    @inheritDoc
+    @override
+    Override Object::on to support two way binding for DOM events.
+  ###
+  on: (eventName, callback) ->
+    goog.events.listen this, eventName, callback
+
+    if spark.core.View.EventTypes[eventName]
+      goog.events.listen @getElement(), eventName, callback
+
+
+  ###*
     This method is responsible from binding DOM events to the element of this view.
     It uses native DOM event names which is all lowercase. If your options
     has an event name and a callback function in eventHandlers object
