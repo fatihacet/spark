@@ -167,37 +167,34 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
-    @inheritDoc
     @override
     Override Object::on to support two way binding for DOM events.
   ###
   on: (eventName, callback) ->
-    goog.events.listen this, eventName, callback
-
     if spark.core.View.EventTypes[eventName]
       goog.events.listen @getElement(), eventName, callback
 
+    return goog.events.listen this, eventName, callback
+
 
   ###*
-    @inheritDoc
     @override
     Override Object::once to support two way binding for DOM events.
   ###
   once: (eventName, callback) ->
-    goog.events.listenOnce this, eventName, callback
-
     if spark.core.View.EventTypes[eventName]
       goog.events.listenOnce @getElement(), eventName, callback
 
+    return goog.events.listenOnce this, eventName, callback
+
 
   ###*
-    @inheritDoc
     @override
     Override Object::off to remove events binded to DOM element.
   ###
   off: (eventName, callback) ->
-    @unlisten eventName, callback
     goog.events.unlisten @getElement(), eventName, callback
+    return @unlisten eventName, callback
 
 
   ###*
@@ -217,7 +214,6 @@ class spark.core.View extends spark.core.Object
 
   ###*
     A transposed map of goog.events.EventType
-    @enum {string}
   ###
   @EventTypes = goog.object.transpose goog.events.EventType
 
