@@ -157,6 +157,32 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-npm'
 
 
+  grunt.registerTask 'ci-test-only', 'Build stack.', (app = 'app') ->
+    grunt.task.run [
+      'clean'
+      'mkdir'
+      'sprites'
+      'coffee'
+      'coffee2closure'
+      'stylus'
+      'deps'
+      'karma'
+    ]
+
+  grunt.registerTask 'ci-build-only', 'Build stack.', (app = 'app') ->
+    grunt.task.run [
+      'clean'
+      'mkdir'
+      'sprites'
+      'coffee'
+      'coffee2closure'
+      'stylus'
+      'deps'
+      'karma'
+      'builder'
+    ]
+
+
   grunt.registerTask 'build', 'Build stack.', (app = 'app') ->
     grunt.task.run [
       'clean'
@@ -170,7 +196,6 @@ module.exports = (grunt) ->
       'builder'
       'http-server:compiled'
     ]
-
 
   grunt.registerTask 'default', 'Build stack.', (app = 'app') ->
     grunt.task.run [
