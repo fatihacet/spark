@@ -17,11 +17,12 @@ class spark.core.View extends spark.core.Object
 
   constructor: (options = {}, data) ->
 
-    options.cssClass     = "#{spark.utils.concatString 'view', options.cssClass}"
-    options.tagName    or= 'div'
-    options.domId      or= null
-    options.template   or= null
+    options.cssClass         = "#{spark.utils.concatString 'view', options.cssClass}"
+    options.tagName        or= 'div'
+    options.domId          or= null
+    options.template       or= null
     options.disabled       or= no
+    options.eventHandlers  or= {}
 
     super options, data
 
