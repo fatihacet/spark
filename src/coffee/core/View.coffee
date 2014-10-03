@@ -21,6 +21,7 @@ class spark.core.View extends spark.core.Object
     options.tagName    or= 'div'
     options.domId      or= null
     options.template   or= null
+    options.disabled       or= no
 
     super options, data
 
@@ -28,6 +29,8 @@ class spark.core.View extends spark.core.Object
 
     @createDomElement()
     @bindEventHandlers()
+
+    @disable() if options.disabled
 
 
   ###*
