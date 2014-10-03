@@ -167,6 +167,33 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    Disable view.
+  ###
+  disable: ->
+    disabled = 'disabled'
+    @addClass disabled
+    @setAttribute disabled, disabled
+    @isDisabled = yes
+
+
+  ###*
+    Enable view.
+  ###
+  enable: ->
+    disabled = 'disabled'
+    @removeClass disabled
+    @removeAttribute disabled
+    delete @isDisabled
+
+
+  ###*
+    Toggle view state. Disable if enabled, enable if disabled.
+  ###
+  toggle: ->
+    if @isDisabled then @enable() else @disable()
+
+
+  ###*
     @override
     Override Object::on to support two way binding for DOM events.
   ###
