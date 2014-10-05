@@ -15,7 +15,7 @@ describe 'spark.components.Button', ->
 
   beforeEach ->
     isClicked = null
-    options   = title: 'Spark Button'
+    options   = title: 'Spark Button', callback: -> isClicked = yes
     button    = new spark.components.Button options
     element   = button.getElement()
 
@@ -30,6 +30,21 @@ describe 'spark.components.Button', ->
 
     it 'should be a button element and has span as a child', ->
       expect(element.tagName).toBe 'BUTTON'
+
+
+  it 'should call callback when clicked', ->
+    flag = no
+
+    expect(isClicked).toBeNull()
+
+    fireClick()
+
+    expect(isClicked).toBeTruthy()
+
+    button.on   'click', -> flag = !flag
+    button.emit 'click'
+
+    expect(flag).toBeTruthy()
 
 
   describe 'disable', ->
