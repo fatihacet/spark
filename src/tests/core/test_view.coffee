@@ -133,6 +133,7 @@ describe 'spark.core.View', ->
 
     it 'should throw error if a view already appended into this view', ->
       error = new Error 'This view already appended to target view.'
+
       expect( -> newOne.appendView button ).toThrow error
 
 
@@ -141,3 +142,25 @@ describe 'spark.core.View', ->
       items = [ {}, [], null, undefined, 5, 'some string' ]
 
       expect( -> newOne.appendView item).toThrow error  for item in items
+
+
+  it 'should append element to document body when appendToDocumentBody called', ->
+      myView = new spark.core.View domId: 'myView'
+
+      expect(document.getElementById('myView')).toBeNull()
+
+      myView.appendToDocumentBody()
+
+      expect(document.getElementById('myView')).not.toBeNull()
+
+
+    it 'should remove element from document body if it is in the document', ->
+      isRemoved = view.removeFromDocument()
+
+      expect(isRemoved).toBeFalsy()
+
+      view.appendToDocumentBody()
+
+      isRemoved = view.removeFromDocument()
+
+      expect(isRemoved).toBeTruthy()

@@ -130,6 +130,27 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    Appends view into document's body.
+  ###
+  appendToDocumentBody: ->
+    document.body.appendChild @getElement()
+
+
+  ###*
+    Removes element from DOM if it is in DOM.
+    @return {boolean} Whether element removed from document or not.
+  ###
+  removeFromDocument: ->
+    element = @getElement()
+    parent  = element.parentNode
+
+    return no unless parent
+
+    parent.removeChild element
+    return yes
+
+
+  ###*
     Appends a new view into this view's element as a child.
     @param {!spark.core.View} view A spark.View instance to append.
   ###
