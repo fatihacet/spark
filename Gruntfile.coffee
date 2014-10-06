@@ -12,7 +12,7 @@ module.exports = (grunt) ->
       all                :
         options          :
           create         : [
-            'src/coffee'
+            'src/lib'
             'src/externs'
             'src/images'
             'src/styl'
@@ -30,7 +30,7 @@ module.exports = (grunt) ->
         files            : [
           expand         : yes
           cwd            : 'src'
-          src            : [ 'coffee/**/*.coffee', 'tests/**/*.coffee' ]
+          src            : [ 'lib/**/*.coffee', 'tests/**/*.coffee' ]
           dest           : 'build/js/'
           ext            : '.js'
         ]
