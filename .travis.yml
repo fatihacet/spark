@@ -1,0 +1,12 @@
+language: node_js
+
+node_js:
+  - "0.10"
+
+install:
+  - npm -d install
+  - npm install -g bower
+  - bower install
+  - npm install -g grunt-cli
+  - npm install -g grunt
+  - grunt ci-test-only
