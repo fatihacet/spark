@@ -32,7 +32,7 @@ module.exports = function(config) {
     // },
     preprocessors: {
       'build/js/**/test_*.js': ['closure', 'closure-iit'], // tests are preprocessed for dependencies (closure) and for iits
-      'build/js/**/*.js': ['closure'], // source files are preprocessed for dependencies
+      'build/js/**/*.js': ['closure', 'coverage'], // source files are preprocessed for dependencies
       'bower_components/closure-library/closure/goog/deps.js': ['closure-deps'] // external deps
     },
 
@@ -40,12 +40,17 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['dots', 'notify'],
+    reporters: ['coverage', 'notify', 'dots'],
 
 
     notifyReporter: {
       reportEachFailure: true,
       reportSuccess: true
+    },
+
+    coverageReporter: {
+      type: 'lcov',
+      dir: 'build/coverage/'
     },
 
 
