@@ -56,6 +56,13 @@ describe 'spark.core.View', ->
     expect(isHovered).toBe yes
 
 
+  it 'should return dom id', ->
+    expect(view.getDomId()).toBe 'world'
+
+    newView = new spark.core.View
+    expect(newView.getDomId()).toBeNull()
+
+
   it 'should set element template', ->
     expect(element.firstChild.tagName).toBe 'P'
 

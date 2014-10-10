@@ -56,6 +56,7 @@ describe 'spark.core.Object', ->
     object  = new spark.core.Object options
 
     expect(object.getOption('name')).toBe 'Fatih'
+    expect(object.getOption('age')).toBeNull()
 
 
   it 'should get data with getData method', ->
@@ -63,6 +64,11 @@ describe 'spark.core.Object', ->
     object = new spark.core.Object null, data
 
     expect(object.getData()).toBe data
+
+
+  it 'should return uid', ->
+    object = new spark.core.Object
+    expect(object.getUid()).toBeGreaterThan 0
 
 
   it 'should listen and fire events', ->
