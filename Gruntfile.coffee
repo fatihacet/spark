@@ -89,6 +89,11 @@ module.exports = (grunt) ->
       unit               :
         configFile       : 'karma.conf.js'
 
+    coveralls            :
+      options            :
+        src              : 'build/coverage/**/lcov.info'
+        force            : no
+
     builder              :
       all                :
         options          :
@@ -152,6 +157,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-mkdir'
   grunt.loadNpmTasks 'grunt-karma'
+  grunt.loadNpmTasks 'grunt-coveralls'
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
   grunt.loadNpmTasks 'grunt-http-server'
   grunt.loadNpmTasks 'grunt-npm'
@@ -167,6 +173,7 @@ module.exports = (grunt) ->
       'stylus'
       'deps'
       'karma'
+      'coveralls'
     ]
 
   grunt.registerTask 'ci-build-only', 'Build stack.', (app = 'app') ->

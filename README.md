@@ -1,4 +1,4 @@
-# Spark Framework [![Build Status](https://travis-ci.org/fatihacet/spark.svg?branch=master)](https://travis-ci.org/fatihacet/spark)
+# Spark Framework [![Build Status](https://travis-ci.org/fatihacet/spark.svg?branch=master)](https://travis-ci.org/fatihacet/spark)[![Coverage Status](https://img.shields.io/coveralls/fatihacet/spark.svg)](https://coveralls.io/r/fatihacet/spark)
 
 The Spark framework is a brand new JavaScript framework for modern web development. Focused on creating View based components, it aims to be test driven and well documented.
 
