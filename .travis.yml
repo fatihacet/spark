@@ -12,3 +12,6 @@ install:
 
 script:
   - grunt ci-test-only
+
+after_script:
+  - cat ./build/coverage/**/lcov.info | ./node_modules/coveralls/bin/coveralls.js
