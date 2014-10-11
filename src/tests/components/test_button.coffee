@@ -42,13 +42,10 @@ describe 'spark.components.Button', ->
     it 'should have an extra icon element if iconClass passed', ->
       button  = new spark.components.Button iconClass: 'arrow'
       element = button.getElement()
+      child   = element.firstChild
 
-      firstChild = element.firstChild
-      lastChild  = element.lastChild
-
-      expect(firstChild.tagName).toBe 'SPAN'
-      expect(firstChild.classList.contains('icon')).toBeTruthy()
-      expect(lastChild.classList.contains('icon')).toBeFalsy()
+      expect(child.tagName).toBe 'SPAN'
+      expect(child.classList.contains('icon')).toBeTruthy()
 
 
   it 'should call callback when clicked', ->
