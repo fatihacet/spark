@@ -10,6 +10,7 @@ describe 'spark.components.Input', ->
     options       =
       placeholder : 'What is your name?'
       value       : 'Fatih Acet'
+      name        : 'name'
 
     input = new spark.components.Input options
 
@@ -31,6 +32,16 @@ describe 'spark.components.Input', ->
 
   it 'should set value if passed in options', ->
     expect(input.getValue()).toBe 'Fatih Acet'
+
+
+  it 'should set name if passed in options', ->
+    expect(input.getName()).toBe 'name'
+
+
+  it 'should set name and update name', ->
+    input.setName('firstname')
+
+    expect(input.getName()).toBe 'firstname'
 
 
   it 'should set value and update value', ->

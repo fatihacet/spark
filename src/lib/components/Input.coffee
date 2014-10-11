@@ -20,6 +20,7 @@ class spark.components.Input extends spark.core.View
     options.cssClass         = "#{spark.utils.concatString 'input', options.cssClass}"
     options.type           or= 'text'
     options.placeholder    or= null
+    options.name           or= null
     options.eventHandlers  or= {}
     options.value          or= ""
 
@@ -33,6 +34,8 @@ class spark.components.Input extends spark.core.View
     if options.value
       @setValue options.value
 
+    if options.name
+      @setName options.name
 
   ###*
     Sets input value.
@@ -47,6 +50,21 @@ class spark.components.Input extends spark.core.View
   ###
   getValue: ->
     return @getElement().value
+
+
+  ###*
+    Sets input name.
+    @param {!string} name Input name.
+  ###
+  setName: (name) ->
+    @setAttribute 'name', name
+
+
+  ###*
+    Return input name.
+  ###
+  getName: ->
+    return @getElement().name
 
 
   ###*
