@@ -32,6 +32,11 @@ describe 'spark.core.View', ->
     element         = view.getElement()
 
 
+  it 'should has default options if no options passed', ->
+    v = new spark.core.View
+    expect(v.getOptions()).not.toBe {}
+
+
   it 'should create a DOM element with passed options', ->
     expect(element).toBeDefined()
     expect(element.id).toBe 'world'
