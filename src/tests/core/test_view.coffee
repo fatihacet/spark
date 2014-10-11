@@ -115,6 +115,28 @@ describe 'spark.core.View', ->
     expect(view.hasClass 'hello').toBeTruthy()
 
 
+  it 'should have disabled attribute when disabled', ->
+    view.disable()
+
+    expect(view.getAttribute('disabled')).toBe 'disabled'
+
+
+  it 'should be disabled if disabled options passed', ->
+    disabledView = new spark.core.View disabled: yes
+
+    expect(disabledView.getAttribute('disabled')).toBe 'disabled'
+
+
+  it 'should disable and enable element', ->
+    view.toggle()
+
+    expect(view.getAttribute('disabled')).toBe 'disabled'
+
+    view.toggle()
+
+    expect(view.getAttribute('disabled')).toBeNull()
+
+
   describe 'appendView', ->
 
     newOne     = new spark.core.View template : '<p>New View</p>'
@@ -166,13 +188,41 @@ describe 'spark.core.View', ->
       expect(document.getElementById('myView')).not.toBeNull()
 
 
-    it 'should remove element from document body if it is in the document', ->
-      isRemoved = view.removeFromDocument()
+  it 'should remove element from document body if it is in the document', ->
+    isRemoved = view.removeFromDocument()
 
-      expect(isRemoved).toBeFalsy()
+    expect(isRemoved).toBeFalsy()
 
-      view.appendToDocumentBody()
+    view.appendToDocumentBody()
+    isRemoved = view.removeFromDocument()
 
-      isRemoved = view.removeFromDocument()
+    expect(isRemoved).toBeTruthy()
 
-      expect(isRemoved).toBeTruthy()
+  it 'should emit the event listener when event emitted from object and also DOM event triggered', ->
+
+    fireEvent 'click' # simulate DOM click
+
+    expect(isClicked).toBeTruthy()
+
+    isClicked = null
+
+    view.emit 'click'
+
+    expect(isClicked).toBeTruthy()
+
+
+  it 'should properly handle overridden once and off', ->
+    state    = no
+    callback = -> state = yes
+
+    view.once 'click', callback
+    view.emit 'click'
+
+    expect(state).toBeTruthy()
+
+    state = no
+
+    view.off 'click', callback
+    view.emit 'click'
+
+    expect(state).toBeFalsy()
