@@ -28,8 +28,27 @@ describe 'spark.components.Button', ->
 
   describe 'template', ->
 
-    it 'should be a button element and has span as a child', ->
+    it 'should be a button element', ->
       expect(element.tagName).toBe 'BUTTON'
+
+
+    it 'should not have icon element in template if iconClass is not passed', ->
+      child = element.firstChild
+
+      expect(child.tagName).toBe 'SPAN'
+      expect(child.classList.contains('icon')).toBeFalsy()
+
+
+    it 'should have an extra icon element if iconClass passed', ->
+      button  = new spark.components.Button iconClass: 'arrow'
+      element = button.getElement()
+
+      firstChild = element.firstChild
+      lastChild  = element.lastChild
+
+      expect(firstChild.tagName).toBe 'SPAN'
+      expect(firstChild.classList.contains('icon')).toBeTruthy()
+      expect(lastChild.classList.contains('icon')).toBeFalsy()
 
 
   it 'should call callback when clicked', ->
@@ -93,4 +112,3 @@ describe 'spark.components.Button', ->
 
       button.enable()
       assertions()
-

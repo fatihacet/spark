@@ -20,11 +20,18 @@ class spark.components.Button extends spark.core.View
     options.cssClass         = "#{spark.utils.concatString 'button', options.cssClass}"
     options.title          or= 'Button Title'
     options.callback       or= null
-    options.template       or= "<span>#{options.title}</span>"
+    options.iconClass      or= null
     options.eventHandlers  or= {}
 
     {callback} = options
     if typeof callback is 'function'
       options.eventHandlers.click = callback
+
+    icon = ''
+
+    if options.iconClass
+      icon = "<span class='icon #{options.iconClass}'></span>"
+
+    options.template = "#{icon}<span>#{options.title}</span>"
 
     super options, data
