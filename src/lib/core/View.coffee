@@ -68,7 +68,7 @@ class spark.core.View extends spark.core.Object
     @param {!string} cssClass Class name.
   ###
   setClass: (cssClass) ->
-    @getElement().className = cssClass if cssClass
+    @getElement().className = cssClass
 
 
   ###*
@@ -92,7 +92,7 @@ class spark.core.View extends spark.core.Object
     @param {!string} cssClass New class name for the element.
   ###
   addClass: (cssClass) ->
-    @getElement().classList.add cssClass if cssClass
+    @getElement().classList.add cssClass
 
 
   ###*
@@ -100,7 +100,7 @@ class spark.core.View extends spark.core.Object
     @param {!string} cssClass Name of the class which will be removed.
   ###
   removeClass: (cssClass) ->
-    @getElement().classList.remove cssClass if cssClass
+    @getElement().classList.remove cssClass
 
 
   ###*
