@@ -20,15 +20,8 @@ class spark.components.Input extends spark.core.View
     options.cssClass         = "#{spark.utils.concatString 'input', options.cssClass}"
     options.type           or= 'text'
     options.placeholder    or= null
-    options.callback       or= null
     options.eventHandlers  or= {}
     options.value          or= ""
-
-    {callback} = options
-    if typeof callback is 'function'
-      options.eventHandlers.keypress = (event) =>
-        if event.charCode is 13
-          callback.call this, event
 
     super options, data
 
