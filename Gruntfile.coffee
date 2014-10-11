@@ -134,6 +134,14 @@ module.exports = (grunt) ->
         host             : '127.0.0.1'
         port             : 2222
 
+    open                 :
+      dev                :
+        path             : 'http://localhost:1111/public/debug'
+        app              : 'Google Chrome'
+      build              :
+        path             : 'http://localhost:2222/public/compiled'
+        app              : 'Google Chrome'
+
     watch                :
       options            :
         livereload       : yes
@@ -156,6 +164,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-mkdir'
+  grunt.loadNpmTasks 'grunt-open'
   grunt.loadNpmTasks 'grunt-karma'
   grunt.loadNpmTasks 'grunt-coveralls'
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
@@ -201,6 +210,7 @@ module.exports = (grunt) ->
       'deps'
       'karma'
       'builder'
+      'open:build'
       'http-server:compiled'
     ]
 
@@ -215,5 +225,6 @@ module.exports = (grunt) ->
       'deps'
       'karma'
       'http-server:debug'
+      'open:dev'
       'watch'
     ]

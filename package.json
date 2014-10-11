@@ -35,7 +35,8 @@
     "grunt-http-server": "0.0.5",
     "karma-coverage": "^0.2.6",
     "grunt-coveralls": "^1.0.0",
-    "coveralls": "^2.11.2"
+    "coveralls": "^2.11.2",
+    "grunt-open": "^0.2.3"
   },
   "scripts": {
     "test": "grunt test"
