@@ -36,6 +36,7 @@ class spark.components.Form extends spark.core.View
     if buttons
       buttons.forEach (options) => @createButton options
 
+    @setData data
 
   createContainers: ->
     @inputsContainer  = new spark.core.View cssClass: 'input-container'
