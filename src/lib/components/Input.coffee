@@ -37,6 +37,9 @@ class spark.components.Input extends spark.core.View
     if options.name
       @setName options.name
 
+    @on 'focus', => @addClass 'focus'
+    @on 'blur',  => @removeClass 'focus'
+
   ###*
     Sets input value.
     @param {!string} value Input value.
