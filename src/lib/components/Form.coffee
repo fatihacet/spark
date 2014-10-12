@@ -25,6 +25,7 @@ class spark.components.Form extends spark.core.View
 
     @inputs           = []
     @buttons          = []
+    @inputsByName     = {}
     {inputs, buttons} = options
 
     @createContainers()
@@ -45,16 +46,23 @@ class spark.components.Form extends spark.core.View
 
 
   createInput: (options) ->
-    if options.label
+    {name, label} = options
+
+    if label
       # FIXME: Passing options should be separated
-      input = new spark.components.LabeledInput
+      labeledInput   = new spark.components.LabeledInput
         labelOptions : options
         inputOptions : options
+
+      @inputsContainer.appendView labeledInput
+      @inputs.push input = labeledInput.input
+
     else
       input = new spark.components.Input options
+      @inputsContainer.appendView input
+      @inputs.push input
 
-    @inputs.push input
-    @inputsContainer.appendView input
+    @inputsByName[name] = input if name
 
 
   createButton: (options) ->
