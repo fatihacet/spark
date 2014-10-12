@@ -64,12 +64,49 @@ describe 'spark.components.Form', ->
       expect(input instanceof spark.components.Input).toBeTruthy()
 
 
-  it 'should have inputs as an instance of spark.components.LabeledInput if label options passed in input options', ->
-    f = new spark.components.Form inputs: [ { label: 'Your Name..?', name: 'hello' } ]
-
-    expect(f.inputs[0] instanceof spark.components.LabeledInput).toBeTruthy()
-
-
   it 'should have buttons as instance of spark.components.Button', ->
     for button in form.buttons
       expect(button instanceof spark.components.Button).toBeTruthy()
+
+
+  it 'should have named inputs object', ->
+    expect(form.inputsByName.surname instanceof spark.components.Input).toBeTruthy()
+
+
+  it 'should set and update form data', ->
+    form.setData { name: 'John', surname: 'Doe' }
+
+    expect(form.inputsByName.name.getValue()).toBe 'John'
+    expect(form.inputsByName.surname.getValue()).toBe 'Doe'
+
+
+  it 'should have spark.components.LabeledInput element if label options passed in input options', ->
+    f = new spark.components.Form inputs: [ { label: 'Your Name..?', name: 'hello' } ]
+
+    expect(f.inputsContainer.getElement().firstChild.tagName).toBe 'DIV'
+
+
+  it 'should return latest form data', ->
+    defaults = name: 'Fatih', surname: 'Acet'
+    newData  = name: 'John',  surname: 'Doe'
+
+    expect(form.getData().name).toBe 'Fatih'
+
+    form.setData newData
+
+    expect(form.getData().name).toBe 'John'
+
+
+  it 'should set data from constructor', ->
+    options =
+      inputs : [
+        { name  : 'email', value : 'fatih@fatihacet.com' }
+        { name  : 'password' }
+      ]
+
+    data = { email: 'fatih@fatihacet.com.', password: '123' }
+
+    f = new spark.components.Form options, data
+
+    expect(f.inputsByName.email.getValue()).toBe    'fatih@fatihacet.com.'
+    expect(f.inputsByName.password.getValue()).toBe '123'
