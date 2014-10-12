@@ -16,7 +16,7 @@ class spark.core.Object extends goog.events.EventTarget
   ###
   constructor: (options = {}, data) ->
 
-    super options, data
+    super
 
     @setOptions options  if options
     @setData data        if data
