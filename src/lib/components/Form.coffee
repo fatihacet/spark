@@ -70,3 +70,20 @@ class spark.components.Form extends spark.core.View
 
     @buttons.push button
     @buttonsContainer.appendView button
+
+
+  setData: (data) ->
+    return unless @inputsByName
+
+    for name, value of data
+      input = @inputsByName[name]
+      input.setValue value if input
+
+
+  getData: ->
+    dataSet = {}
+
+    for input in @inputs
+      dataSet[input.getName()] = input.getValue()
+
+    return dataSet
