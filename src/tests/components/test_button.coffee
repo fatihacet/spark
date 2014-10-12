@@ -26,6 +26,11 @@ describe 'spark.components.Button', ->
       expect(button instanceof spark.core.View).toBeTruthy()
 
 
+  it 'should have default options', ->
+    b = new spark.components.Button null, null
+    expect(b.hasClass('view')).toBeTruthy()
+
+
   describe 'template', ->
 
     it 'should be a button element', ->
