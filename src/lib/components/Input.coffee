@@ -83,3 +83,9 @@ class spark.components.Input extends spark.core.View
   ###
   clearPlaceholder: ->
     @removeAttribute 'placeholder'
+
+
+  focus: ->
+    @getElement().focus()
+    @addClass 'focus'
+

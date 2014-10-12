@@ -66,3 +66,9 @@ describe 'spark.components.Input', ->
     input.clearPlaceholder()
 
     expect(input.getElement().placeholder).toBe ''
+
+
+  it 'should has focus class when focussed', ->
+    input.focus()
+
+    expect(input.hasClass('focus')).toBeTruthy()
