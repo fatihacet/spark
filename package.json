@@ -44,5 +44,6 @@
   "engines": {
     "node": "v0.10.x"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "contributors": []
 }
