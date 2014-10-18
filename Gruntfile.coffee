@@ -163,8 +163,20 @@ module.exports = (grunt) ->
         src              : [ 'build/js/lib/**/*.js', 'README.md', '!build/js/lib/Bootstrapper.js' ],
         options          :
           destination    : 'build/docs'
-          template       : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
-          configure      : "jsdoc.conf.json"
+          template       : 'node_modules/grunt-jsdoc/node_modules/ink-docstrap/template',
+          configure      : 'jsdoc.conf.json'
+
+    'gh-pages'           :
+      src                : 'docs/*'
+      options            :
+        base             : 'build'
+        message          : 'Update docs.'
+        repo             : 'https://' + process.env.GH_TOKEN + '@github.com/fatihacet/spark.git'
+        silent           : yes
+        dotfiles         : no
+        user             :
+          name           : 'Fatih Acet'
+          email          : 'fatih@fatihacet.com'
 
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
@@ -178,6 +190,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-coveralls'
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
   grunt.loadNpmTasks 'grunt-http-server'
+  grunt.loadNpmTasks 'grunt-gh-pages'
   grunt.loadNpmTasks 'grunt-npm'
 
 
@@ -192,7 +205,10 @@ module.exports = (grunt) ->
       'deps'
       'karma'
       'coveralls'
+      'jsdoc'
+      'gh-pages'
     ]
+
 
   grunt.registerTask 'ci-build-only', 'Build task for CI tools.', (app = 'app') ->
     grunt.task.run [
@@ -222,6 +238,7 @@ module.exports = (grunt) ->
       'open:build'
       'http-server:compiled'
     ]
+
 
   grunt.registerTask 'default', 'Run tests and watch the stack for changes', (app = 'app') ->
     grunt.task.run [
