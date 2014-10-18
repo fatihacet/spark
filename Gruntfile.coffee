@@ -190,6 +190,7 @@ module.exports = (grunt) ->
             return cb() if err or stderr or not stdout
 
             CUSTOM_COMMIT_MESSAGE = stdout
+            grunt.task.run 'gh-pages'
             cb()
 
 
@@ -223,7 +224,6 @@ module.exports = (grunt) ->
       'coveralls'
       'jsdoc'
       'shell'
-      'gh-pages'
     ]
 
 
