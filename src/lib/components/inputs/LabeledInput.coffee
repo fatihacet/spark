@@ -1,6 +1,8 @@
 goog.provide 'spark.components.LabeledInput'
+
 goog.require 'spark.components.Input'
 goog.require 'spark.components.Label'
+
 
 ###*
   Input with label component of Spark Framework.
@@ -13,7 +15,6 @@ class spark.components.LabeledInput extends spark.core.View
     @param   {*=} data Class data
     @extends {spark.core.View}
   ###
-
   constructor: (options = {}, data) ->
 
     options.cssClass = "#{spark.utils.concatString 'labeled-input', options.cssClass}"

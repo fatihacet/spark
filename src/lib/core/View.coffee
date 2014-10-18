@@ -1,4 +1,5 @@
 goog.provide 'spark.core.View'
+
 goog.require 'spark.core.Object'
 goog.require 'spark.utils'
 
@@ -14,7 +15,6 @@ class spark.core.View extends spark.core.Object
     @param   {*=} data Class data
     @extends {spark.core.Object}
   ###
-
   constructor: (options = {}, data) ->
 
     options.cssClass         = "#{spark.utils.concatString 'view', options.cssClass}"

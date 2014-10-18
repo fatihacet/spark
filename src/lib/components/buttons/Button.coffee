@@ -1,4 +1,5 @@
 goog.provide 'spark.components.Button'
+
 goog.require 'spark.core.View'
 
 
@@ -13,7 +14,6 @@ class spark.components.Button extends spark.core.View
     @param   {*=} data Class data
     @extends {spark.core.View}
   ###
-
   constructor: (options = {}, data) ->
 
     options.tagName          = 'button'

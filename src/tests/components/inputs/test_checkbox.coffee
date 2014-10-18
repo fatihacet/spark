@@ -1,6 +1,7 @@
 goog.require 'spark.components.Checkbox'
 goog.require 'spark.components.Field'
 
+
 describe 'spark.components.Checkbox', ->
 
   checkbox = null

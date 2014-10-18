@@ -2,8 +2,8 @@ goog.require 'spark.core.Object'
 goog.require 'goog.events'
 goog.require 'goog.events.EventTarget'
 
-describe 'spark.core.Object', ->
 
+describe 'spark.core.Object', ->
 
   it 'should set options passed to constructor', ->
     options = name: 'Fatih', age: 27

@@ -1,4 +1,5 @@
 goog.provide 'spark.components.Radio'
+
 goog.require 'spark.components.Checkbox'
 
 
@@ -13,7 +14,6 @@ class spark.components.Radio extends spark.components.Checkbox
     @param   {*=} data Class data
     @extends {spark.core.spark.components.Checkbox}
   ###
-
   constructor: (options = {}, data) ->
 
     options.type = 'radio'

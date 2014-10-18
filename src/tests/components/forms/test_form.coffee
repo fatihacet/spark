@@ -6,7 +6,6 @@ goog.require 'spark.components.LabeledInput'
 
 describe 'spark.components.Form', ->
 
-
   form      = null
   f         = null
   cancelled = null

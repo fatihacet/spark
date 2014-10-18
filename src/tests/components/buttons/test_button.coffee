@@ -1,8 +1,8 @@
 goog.require 'spark.components.Button'
 goog.require 'spark.core.View'
 
-describe 'spark.components.Button', ->
 
+describe 'spark.components.Button', ->
 
   button    = null
   element   = null

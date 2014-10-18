@@ -1,4 +1,5 @@
 goog.provide 'spark.components.Label'
+
 goog.require 'spark.core.View'
 
 
@@ -13,7 +14,6 @@ class spark.components.Label extends spark.core.View
     @param   {*=} data Class data
     @extends {spark.core.View}
   ###
-
   constructor: (options = {}, data) ->
 
     options.tagName     = 'label'

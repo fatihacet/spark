@@ -1,4 +1,5 @@
 goog.provide 'spark.components.Checkbox'
+
 goog.require 'spark.components.Field'
 
 
@@ -13,7 +14,6 @@ class spark.components.Checkbox extends spark.components.Field
     @param   {*=} data Class data
     @extends {spark.components.Field}
   ###
-
   constructor: (options = {}, data) ->
 
     options.type       = 'checkbox'

@@ -1,7 +1,7 @@
 goog.require 'spark.components.LabeledInput'
 
-describe 'spark.components.LabeledInput', ->
 
+describe 'spark.components.LabeledInput', ->
 
   labeledInput = null
   element      = null

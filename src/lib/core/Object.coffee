@@ -1,4 +1,5 @@
 goog.provide 'spark.core.Object'
+
 goog.require 'goog.events.EventTarget'
 
 
