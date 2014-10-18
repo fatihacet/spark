@@ -1,5 +1,3 @@
-COMMIT_MESSAGE = 'Same as last commit with changes.'
-
 module.exports = (grunt) ->
 
   grunt.initConfig
@@ -172,24 +170,13 @@ module.exports = (grunt) ->
       src                : '**/*'
       options            :
         base             : 'build/docs'
-        message          : '<%= RANDOM_COMMIT_MESSAGE %>'
+        message          : 'Same as last commit with changes'
         repo             : "https://#{process.env.GH_TOKEN}@github.com/fatihacet/spark.git"
         silent           : yes
         dotfiles         : no
         user             :
           name           : 'Fatih Acet'
           email          : 'fatih@fatihacet.com'
-
-    shell                :
-      options            :
-        stderr           : false
-      target             :
-        command          : 'curl -s http://whatthecommit.com/index.txt'
-        options          :
-          callback       : (err, stdout, stderr, cb) ->
-            return cb() if err or stderr or not stdout
-            RANDOM_COMMIT_MESSAGE = stdout
-            cb()
 
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
@@ -204,7 +191,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
   grunt.loadNpmTasks 'grunt-http-server'
   grunt.loadNpmTasks 'grunt-gh-pages'
-  grunt.loadNpmTasks 'grunt-shell'
   grunt.loadNpmTasks 'grunt-npm'
 
 
