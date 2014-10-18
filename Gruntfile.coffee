@@ -206,7 +206,6 @@ module.exports = (grunt) ->
       'karma'
       'coveralls'
       'jsdoc'
-      'shell'
       'gh-pages'
     ]
 
