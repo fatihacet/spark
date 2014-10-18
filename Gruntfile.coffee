@@ -172,7 +172,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-npm'
 
 
-  grunt.registerTask 'ci-test-only', 'Build stack.', (app = 'app') ->
+  grunt.registerTask 'ci-test-only', 'Run tests for CI tools.', (app = 'app') ->
     grunt.task.run [
       'clean'
       'mkdir'
@@ -185,7 +185,7 @@ module.exports = (grunt) ->
       'coveralls'
     ]
 
-  grunt.registerTask 'ci-build-only', 'Build stack.', (app = 'app') ->
+  grunt.registerTask 'ci-build-only', 'Build task for CI tools.', (app = 'app') ->
     grunt.task.run [
       'clean'
       'mkdir'
@@ -199,7 +199,7 @@ module.exports = (grunt) ->
     ]
 
 
-  grunt.registerTask 'build', 'Build stack.', (app = 'app') ->
+  grunt.registerTask 'build', 'Run tests and compile code with Closure Compiler.', (app = 'app') ->
     grunt.task.run [
       'clean'
       'mkdir'
@@ -214,7 +214,7 @@ module.exports = (grunt) ->
       'http-server:compiled'
     ]
 
-  grunt.registerTask 'default', 'Build stack.', (app = 'app') ->
+  grunt.registerTask 'default', 'Run tests and watch the stack for changes', (app = 'app') ->
     grunt.task.run [
       'clean'
       'mkdir'
