@@ -1,4 +1,4 @@
-CUSTOM_COMMIT_MESSAGE = 'Same as last commit with changes.'
+COMMIT_MESSAGE = 'Same as last commit with changes.'
 
 module.exports = (grunt) ->
 
@@ -172,7 +172,7 @@ module.exports = (grunt) ->
       src                : '**/*'
       options            :
         base             : 'build/docs'
-        message          : process.env.COMMIT_MESSAGE
+        message          : process.env.COMMIT_MESSAGE or COMMIT_MESSAGE
         repo             : "https://#{process.env.GH_TOKEN}@github.com/fatihacet/spark.git"
         silent           : yes
         dotfiles         : no
@@ -220,6 +220,7 @@ module.exports = (grunt) ->
       'karma'
       'coveralls'
       'jsdoc'
+      'shell'
       'gh-pages'
     ]
 
