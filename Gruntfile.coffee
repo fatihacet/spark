@@ -189,10 +189,9 @@ module.exports = (grunt) ->
           callback       : (err, stdout, stderr, cb) ->
             return cb() if err or stderr or not stdout
 
+            grunt.option.init()
             grunt.option 'commitMessageText', stdout
-            grunt.task.run 'gh-pages'
             cb()
-
 
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
@@ -224,6 +223,7 @@ module.exports = (grunt) ->
       'coveralls'
       'jsdoc'
       'shell'
+      'gh-pages'
     ]
 
 
