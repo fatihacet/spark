@@ -1,4 +1,4 @@
-CUSTOM_COMMIT_MESSAGE = 'Same as last commit with changes'
+CUSTOM_COMMIT_MESSAGE = 'Same as last commit with changes.'
 
 module.exports = (grunt) ->
 
@@ -222,6 +222,7 @@ module.exports = (grunt) ->
       'karma'
       'coveralls'
       'jsdoc'
+      'shell'
       'gh-pages'
     ]
 
