@@ -21,8 +21,8 @@ class spark.components.LabeledInput extends spark.core.View
 
     super options, data
 
-    @label = new spark.components.Label options.labelOptions, data
-    @input = new spark.components.Input options.inputOptions, data
+    @label = new spark.components.Label    options.labelOptions, data
+    @input = spark.components.FieldFactory options.inputOptions, data
 
     @appendView @label
     @appendView @input

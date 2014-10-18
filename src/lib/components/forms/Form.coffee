@@ -1,8 +1,7 @@
 goog.provide 'spark.components.Form'
 
 goog.require 'spark.core.View'
-goog.require 'spark.components.Input'
-goog.require 'spark.components.Button'
+goog.require 'spark.components.FieldFactory'
 goog.require 'spark.components.LabeledInput'
 
 
@@ -59,7 +58,7 @@ class spark.components.Form extends spark.core.View
       @inputs.push input = labeledInput.input
 
     else
-      input = new spark.components.Input options
+      input = spark.components.FieldFactory options
       @inputsContainer.appendView input
       @inputs.push input
 
