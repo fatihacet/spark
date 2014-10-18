@@ -167,9 +167,9 @@ module.exports = (grunt) ->
           configure      : 'jsdoc.conf.json'
 
     'gh-pages'           :
-      src                : 'docs/*'
+      src                : '*'
       options            :
-        base             : 'build'
+        base             : 'build/docs'
         message          : 'Update docs.'
         repo             : 'https://' + process.env.GH_TOKEN + '@github.com/fatihacet/spark.git'
         silent           : yes
