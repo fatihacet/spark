@@ -1,0 +1,24 @@
+{
+  "templates": {
+    "systemName"            : "Spark Framework",
+    "footer"                : "Spark Framework by Fatih Acet <fatih@fatihacet.com>",
+    "copyright"             : "Copyright © 2014 - Fatih Acet",
+    "navType"               : "inline",
+    "theme"                 : "spacelab",
+    "syntaxTheme"           : "dark",
+    "linenums"              : true,
+    "collapseSymbols"       : false,
+    "inverseNav"            : false,
+    "outputSourceFiles"     : true,
+    "outputSourcePath"      : true,
+    "highlightTutorialCode" : true
+  },
+  "markdown"   : {
+    "parser"   : "gfm",
+    "hardwrap" : true
+  },
+  "tags": {
+    "allowUnknownTags" : true
+  },
+  "plugins": ["plugins/markdown"]
+}

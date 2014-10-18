@@ -158,6 +158,14 @@ module.exports = (grunt) ->
         files            : [ '*.styl' ]
         tasks            : [ 'stylus' ]
 
+    jsdoc                :
+      dist               :
+        src              : [ 'build/**/*.js', 'README.md' ],
+        options          :
+          destination    : 'build/docs'
+          template       : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
+          configure      : "jsdoc.conf.json"
+
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
@@ -165,6 +173,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-mkdir'
   grunt.loadNpmTasks 'grunt-open'
+  grunt.loadNpmTasks 'grunt-jsdoc'
   grunt.loadNpmTasks 'grunt-karma'
   grunt.loadNpmTasks 'grunt-coveralls'
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
