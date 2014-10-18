@@ -25,13 +25,24 @@ class spark.components.Checkbox extends spark.components.Field
       @check()
 
 
+  ###*
+    Check the element.
+  ###
   check: ->
     @getElement().checked = yes
 
 
+  ###*
+    Uncheck the element.
+  ###
   uncheck: ->
     @getElement().checked = no
 
 
+  ###*
+    Returns element's checked state.
+
+    @return {boolean} Checked state.
+  ###
   isChecked: ->
     return @getElement().checked

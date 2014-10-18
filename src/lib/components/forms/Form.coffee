@@ -27,7 +27,7 @@ class spark.components.Form extends spark.core.View
     @inputsByName     = {}
     {inputs, buttons} = options
 
-    @createContainers()
+    @createContainers_()
 
     if inputs
       inputs.forEach (options) =>  @createInput options
@@ -37,7 +37,13 @@ class spark.components.Form extends spark.core.View
 
     @setData data
 
-  createContainers: ->
+
+  ###*
+    Creates DOM element to hold input and button elements.
+
+    @private
+  ###
+  createContainers_: ->
     @inputsContainer  = new spark.core.View cssClass: 'input-container'
     @buttonsContainer = new spark.core.View cssClass: 'buttons-container'
 
@@ -45,11 +51,16 @@ class spark.components.Form extends spark.core.View
     @appendView @buttonsContainer
 
 
+  ###*
+    Creates field component from passed option using FieldFactory.
+    FIXME: Creating LabeledInput should be handled in FieldFactory.
+
+    @param {!Object} options Field options to create a field component.
+  ###
   createInput: (options) ->
     {name, label} = options
 
     if label
-      # FIXME: Passing options should be separated
       labeledInput   = new spark.components.LabeledInput
         labelOptions : options
         inputOptions : options
@@ -65,6 +76,11 @@ class spark.components.Form extends spark.core.View
     @inputsByName[name] = input if name
 
 
+  ###*
+    Creates button with the options.
+
+    @param {!Object} options Options to create a button component.
+  ###
   createButton: (options) ->
     button = new spark.components.Button options
 
@@ -72,6 +88,11 @@ class spark.components.Form extends spark.core.View
     @buttonsContainer.appendView button
 
 
+  ###*
+    Sets form data and update fields with the data.
+    Data should be an object and keys should match field names in this form.
+    Values should be string.
+  ###
   setData: (data) ->
     return unless @inputsByName
 
@@ -80,6 +101,10 @@ class spark.components.Form extends spark.core.View
       input.setValue value if input
 
 
+  ###*
+    Returns form data from DOM elements.
+    This method may be useful for serializing the form data.
+  ###
   getData: ->
     dataSet = {}
 
