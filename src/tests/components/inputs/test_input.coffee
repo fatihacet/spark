@@ -23,6 +23,12 @@ describe 'spark.components.Input', ->
     expect(input.getElement().placeholder).toBe options.placeholder
 
 
+  it 'should have default options', ->
+    input = new spark.components.Input null, null
+
+    expect(input.getOptions().type).toBe 'text'
+
+
   it 'should set and update placeholder', ->
     newPlaceholder = 'name please?'
     input.setPlaceholder newPlaceholder

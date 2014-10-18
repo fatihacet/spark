@@ -16,9 +16,9 @@ describe 'spark.components.Radio', ->
 
 
   it 'should have default options', ->
-    radio = new spark.components.LabeledInput null, null
+    radio = new spark.components.Radio null, null
 
-    expect(radio.getOptions().cssClass).toBeDefined()
+    expect(radio.getOptions().type).toBe 'radio'
 
 
   it 'should be type radio', ->
