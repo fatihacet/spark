@@ -160,7 +160,7 @@ module.exports = (grunt) ->
 
     jsdoc                :
       dist               :
-        src              : [ 'build/**/*.js', 'README.md' ],
+        src              : [ 'build/js/lib/**/*.js', 'README.md', '!build/js/lib/Bootstrapper.js' ],
         options          :
           destination    : 'build/docs'
           template       : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
