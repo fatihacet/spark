@@ -172,7 +172,7 @@ module.exports = (grunt) ->
       src                : '**/*'
       options            :
         base             : 'build/docs'
-        message          : '<%= process.env.COMMIT_MESSAGE %>'
+        message          : '<%= RANDOM_COMMIT_MESSAGE %>'
         repo             : "https://#{process.env.GH_TOKEN}@github.com/fatihacet/spark.git"
         silent           : yes
         dotfiles         : no
@@ -188,7 +188,7 @@ module.exports = (grunt) ->
         options          :
           callback       : (err, stdout, stderr, cb) ->
             return cb() if err or stderr or not stdout
-            process.env.COMMIT_MESSAGE = stdout
+            RANDOM_COMMIT_MESSAGE = stdout
             cb()
 
 
