@@ -172,7 +172,7 @@ module.exports = (grunt) ->
       src                : '**/*'
       options            :
         base             : 'build/docs'
-        message          : CUSTOM_COMMIT_MESSAGE
+        message          : grunt.option 'commitMessageText'
         repo             : 'https://' + process.env.GH_TOKEN + '@github.com/fatihacet/spark.git'
         silent           : yes
         dotfiles         : no
@@ -189,7 +189,7 @@ module.exports = (grunt) ->
           callback       : (err, stdout, stderr, cb) ->
             return cb() if err or stderr or not stdout
 
-            CUSTOM_COMMIT_MESSAGE = stdout
+            grunt.option 'commitMessageText', stdout
             grunt.task.run 'gh-pages'
             cb()
 
