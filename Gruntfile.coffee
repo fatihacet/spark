@@ -172,7 +172,7 @@ module.exports = (grunt) ->
       src                : '**/*'
       options            :
         base             : 'build/docs'
-        message          : process.env.COMMIT_MESSAGE or COMMIT_MESSAGE
+        message          : '<%= process.env.COMMIT_MESSAGE %>'
         repo             : "https://#{process.env.GH_TOKEN}@github.com/fatihacet/spark.git"
         silent           : yes
         dotfiles         : no
