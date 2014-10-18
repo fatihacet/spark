@@ -25,6 +25,10 @@ describe 'spark.components.Checkbox', ->
     expect(checkbox.getElement().checked).toBeTruthy()
 
 
+  it 'should be type checkbox', ->
+    expect(checkbox.getAttribute('type')).toBe 'checkbox'
+
+
   it 'should check/uncheck the element and return actual state', ->
     cb = new spark.components.Checkbox
 
