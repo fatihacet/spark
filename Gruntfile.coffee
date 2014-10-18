@@ -167,7 +167,7 @@ module.exports = (grunt) ->
           configure      : 'jsdoc.conf.json'
 
     'gh-pages'           :
-      src                : '*'
+      src                : '**/*'
       options            :
         base             : 'build/docs'
         message          : 'Update docs.'
