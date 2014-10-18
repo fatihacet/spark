@@ -189,6 +189,7 @@ module.exports = (grunt) ->
           callback       : (err, stdout, stderr, cb) ->
             return cb() if err or stderr or not stdout
             process.env.COMMIT_MESSAGE = stdout
+            cb()
 
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
