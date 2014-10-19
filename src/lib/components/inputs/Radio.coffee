@@ -12,7 +12,7 @@ class spark.components.Radio extends spark.components.Checkbox
     @constructor
     @param   {Object=} options Class options.
     @param   {*=} data Class data
-    @extends {spark.core.spark.components.Checkbox}
+    @extends {spark.components.Checkbox}
   ###
   constructor: (options = {}, data) ->
 
