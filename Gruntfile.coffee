@@ -138,6 +138,9 @@ module.exports = (grunt) ->
       dev                :
         path             : 'http://localhost:1111/public/debug'
         app              : 'Google Chrome'
+      coverage           :
+        path             : 'http://localhost:1111/build/coverage/PhantomJS 1.9.7 (Mac OS X)/lcov-report/index.html'
+        app              : 'Google Chrome'
       build              :
         path             : 'http://localhost:2222/public/compiled'
         app              : 'Google Chrome'
@@ -252,5 +255,6 @@ module.exports = (grunt) ->
       'karma'
       'http-server:debug'
       'open:dev'
+      'open:coverage'
       'watch'
     ]
