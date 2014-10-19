@@ -13,4 +13,6 @@ after_script:
 - cat ./build/coverage/**/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 env:
   global:
-    secure: K3DLNNiTZqp0I9VIwsLKxEyGwMrw7tYUanUNkRS83U1OkFYVzNm0QJ7gng4hIRqxJezuqKBBF7lyq8Or/UwhYtcOjcRzfTi1M37iC01ogO1FevwOrEMCd9Lg3gFK02n3Jur1mguXrffsq9PxaUZ9S7Pr6Q4iC5e17nrnhrCOjs8=
+  - secure: K3DLNNiTZqp0I9VIwsLKxEyGwMrw7tYUanUNkRS83U1OkFYVzNm0QJ7gng4hIRqxJezuqKBBF7lyq8Or/UwhYtcOjcRzfTi1M37iC01ogO1FevwOrEMCd9Lg3gFK02n3Jur1mguXrffsq9PxaUZ9S7Pr6Q4iC5e17nrnhrCOjs8=
+  - secure: ef6aDXW537F6UWTfmKcL079AgjoYLG88de3ZrBVm9oAOdwePrH8PN0QwPWGVm1rhE9DavyD1Phm5QOXmHTB0/QTi61wT1NRu3CZIlcF8rFDCe3D9/HA94fmuhBIgXNss9kQQA485zTMYmcafFE89EQdAuCAfwQOcOGCVc2cjFO4=
+  - secure: UKGtC8i55KHmMtROIWde016WkvniYWqq+KIkb2OmE2d63ONNq9meA+xc42XPpA/oI5PnLyQlWEh25+nLEgsejJp3qTjyj9zpN3W+dpcyqwt4nrSPaEWSRfc3PqjP0c2W+C6AFHR/ZxhLKDMjJ8zqm4yLywwY0cNpP2ws9H6Cggg=

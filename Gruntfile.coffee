@@ -86,8 +86,12 @@ module.exports = (grunt) ->
         src              : 'build/js/**/*_test.js'
 
     karma                :
-      unit               :
-        configFile       : 'karma.conf.js'
+      headless           :
+        configFile       : 'karma.headless.conf.js'
+      local              :
+        configFile       : 'karma.local.conf.js'
+      sauceLabs          :
+        configFile       : 'karma.saucelabs.conf.js'
 
     coveralls            :
       options            :
@@ -156,7 +160,7 @@ module.exports = (grunt) ->
         files            : [ '*.html' ]
       src                :
         files            : [ '**/*.coffee' ]
-        tasks            : [ 'clean', 'mkdir', 'coffee', 'coffee2closure', 'deps', 'karma' ]
+        tasks            : [ 'clean', 'mkdir', 'coffee', 'coffee2closure', 'deps', 'karma:headless' ]
       styl               :
         files            : [ '*.styl' ]
         tasks            : [ 'stylus' ]
@@ -206,7 +210,7 @@ module.exports = (grunt) ->
       'coffee2closure'
       'stylus'
       'deps'
-      'karma'
+      'karma:headless'
       'coveralls'
       'jsdoc'
       'gh-pages'
@@ -222,7 +226,7 @@ module.exports = (grunt) ->
       'coffee2closure'
       'stylus'
       'deps'
-      'karma'
+      'karma:headless'
       'builder'
     ]
 
@@ -236,7 +240,7 @@ module.exports = (grunt) ->
       'coffee2closure'
       'stylus'
       'deps'
-      'karma'
+      'karma:headless'
       'builder'
       'open:build'
       'http-server:compiled'
@@ -252,7 +256,7 @@ module.exports = (grunt) ->
       'coffee2closure'
       'stylus'
       'deps'
-      'karma'
+      'karma:headless'
       'http-server:debug'
       'open:dev'
       'open:coverage'
