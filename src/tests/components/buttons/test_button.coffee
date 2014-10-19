@@ -93,6 +93,7 @@ describe 'spark.components.Button', ->
 
     it 'should not fire click listener when disabled', ->
       button.disable()
+      button.appendToDocumentBody()
       fireClick()
       expect(isClicked).toBeNull()
 
