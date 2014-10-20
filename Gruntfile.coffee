@@ -35,11 +35,6 @@ module.exports = (grunt) ->
           ext            : '.js'
         ]
 
-    sprites              :
-      all                :
-        files            :
-          src            : 'src/images'
-          dest           : 'build/images'
 
     coffee2closure       :
       all                :
@@ -77,13 +72,6 @@ module.exports = (grunt) ->
             'bower_components/closure-templates'
             'build'
           ]
-
-    tests                :
-      app                :
-        options          :
-          depsPath       : '<%= deps.all.options.outputFile %>'
-          prefix         : '<%= deps.all.options.prefix %>'
-        src              : 'build/js/**/*_test.js'
 
     karma                :
       headless           :
@@ -205,7 +193,6 @@ module.exports = (grunt) ->
     grunt.task.run [
       'clean'
       'mkdir'
-      'sprites'
       'coffee'
       'coffee2closure'
       'stylus'
@@ -221,7 +208,6 @@ module.exports = (grunt) ->
     grunt.task.run [
       'clean'
       'mkdir'
-      'sprites'
       'coffee'
       'coffee2closure'
       'stylus'
@@ -235,7 +221,6 @@ module.exports = (grunt) ->
     grunt.task.run [
       'clean'
       'mkdir'
-      'sprites'
       'coffee'
       'coffee2closure'
       'stylus'
@@ -251,7 +236,6 @@ module.exports = (grunt) ->
     grunt.task.run [
       'clean'
       'mkdir'
-      'sprites'
       'coffee'
       'coffee2closure'
       'stylus'
