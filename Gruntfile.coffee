@@ -62,6 +62,9 @@ module.exports = (grunt) ->
           cwd            : 'src/styl'
           dest           : 'build/css'
         ]
+      concat             :
+        files            : { 'build/css/spark.min.css' : 'src/styl/imports.styl' }
+        compress         : yes
 
     templates            :
       all                :
