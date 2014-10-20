@@ -18,7 +18,7 @@ module.exports = (grunt) ->
             'src/styl'
             'src/templates'
             'src/third-party'
-            'build'
+            'build/css'
             'build/compiled'
             'build/images'
           ]
