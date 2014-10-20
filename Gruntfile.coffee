@@ -158,6 +158,9 @@ module.exports = (grunt) ->
       styl               :
         files            : [ '*.styl' ]
         tasks            : [ 'stylus' ]
+      images             :
+        files            : [ 'src/images/**/*.png' ]
+        tasks            : [ 'spriteGenerator' ]
 
     jsdoc                :
       dist               :
