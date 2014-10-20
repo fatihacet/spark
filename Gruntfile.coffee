@@ -52,12 +52,12 @@ module.exports = (grunt) ->
 
     stylus               :
       options            :
-        'include css'    : true
-        'compress'       : false
+        'include css'    : yes
       all                :
         files            : [
-          expand         : true
-          src            : [ '*.styl' ]
+          compress       : no
+          expand         : yes
+          src            : [ '**/*.styl', '!imports.styl' ]
           ext            : '.css'
           cwd            : 'src/styl'
           dest           : 'build/css'
@@ -156,7 +156,7 @@ module.exports = (grunt) ->
         files            : [ '**/*.coffee' ]
         tasks            : [ 'clean', 'mkdir', 'coffee', 'coffee2closure', 'deps', 'karma:headless' ]
       styl               :
-        files            : [ '*.styl' ]
+        files            : [ 'src/styl/**/*.styl' ]
         tasks            : [ 'stylus' ]
       images             :
         files            : [ 'src/images/**/*.png' ]
