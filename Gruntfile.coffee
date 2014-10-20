@@ -35,6 +35,12 @@ module.exports = (grunt) ->
           ext            : '.js'
         ]
 
+    spriteGenerator      :
+      sprite             :
+        src              : [ 'src/images/**/*.png' ]
+        spritePath       : 'build/images/icons.png'
+        stylesheet       : 'css'
+        stylesheetPath   : 'build/css/icons.css'
 
     coffee2closure       :
       all                :
@@ -185,6 +191,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-coveralls'
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
   grunt.loadNpmTasks 'grunt-http-server'
+  grunt.loadNpmTasks 'node-sprite-generator'
   grunt.loadNpmTasks 'grunt-gh-pages'
   grunt.loadNpmTasks 'grunt-npm'
 
@@ -193,6 +200,7 @@ module.exports = (grunt) ->
     grunt.task.run [
       'clean'
       'mkdir'
+      'spriteGenerator'
       'coffee'
       'coffee2closure'
       'stylus'
@@ -208,6 +216,7 @@ module.exports = (grunt) ->
     grunt.task.run [
       'clean'
       'mkdir'
+      'spriteGenerator'
       'coffee'
       'coffee2closure'
       'stylus'
@@ -221,6 +230,7 @@ module.exports = (grunt) ->
     grunt.task.run [
       'clean'
       'mkdir'
+      'spriteGenerator'
       'coffee'
       'coffee2closure'
       'stylus'
@@ -236,6 +246,7 @@ module.exports = (grunt) ->
     grunt.task.run [
       'clean'
       'mkdir'
+      'spriteGenerator'
       'coffee'
       'coffee2closure'
       'stylus'
