@@ -154,10 +154,10 @@ module.exports = (grunt) ->
         options          :
           reload         : yes
       html               :
-        files            : [ '*.html' ]
+        files            : [ 'public/**/*.html' ]
       src                :
-        files            : [ '**/*.coffee' ]
-        tasks            : [ 'clean', 'mkdir', 'coffee', 'coffee2closure', 'deps', 'karma:headless' ]
+        files            : [ 'src/lib/**/*.coffee' ]
+        tasks            : [ 'coffee', 'coffee2closure', 'deps', 'karma:headless' ]
       styl               :
         files            : [ 'src/styl/**/*.styl' ]
         tasks            : [ 'stylus' ]
