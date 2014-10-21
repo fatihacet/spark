@@ -30,8 +30,6 @@ spark.components.FieldFactory = (options = {}, data) ->
 
 ###*
   Map for type and component classes.
-
-  @enum {string}
 ###
 spark.components.FieldFactory.typeToClassMap =
   text     : spark.components.Input
