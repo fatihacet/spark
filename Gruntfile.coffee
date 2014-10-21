@@ -15,7 +15,7 @@ module.exports = (grunt) ->
             'src/lib'
             'src/externs'
             'src/images'
-            'src/styl'
+            'src/themes/edge'
             'src/templates'
             'src/third-party'
             'build/css'
@@ -34,6 +34,17 @@ module.exports = (grunt) ->
           dest           : 'build/js/'
           ext            : '.js'
         ]
+      examples           :
+        options          :
+          bare           : yes
+        files            : [
+          expand         : yes
+          cwd            : 'src/examples'
+          src            : [ '**/*.coffee' ]
+          dest           : 'src/examples'
+          ext            : '.js'
+        ]
+
 
     spriteGenerator      :
       sprite             :
@@ -57,14 +68,23 @@ module.exports = (grunt) ->
         files            : [
           compress       : no
           expand         : yes
+          cwd            : 'src/themes/edge'
           src            : [ '**/*.styl', '!imports.styl' ]
-          ext            : '.css'
-          cwd            : 'src/styl'
           dest           : 'build/css'
+          ext            : '.css'
         ]
       concat             :
-        files            : { 'build/css/spark.min.css' : 'src/styl/imports.styl' }
+        files            : { 'build/css/spark.edge.css' : 'src/themes/edge/imports.styl' }
         compress         : yes
+      examples           :
+        files            : [
+          compress       : yes
+          expand         : yes
+          cwd            : 'src/examples'
+          src            : [ '**/*.styl' ]
+          dest           : 'src/examples'
+          ext            : '.css'
+        ]
 
     templates            :
       all                :
@@ -157,13 +177,16 @@ module.exports = (grunt) ->
         files            : [ 'public/**/*.html' ]
       src                :
         files            : [ 'src/lib/**/*.coffee' ]
-        tasks            : [ 'coffee', 'coffee2closure', 'deps', 'karma:headless' ]
+        tasks            : [ 'coffee:all', 'coffee2closure', 'deps', 'karma:headless' ]
       styl               :
-        files            : [ 'src/styl/**/*.styl' ]
-        tasks            : [ 'stylus' ]
+        files            : [ 'src/themes/edge/**/*.styl' ]
+        tasks            : [ 'stylus:all', 'stylus:concat' ]
       images             :
         files            : [ 'src/images/**/*.png' ]
         tasks            : [ 'spriteGenerator' ]
+      examples           :
+        files            : [ 'src/examples/**/*.styl', 'src/examples/**/*.coffee' ]
+        tasks            : [ 'stylus:examples', 'coffee:examples' ]
 
     jsdoc                :
       dist               :

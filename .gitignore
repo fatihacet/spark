@@ -4,3 +4,6 @@ bower_components/
 node_modules/
 .idea
 .grunt
+
+src/examples/**/main.css
+src/examples/**/main.js
