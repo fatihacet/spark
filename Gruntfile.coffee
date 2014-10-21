@@ -244,6 +244,7 @@ module.exports = (grunt) ->
       'deps'
       'karma:headless'
       'coveralls'
+      'copy:examples'
       'jsdoc'
       'gh-pages'
     ]
