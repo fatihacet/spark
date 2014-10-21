@@ -23,6 +23,13 @@ module.exports = (grunt) ->
             'build/images'
           ]
 
+    copy                 :
+      examples           :
+        expand           : yes
+        cwd              : 'src/examples'
+        src              : '**'
+        dest             : 'build/docs/examples'
+
     coffee               :
       all                :
         options          :
@@ -213,6 +220,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-mkdir'
   grunt.loadNpmTasks 'grunt-open'
   grunt.loadNpmTasks 'grunt-jsdoc'
