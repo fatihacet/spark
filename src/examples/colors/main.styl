@@ -1,0 +1,66 @@
+@import '../../../src/themes/edge/third-party/normalize.styl'
+@import '../../../src/themes/edge/variables.styl'
+
+
+.palette
+  overflow hidden
+  margin   30px 0
+
+  .color
+    overflow hidden
+    float    left
+    margin-right 30px
+    &:first-child
+      margin-left 30px
+
+    div
+      float  left
+      width  60px
+      height 60px
+      cursor pointer
+      &:first-child
+        border-radius 4px 0 0 4px
+      &:last-child
+        border-radius 0 4px 4px 0
+
+  .green
+    background-color GREEN
+    &.light
+      background LIGHT_GREEN
+    &.dark
+      background DARK_GREEN
+
+  .blue
+    background-color BLUE
+    &.light
+      background LIGHT_BLUE
+    &.dark
+      background DARK_BLUE
+
+  .red
+    background-color RED
+    &.light
+      background LIGHT_RED
+    &.dark
+      background DARK_RED
+
+  .yellow
+    background-color YELLOW
+    &.light
+      background LIGHT_YELLOW
+    &.dark
+      background DARK_YELLOW
+
+  .grey
+    background-color GREY
+    &.light
+      background LIGHT_GREY
+    &.dark
+      background DARK_GREY
+
+  .black
+    background-color BLACK
+    &.light
+      background LIGHT_BLACK
+    &.dark
+      background DARK_BLACK
