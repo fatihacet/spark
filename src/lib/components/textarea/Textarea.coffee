@@ -32,7 +32,7 @@ class spark.components.Textarea extends spark.components.Field
     This is the painless way to resize the textarea to fit its content.
   ###
   decorate_: ->
-    @textarea_ = new goog.ui.Textarea()
+    @textarea_ = new goog.ui.Textarea @getOptions().value
     @textarea_.decorate @getElement()
 
 
