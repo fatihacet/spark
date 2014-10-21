@@ -114,7 +114,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Returns the DOM element.
-    @return {Node} DOM element of this view.
+    @return {Element} DOM element of this view.
   ###
   getElement: ->
     return @element
