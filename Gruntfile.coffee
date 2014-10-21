@@ -183,7 +183,7 @@ module.exports = (grunt) ->
       html               :
         files            : [ 'public/**/*.html' ]
       src                :
-        files            : [ 'src/lib/**/*.coffee' ]
+        files            : [ 'src/lib/**/*.coffee', 'src/tests/**/*.coffee' ]
         tasks            : [ 'coffee:all', 'coffee2closure', 'deps', 'karma:headless' ]
       styl               :
         files            : [ 'src/themes/edge/**/*.styl' ]
