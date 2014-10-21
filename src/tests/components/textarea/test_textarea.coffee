@@ -19,6 +19,10 @@ describe 'spark.components.Textarea', ->
     expect(textarea instanceof spark.components.Field).toBeTruthy()
 
 
+  it 'should have initial value passed from options', ->
+    expect(textarea.getElement().value).toBe 'Fatih Acet'
+
+
   it 'should has default options', ->
     textarea = new spark.components.Textarea null
     options  = textarea.getOptions()
