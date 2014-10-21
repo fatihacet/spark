@@ -1,6 +1,6 @@
 {
-  "name": "closure-coffee-stack",
-  "version": "5.2.35",
+  "name": "Spark Framework",
+  "version": "0.0.1",
   "dependencies": {
     "closure-compiler": "http://dl.google.com/closure-compiler/compiler-latest.zip",
     "closure-library": "https://github.com/fatihacet/google-closure-library.git",
