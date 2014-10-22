@@ -1,0 +1,338 @@
+@import '../variables.styl'
+
+.button
+  border                  none
+  padding                 15px 30px
+  font-size               16px
+  color                   #FFF
+  border-radius           6px
+  margin                  20px
+
+  &:focus
+    outline               0 !important
+
+  &.big
+    padding               21px 42px
+    font-size             18px
+
+  &.small
+    padding               10px 20px
+    font-size             14px
+
+  &.flat
+    border-radius         0
+
+  &.rounded
+    border-radius         50px
+
+  &.blue
+    background-color      BLUE
+    &:hover
+      background-color    DARK_BLUE
+    &:active
+      background-color    BLUE
+
+    &.light
+      background-color    LIGHT_BLUE
+      &:hover
+        background-color  BLUE
+      &:active
+        background-color  LIGHT_BLUE
+
+    &.dark
+      background-color    DARK_BLUE
+      &:hover
+        background-color  BLUE
+      &:active
+        background-color  DARK_BLUE
+
+  &.green
+    background-color      GREEN
+    &:hover
+      background-color    DARK_GREEN
+    &:active
+      background-color    GREEN
+
+    &.light
+      background-color    LIGHT_GREEN
+      &:hover
+        background-color  GREEN
+      &:active
+        background-color  LIGHT_GREEN
+
+    &.dark
+      background-color    DARK_GREEN
+      &:hover
+        background-color  GREEN
+      &:active
+        background-color  DARK_GREEN
+
+  &.yellow
+    background-color      YELLOW
+    &:hover
+      background-color    DARK_YELLOW
+    &:active
+      background-color    YELLOW
+
+    &.light
+      background-color    LIGHT_YELLOW
+      &:hover
+        background-color  YELLOW
+      &:active
+        background-color  LIGHT_YELLOW
+
+    &.dark
+      background-color    DARK_YELLOW
+      &:hover
+        background-color  YELLOW
+      &:active
+        background-color  DARK_YELLOW
+
+  &.red
+    background-color      RED
+    &:hover
+      background-color    DARK_RED
+    &:active
+      background-color    RED
+
+    &.light
+      background-color    LIGHT_RED
+      &:hover
+        background-color  RED
+      &:active
+        background-color  LIGHT_RED
+
+    &.dark
+      background-color    DARK_RED
+      &:hover
+        background-color  RED
+      &:active
+        background-color  DARK_RED
+
+  &.grey
+    background-color      GREY
+    &:hover
+      background-color    DARK_GREY
+    &:active
+      background-color    GREY
+
+    &.light
+      background-color    LIGHT_GREY
+      &:hover
+        background-color  GREY
+      &:active
+        background-color  LIGHT_GREY
+
+    &.dark
+      background-color    DARK_GREY
+      &:hover
+        background-color  GREY
+      &:active
+        background-color  DARK_GREY
+
+  &.black
+    background-color      BLACK
+    &:hover
+      background-color    DARK_BLACK
+    &:active
+      background-color    BLACK
+
+    &.light
+      background-color    LIGHT_BLACK
+      &:hover
+        background-color  BLACK
+      &:active
+        background-color  LIGHT_BLACK
+
+    &.dark
+      background-color    DARK_BLACK
+      &:hover
+        background-color  BLACK
+      &:active
+        background-color  DARK_BLACK
+
+
+  // outlined buttons
+
+  &.outline
+    background-color    transparent !important
+
+    &.blue
+      color             BLUE
+      border            1px solid BLUE
+      &:hover
+        color           DARK_BLUE
+        border          1px solid DARK_BLUE
+      &:active
+        color           BLUE
+        border          1px solid BLUE
+
+      &.light
+        color           LIGHT_BLUE
+        border          1px solid LIGHT_BLUE
+        &:hover
+          color         BLUE
+          border        1px solid BLUE
+        &:active
+          color         LIGHT_BLUE
+          border        1px solid LIGHT_BLUE
+
+      &.dark
+        color           DARK_BLUE
+        border          1px solid DARK_BLUE
+        &:hover
+          color         BLUE
+          border        1px solid BLUE
+        &:active
+          color         DARK_BLUE
+          border        1px solid DARK_BLUE
+
+    &.green
+      color             GREEN
+      border            1px solid GREEN
+      &:hover
+        color           DARK_GREEN
+        border          1px solid DARK_GREEN
+      &:active
+        color           GREEN
+        border          1px solid GREEN
+
+      &.light
+        color           LIGHT_GREEN
+        border          1px solid LIGHT_GREEN
+        &:hover
+          color         GREEN
+          border        1px solid GREEN
+        &:active
+          color         LIGHT_GREEN
+          border        1px solid LIGHT_GREEN
+
+      &.dark
+        color           DARK_GREEN
+        border          1px solid DARK_GREEN
+        &:hover
+          color         GREEN
+          border        1px solid GREEN
+        &:active
+          color         DARK_GREEN
+          border        1px solid DARK_GREEN
+
+    &.yellow
+      color             YELLOW
+      border            1px solid YELLOW
+      &:hover
+        color           DARK_YELLOW
+        border          1px solid DARK_YELLOW
+      &:active
+        color           YELLOW
+        border          1px solid YELLOW
+
+      &.light
+        color           LIGHT_YELLOW
+        border          1px solid LIGHT_YELLOW
+        &:hover
+          color         YELLOW
+          border        1px solid YELLOW
+        &:active
+          color         LIGHT_YELLOW
+          border        1px solid LIGHT_YELLOW
+
+      &.dark
+        color           DARK_YELLOW
+        border          1px solid DARK_YELLOW
+        &:hover
+          color         YELLOW
+          border        1px solid YELLOW
+        &:active
+          color         DARK_YELLOW
+          border        1px solid DARK_YELLOW
+
+    &.red
+      color             RED
+      border            1px solid RED
+      &:hover
+        color           DARK_RED
+        border          1px solid DARK_RED
+      &:active
+        color           RED
+        border          1px solid RED
+
+      &.light
+        color           LIGHT_RED
+        border          1px solid LIGHT_RED
+        &:hover
+          color         RED
+          border        1px solid RED
+        &:active
+          color         LIGHT_RED
+          border        1px solid LIGHT_RED
+
+      &.dark
+        color           DARK_RED
+        border          1px solid DARK_RED
+        &:hover
+          color         RED
+          border        1px solid RED
+        &:active
+          color         DARK_RED
+          border        1px solid DARK_RED
+
+    &.grey
+      color             GREY
+      border            1px solid GREY
+      &:hover
+        color           DARK_GREY
+        border          1px solid DARK_GREY
+      &:active
+        color           GREY
+        border          1px solid GREY
+
+      &.light
+        color           LIGHT_GREY
+        border          1px solid LIGHT_GREY
+        &:hover
+          color         GREY
+          border        1px solid GREY
+        &:active
+          color         LIGHT_GREY
+          border        1px solid LIGHT_GREY
+
+      &.dark
+        color           DARK_GREY
+        border          1px solid DARK_GREY
+        &:hover
+          color         GREY
+          border        1px solid GREY
+        &:active
+          color         DARK_GREY
+          border        1px solid DARK_GREY
+
+    &.black
+      color             BLACK
+      border            1px solid BLACK
+      &:hover
+        color           DARK_BLACK
+        border          1px solid DARK_BLACK
+      &:active
+        color           BLACK
+        border          1px solid BLACK
+
+      &.light
+        color           LIGHT_BLACK
+        border          1px solid LIGHT_BLACK
+        &:hover
+          color         BLACK
+          border        1px solid BLACK
+        &:active
+          color         LIGHT_BLACK
+          border        1px solid LIGHT_BLACK
+
+      &.dark
+        color           DARK_BLACK
+        border          1px solid DARK_BLACK
+        &:hover
+          color         BLACK
+          border        1px solid BLACK
+        &:active
+          color         DARK_BLACK
+          border        1px solid DARK_BLACK
