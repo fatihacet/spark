@@ -3,6 +3,7 @@ goog.provide 'spark.components.FieldFactory'
 goog.require 'spark.components.Field'
 goog.require 'spark.components.Input'
 goog.require 'spark.components.Radio'
+goog.require 'spark.components.Password'
 goog.require 'spark.components.Checkbox'
 goog.require 'spark.components.Button'
 goog.require 'spark.components.LabeledInput'
@@ -35,6 +36,7 @@ spark.components.FieldFactory = (options = {}, data) ->
 spark.components.FieldFactory.typeToClassMap =
   'text'     : spark.components.Input
   'input'    : spark.components.Input
+  'password' : spark.components.Password
   'radio'    : spark.components.Radio
   'checkbox' : spark.components.Checkbox
   'label'    : spark.components.Label
