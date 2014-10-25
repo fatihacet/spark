@@ -37,10 +37,6 @@ describe 'spark.components.Textarea', ->
     expect(textarea.getElement().tagName).toBe 'TEXTAREA'
 
 
-  it 'should has an `@textarea_` which is an instance of goog.ui.Textarea', ->
-    expect(textarea.textarea_ instanceof goog.ui.Textarea).toBeTruthy()
-
-
   it 'should be resized after setting a new content', ->
     textarea.appendToDocumentBody()
 
