@@ -205,7 +205,7 @@ module.exports = (grunt) ->
         tasks            : [ 'spriteGenerator' ]
       examples           :
         files            : [ 'src/examples/**/*.styl', 'src/examples/**/*.coffee' ]
-        tasks            : [ 'stylus:examples', 'coffee:examples' ]
+        tasks            : [ 'stylus:examples', 'coffee:examples', 'copy' ]
 
     jsdoc                :
       dist               :
