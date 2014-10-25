@@ -204,7 +204,7 @@ module.exports = (grunt) ->
         tasks            : [ 'stylus:all', 'stylus:concat' ]
       images             :
         files            : [ 'src/images/**/*.png' ]
-        tasks            : [ 'spriteGenerator' ]
+        tasks            : [ 'spriteGenerator', 'stylus:all', 'styl:concat' ]
       examples           :
         files            : [ 'src/examples/**/*.styl', 'src/examples/**/*.coffee' ]
         tasks            : [ 'stylus:examples', 'coffee:examples', 'copy' ]
