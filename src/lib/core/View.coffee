@@ -216,7 +216,7 @@ class spark.core.View extends spark.core.Object
     disabled = 'disabled'
     @addClass disabled
     @setAttribute disabled, disabled
-    @isDisabled = yes
+    @disabled = yes
 
 
   ###*
@@ -227,7 +227,7 @@ class spark.core.View extends spark.core.Object
     disabled = 'disabled'
     @removeClass disabled
     @removeAttribute disabled
-    delete @isDisabled
+    @disabled = no
 
 
   ###*
@@ -235,7 +235,15 @@ class spark.core.View extends spark.core.Object
     Toggle view state. Disable if enabled, enable if disabled.
   ###
   toggle: ->
-    if @isDisabled then @enable() else @disable()
+    if @isDisabled() then @enable() else @disable()
+
+
+  ###*
+    @export
+    Returns the current disabled state of the button.
+  ###
+  isDisabled: ->
+    return @disabled or no
 
 
   ###*
