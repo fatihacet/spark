@@ -10,6 +10,7 @@ class spark.components.Button extends spark.core.View
 
   ###*
     @constructor
+    @export
     @param   {Object=} options Class options.
     @param   {*=} data Class data
     @extends {spark.core.View}

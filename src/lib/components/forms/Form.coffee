@@ -12,6 +12,7 @@ class spark.components.Form extends spark.core.View
 
   ###*
     @constructor
+    @export
     @param   {Object=} options Class options.
     @param   {*=} data Class data
     @extends {spark.core.View}
@@ -55,6 +56,7 @@ class spark.components.Form extends spark.core.View
     Creates field component from passed option using FieldFactory.
     FIXME: Creating LabeledInput should be handled in FieldFactory.
 
+    @export
     @param {!Object} options Field options to create a field component.
   ###
   createInput: (options) ->
@@ -79,6 +81,7 @@ class spark.components.Form extends spark.core.View
   ###*
     Creates button with the options.
 
+    @export
     @param {!Object} options Options to create a button component.
   ###
   createButton: (options) ->
@@ -92,6 +95,7 @@ class spark.components.Form extends spark.core.View
     Sets form data and update fields with the data.
     Data should be an object and keys should match field names in this form.
     Values should be string.
+    @export
   ###
   setData: (data) ->
     return unless @inputsByName
@@ -104,6 +108,7 @@ class spark.components.Form extends spark.core.View
   ###*
     Returns form data from DOM elements.
     This method may be useful for serializing the form data.
+    @export
   ###
   getData: ->
     dataSet = {}

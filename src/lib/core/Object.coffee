@@ -11,6 +11,7 @@ class spark.core.Object extends goog.events.EventTarget
 
   ###*
     @constructor
+    @export
     @param   {Object=} options Class options.
     @param   {*=} data Class data
     @extends {goog.events.EventTarget}
@@ -27,6 +28,7 @@ class spark.core.Object extends goog.events.EventTarget
 
   ###*
     Sets options object of this class.
+    @export
     @param {!Object} options Options object.
   ###
   setOptions: (options) ->
@@ -35,6 +37,7 @@ class spark.core.Object extends goog.events.EventTarget
 
   ###*
     Returns all options object.
+    @export
     @return {Object} Options object.
   ###
   getOptions: ->
@@ -43,6 +46,7 @@ class spark.core.Object extends goog.events.EventTarget
 
   ###*
     Returns value of a key in options object.
+    @export
     @return {*} Value of key or null.
   ###
   getOption: (key) ->
@@ -51,6 +55,7 @@ class spark.core.Object extends goog.events.EventTarget
 
   ###*
     Sets data of this class.
+    @export
     @param {*} data Data passed to class.
   ###
   setData: (data) ->
@@ -59,6 +64,7 @@ class spark.core.Object extends goog.events.EventTarget
 
   ###*
     Returns class data.
+    @export
     @return {*} Class data.
   ###
   getData: ->
@@ -75,6 +81,7 @@ class spark.core.Object extends goog.events.EventTarget
   ###*
     Return unique id set by closure.
     This method is here for naming convension.
+    @export
     @return {number} Uid.
   ###
   getUid: ->
@@ -84,6 +91,7 @@ class spark.core.Object extends goog.events.EventTarget
   ###*
     Adds an event listener.
     See also {@link goog.events.Listenable.prototype.listen}
+    @export
     @param {!string} eventName Name of the event.
     @param {!Function} callback Callback function for the event.
     @return {goog.events.ListenableKey|number} Unique key for the listener.
@@ -95,6 +103,7 @@ class spark.core.Object extends goog.events.EventTarget
   ###*
     Adds an event listener that is removed automatically after the listener
     fired once. See also {@link goog.events.Listenable.prototype.listenOnce}
+    @export
     @param {!string} eventName Name of the event.
     @param {!Function} callback Callback function for the event.
     @return {goog.events.ListenableKey|number} Unique key for the listener.
@@ -106,6 +115,7 @@ class spark.core.Object extends goog.events.EventTarget
   ###*
     Dispatches an event and calls all listeners listening for events of this
     event. See also {@link goog.events.Listenable.prototype.dispatchEvent}
+    @export
     @param {!string} eventName Name of the event.
     @param {*=} data Data which will passed to listeners
   ###
@@ -116,6 +126,7 @@ class spark.core.Object extends goog.events.EventTarget
   ###*
     Removes an event listener which was added with @on or @once.
     See also {@link goog.events.Listenable.prototype.unlisten}
+    @export
     @param {!string} eventName Name of the event.
     @param {!Function} callback Callback function for the event.
     @return {boolean} Whether any listener was removed.

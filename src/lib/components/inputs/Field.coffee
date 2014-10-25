@@ -10,6 +10,7 @@ class spark.components.Field extends spark.core.View
 
   ###*
     @constructor
+    @export
     @param   {Object=} options Class options.
     @param   {*=} data Class data
     @extends {spark.core.View}
@@ -35,6 +36,7 @@ class spark.components.Field extends spark.core.View
 
   ###*
     Sets field value.
+    @export
     @param {!string} value Input value.
   ###
   setValue: (value) ->
@@ -43,6 +45,7 @@ class spark.components.Field extends spark.core.View
 
   ###*
     Return field value.
+    @export
   ###
   getValue: ->
     return @getElement().value
@@ -50,6 +53,7 @@ class spark.components.Field extends spark.core.View
 
   ###*
     Sets field name.
+    @export
     @param {!string} name field name.
   ###
   setName: (name) ->
@@ -57,6 +61,7 @@ class spark.components.Field extends spark.core.View
 
 
   ###*
+    @export
     Return field name.
   ###
   getName: ->

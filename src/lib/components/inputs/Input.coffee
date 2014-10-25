@@ -10,6 +10,7 @@ class spark.components.Input extends spark.components.Field
 
   ###*
     @constructor
+    @export
     @param   {Object=} options Class options.
     @param   {*=} data Class data
     @extends {spark.components.Field}
@@ -30,6 +31,7 @@ class spark.components.Input extends spark.components.Field
 
   ###*
     Sets placeholder attribute.
+    @export
     @param {!string} value Placeholder value.
   ###
   setPlaceholder: (value) ->
@@ -38,6 +40,7 @@ class spark.components.Input extends spark.components.Field
 
   ###*
     Clears placeholder attribute.
+    @export
   ###
   clearPlaceholder: ->
     @removeAttribute 'placeholder'
@@ -45,6 +48,7 @@ class spark.components.Input extends spark.components.Field
 
   ###*
     Focus input.
+    @export
   ###
   focus: ->
     @getElement().focus()

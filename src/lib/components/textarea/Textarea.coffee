@@ -1,5 +1,6 @@
 goog.provide 'spark.components.Textarea'
 
+goog.require 'spark.components.Field'
 goog.require 'goog.ui.Textarea'
 
 
@@ -13,6 +14,7 @@ class spark.components.Textarea extends spark.components.Field
     might be a disadvantage for the filesize. I need to consider it in the future.
 
     @constructor
+    @export
     @param   {Object=} options Class options.
     @param   {*=} data Class data
     @extends {spark.components.Field}
@@ -30,6 +32,7 @@ class spark.components.Textarea extends spark.components.Field
   ###*
     Decore our textarea from `goog.ui.Textarea`.
     This is the painless way to resize the textarea to fit its content.
+    @private
   ###
   decorate_: ->
     @textarea_ = new goog.ui.Textarea @getOptions().value
@@ -38,6 +41,7 @@ class spark.components.Textarea extends spark.components.Field
 
   ###*
     Sets the value and calls the resize method to adjust height of the textarea.
+    @export
     @override
   ###
   setValue: (value) ->
@@ -48,6 +52,7 @@ class spark.components.Textarea extends spark.components.Field
 
   ###*
     Helper method to resize textarea.
+    @export
   ###
   resize: ->
     return unless @textarea_

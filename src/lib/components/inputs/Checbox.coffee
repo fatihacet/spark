@@ -10,6 +10,7 @@ class spark.components.Checkbox extends spark.components.Field
 
   ###*
     @constructor
+    @export
     @param   {Object=} options Class options.
     @param   {*=} data Class data
     @extends {spark.components.Field}
@@ -27,6 +28,7 @@ class spark.components.Checkbox extends spark.components.Field
 
   ###*
     Check the element.
+    @export
   ###
   check: ->
     @getElement().checked = yes
@@ -34,6 +36,7 @@ class spark.components.Checkbox extends spark.components.Field
 
   ###*
     Uncheck the element.
+    @export
   ###
   uncheck: ->
     @getElement().checked = no
@@ -41,7 +44,7 @@ class spark.components.Checkbox extends spark.components.Field
 
   ###*
     Returns element's checked state.
-
+    @export
     @return {boolean} Checked state.
   ###
   isChecked: ->

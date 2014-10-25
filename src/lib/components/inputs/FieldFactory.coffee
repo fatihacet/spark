@@ -15,6 +15,7 @@ goog.require 'spark.components.LabeledInput'
   pass `type: 'checbox'` in your options this class will return an instance of
   spark.components.Checkbox for you.
 
+  @export
   @param {Object=} options Field options to create input.
   @param {*=} data Field data to set.
 ###

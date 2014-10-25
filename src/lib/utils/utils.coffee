@@ -4,6 +4,7 @@ goog.provide 'spark.utils'
 ###*
   Concats strings together with a space.
 
+  @export
   @param {...*} var_args A list of strings to concatenate.
   @return {string} The concatenation of {@code var_args}.
 ###

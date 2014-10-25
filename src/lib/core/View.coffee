@@ -11,6 +11,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     @constructor
+    @export
     @param   {Object=} options Class options.
     @param   {*=} data Class data
     @extends {spark.core.Object}
@@ -48,6 +49,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Sets DOM id.
+    @export
     @param {!string} domId Id of the element.
   ###
   setDomId: (domId) ->
@@ -56,6 +58,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Returns the DOM id if exists, otherwise it will return null
+    @export
     @return {string|null}
   ###
   getDomId: ->
@@ -65,6 +68,7 @@ class spark.core.View extends spark.core.Object
   ###*
     Sets the class name of element. This will override existing class names.
     Use `@addClass` if you want to add new class name to the element.
+    @export
     @param {!string} cssClass Class name.
   ###
   setClass: (cssClass) ->
@@ -73,6 +77,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Returns class name of the element.
+    @export
     @return {string} Class name.
   ###
   getClass: ->
@@ -81,6 +86,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Returns class list of the element.
+    @export
     @return {Array} List of class names.
   ###
   getClassList: ->
@@ -89,6 +95,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Adds new class name to element.
+    @export
     @param {!string} cssClass New class name for the element.
   ###
   addClass: (cssClass) ->
@@ -97,6 +104,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Remove a class name from the element.
+    @export
     @param {!string} cssClass Name of the class which will be removed.
   ###
   removeClass: (cssClass) ->
@@ -105,6 +113,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Returns true if element has that class name.
+    @export
     @param {!string} cssClass Name of the class which will be tested.
     @return {boolean} Whether element has a class name or not.
   ###
@@ -114,6 +123,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Returns the DOM element.
+    @export
     @return {Element} DOM element of this view.
   ###
   getElement: ->
@@ -123,6 +133,7 @@ class spark.core.View extends spark.core.Object
   ###*
     Very basic support of templating. Spark Framework will provide much more
     powerful templating solution but that's better than nothing for now.
+    @export
     @param {!string} template HTML markup of the element.
   ###
   setTemplate: (template) ->
@@ -130,6 +141,7 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    @export
     Appends view into document's body.
   ###
   appendToDocumentBody: ->
@@ -138,6 +150,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Removes element from DOM if it is in DOM.
+    @export
     @return {boolean} Whether element removed from document or not.
   ###
   removeFromDocument: ->
@@ -152,6 +165,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Appends a new view into this view's element as a child.
+    @export
     @param {!spark.core.View} view A spark.View instance to append.
   ###
   appendView: (view) ->
@@ -168,6 +182,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Native setAttribute wrapper.
+    @export
     @param {!string} name  Atrribute name.
     @param {!string} value Attribute value.
   ###
@@ -177,6 +192,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Native getAttribute wrapper.
+    @export
     @param {!string} name  Atrribute name.
   ###
   getAttribute: (name) ->
@@ -185,6 +201,7 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Native removeAttribute wrapper.
+    @export
     @param {!string} name  Atrribute name.
   ###
   removeAttribute: (name) ->
@@ -192,6 +209,7 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    @export
     Disable view.
   ###
   disable: ->
@@ -202,6 +220,7 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    @export
     Enable view.
   ###
   enable: ->
@@ -212,6 +231,7 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    @export
     Toggle view state. Disable if enabled, enable if disabled.
   ###
   toggle: ->
@@ -219,6 +239,7 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    @export
     @override
     Override Object::on to support two way binding for DOM events.
   ###
@@ -230,6 +251,7 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    @export
     @override
     Override Object::once to support two way binding for DOM events.
   ###
@@ -241,6 +263,7 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    @export
     @override
     Override Object::off to remove events binded to DOM element.
   ###
