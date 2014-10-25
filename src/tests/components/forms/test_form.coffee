@@ -48,8 +48,8 @@ describe 'spark.components.Form', ->
 
 
   it 'should have containers even no options passed', ->
-    expect(f.getInputsContainer()).toBeDefined()
-    expect(f.getButtonsContainer()).toBeDefined()
+    expect(f.getInputsContainer() instanceof spark.core.View).toBeTruthy()
+    expect(f.getButtonsContainer() instanceof spark.core.View).toBeTruthy()
 
 
   it 'should have correct amount of inputs', ->
