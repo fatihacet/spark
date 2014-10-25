@@ -87,8 +87,13 @@ module.exports = (grunt) ->
           ext            : '.css'
         ]
       concat             :
-        files            : { 'build/css/spark.edge.css' : 'src/themes/edge/imports.styl' }
-        compress         : yes
+        files            : [
+          expand         : yes
+          cwd            : 'src/themes/edge'
+          src            : 'imports.styl'
+          dest           : 'build/css/'
+          ext            : '.css'
+        ]
       examples           :
         files            : [
           compress       : yes
