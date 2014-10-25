@@ -1,3 +1,5 @@
+goog = goog or goog = require: ->
+
 goog.require 'spark.components.Form'
 goog.require 'spark.components.Input'
 goog.require 'spark.components.Button'

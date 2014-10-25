@@ -1,3 +1,5 @@
+goog = goog or goog = require: ->
+
 goog.require 'spark.components.Radio'
 goog.require 'spark.components.Checkbox'
 

@@ -1,3 +1,5 @@
+goog = goog or goog = require: ->
+
 goog.require 'spark.components.Button'
 goog.require 'spark.core.View'
 
