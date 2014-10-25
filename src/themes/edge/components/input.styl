@@ -1,0 +1,31 @@
+@import '../variables.styl'
+
+.input.text
+  font-size             16px
+  color                 BLACK
+  border-radius         5px
+  border                2px solid GREY
+  padding               10px 12px
+
+  &.big
+    padding             16px
+
+  &.success
+  &.valid
+    border-color        GREEN
+
+  &.error
+  &.fail
+    border-color        RED
+
+  &.has-text
+    border-color        BLUE
+
+  &::-webkit-input-placeholder
+  &::-moz-placeholder
+  &:-ms-input-placeholder
+   color                GREY
+
+  &:focus
+    border-color        BLUE
+    outline             0
