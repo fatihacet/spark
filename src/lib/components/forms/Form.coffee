@@ -118,3 +118,49 @@ class spark.components.Form extends spark.core.View
       dataSet[input.getName()] = input.getValue()
 
     return dataSet
+
+
+  ###*
+    Returns input container
+    @export
+    @return {spark.core.View}
+  ###
+  getInputsContainer: ->
+    return @inputsContainer
+
+
+  ###*
+    Returns buttons container
+    @export
+    @return {spark.core.View}
+  ###
+  getButtonsContainer: ->
+    return @buttonsContainer
+
+
+  ###*
+    Returns inputs
+    @export
+    @return {Array.<spark.components.Field>}
+  ###
+  getInputs: ->
+    return @inputs
+
+
+  ###*
+    Returns inputs
+    @export
+    @return {Array.<spark.components.Button>}
+  ###
+  getButtons: ->
+    return @buttons
+
+
+  ###*
+    Returns a field by name.
+    @export
+    @param {string} name Field name.
+    @return {Array.<spark.components.Field>|null}
+  ###
+  getInputByName: (name) ->
+    return @inputsByName[name] or null
