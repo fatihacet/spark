@@ -33,9 +33,9 @@ spark.components.FieldFactory = (options = {}, data) ->
   Map for type and component classes.
 ###
 spark.components.FieldFactory.typeToClassMap =
-  text     : spark.components.Input
-  input    : spark.components.Input
-  radio    : spark.components.Radio
-  checkbox : spark.components.Checkbox
-  label    : spark.components.Label
-  button   : spark.components.Button
+  'text'     : spark.components.Input
+  'input'    : spark.components.Input
+  'radio'    : spark.components.Radio
+  'checkbox' : spark.components.Checkbox
+  'label'    : spark.components.Label
+  'button'   : spark.components.Button
