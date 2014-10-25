@@ -48,43 +48,44 @@ describe 'spark.components.Form', ->
 
 
   it 'should have containers even no options passed', ->
-    expect(f.inputsContainer).toBeDefined()
-    expect(f.buttonsContainer).toBeDefined()
+    expect(f.getInputsContainer()).toBeDefined()
+    expect(f.getButtonsContainer()).toBeDefined()
 
 
   it 'should have correct amount of inputs', ->
-    expect(form.inputs.length).toBe 2
+    expect(form.getInputs().length).toBe 2
 
 
   it 'should have correct amount of buttons', ->
-    expect(form.buttons.length).toBe 2
+    expect(form.getButtons().length).toBe 2
 
 
   it 'should have inputs as an instance of spark.components.Input if no label passed in input options', ->
-    for input in form.inputs
+    for input in form.getInputs()
       expect(input instanceof spark.components.Input).toBeTruthy()
 
 
   it 'should have buttons as instance of spark.components.Button', ->
-    for button in form.buttons
+    for button in form.getButtons()
       expect(button instanceof spark.components.Button).toBeTruthy()
 
 
-  it 'should have named inputs object', ->
-    expect(form.inputsByName.surname instanceof spark.components.Input).toBeTruthy()
+  it 'should return inputs by name', ->
+    expect(form.getInputByName('surname') instanceof spark.components.Input).toBeTruthy()
+    expect(form.getInputByName('unexisting')).toBeNull()
 
 
   it 'should set and update form data', ->
     form.setData { name: 'John', surname: 'Doe' }
 
-    expect(form.inputsByName.name.getValue()).toBe 'John'
-    expect(form.inputsByName.surname.getValue()).toBe 'Doe'
+    expect(form.getInputByName('name').getValue()).toBe 'John'
+    expect(form.getInputByName('surname').getValue()).toBe 'Doe'
 
 
   it 'should have spark.components.LabeledInput element if label options passed in input options', ->
     f = new spark.components.Form inputs: [ { label: 'Your Name..?', name: 'hello' } ]
 
-    expect(f.inputsContainer.getElement().firstChild.tagName).toBe 'DIV'
+    expect(f.getInputsContainer().getElement().firstChild.tagName).toBe 'DIV'
 
 
   it 'should return latest form data', ->
@@ -109,5 +110,5 @@ describe 'spark.components.Form', ->
 
     f = new spark.components.Form options, data
 
-    expect(f.inputsByName.email.getValue()).toBe    'fatih@fatihacet.com.'
-    expect(f.inputsByName.password.getValue()).toBe '123'
+    expect(f.getInputByName('email').getValue()).toBe    'fatih@fatihacet.com.'
+    expect(f.getInputByName('password').getValue()).toBe '123'
