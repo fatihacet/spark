@@ -29,6 +29,12 @@ module.exports = (grunt) ->
         cwd              : 'src/examples'
         src              : '**'
         dest             : 'build/docs/examples'
+      allJS              :
+        src              : 'build/compiled/compiled.js'
+        dest             : 'build/docs/compiled.js'
+      allCSS             :
+        src              : 'build/css/spark.css'
+        dest             : 'build/docs/spark.css'
 
     coffee               :
       all                :
