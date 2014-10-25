@@ -80,10 +80,10 @@ describe 'spark.components.Button', ->
 
 
     it 'should set `isDisabled` property to true', ->
-      expect(button.isDisabled).toBeUndefined()
+      expect(button.isDisabled()).toBeFalsy()
 
       button.disable()
-      expect(button.isDisabled).toBeTruthy()
+      expect(button.isDisabled()).toBeTruthy()
 
 
     it 'should set `disabled` attribute', ->
@@ -106,14 +106,14 @@ describe 'spark.components.Button', ->
       assertions = ->
         expect(button.hasClass 'disabled').toBeFalsy()
         expect(button.getAttribute 'disabled').toBeNull()
-        expect(button.isDisabled).toBeUndefined()
+        expect(button.isDisabled()).toBeFalsy()
 
       assertions()
 
       button.disable()
       expect(button.hasClass 'disabled').toBeTruthy()
       expect(button.getAttribute 'disabled').toBe 'disabled'
-      expect(button.isDisabled).toBeTruthy()
+      expect(button.isDisabled()).toBeTruthy()
 
       button.enable()
       assertions()
