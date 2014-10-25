@@ -127,6 +127,8 @@ module.exports = (grunt) ->
         configFile       : 'karma.local.conf.js'
       sauceLabs          :
         configFile       : 'karma.saucelabs.conf.js'
+      compiled           :
+        configFile       : 'karma.compiled.conf.js'
 
     coveralls            :
       options            :
