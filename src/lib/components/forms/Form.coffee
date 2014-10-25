@@ -19,14 +19,15 @@ class spark.components.Form extends spark.core.View
   ###
   constructor: (options = {}, data) ->
 
-    options.cssClass = "#{spark.utils.concatString 'form', options.cssClass}"
+    options.cssClass = options['cssClass'] = "#{spark.utils.concatString 'form', options.cssClass or options['cssClass']}"
 
     super options, data
 
-    @inputs           = []
-    @buttons          = []
-    @inputsByName     = {}
-    {inputs, buttons} = options
+    @inputs        = []
+    @buttons       = []
+    @inputsByName  = {}
+    inputs         = options.inputs  or options['inputs']
+    buttons        = options.buttons or options['buttons']
 
     @createContainers_()
 

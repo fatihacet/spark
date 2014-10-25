@@ -17,8 +17,8 @@ class spark.components.Input extends spark.components.Field
   ###
   constructor: (options = {}, data) ->
 
-    options.type        or= 'text'
-    options.placeholder or= null
+    options.type        or= options['type']        or 'text'
+    options.placeholder or= options['placeholder'] or null
 
     super options, data
 

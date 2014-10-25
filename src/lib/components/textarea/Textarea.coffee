@@ -21,7 +21,7 @@ class spark.components.Textarea extends spark.components.Field
   ###
   constructor: (options = {}, data) ->
 
-    options.tagName = 'textarea'
+    options.tagName = options['tagName'] = 'textarea'
 
     super options, data
 

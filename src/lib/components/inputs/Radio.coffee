@@ -17,6 +17,6 @@ class spark.components.Radio extends spark.components.Checkbox
   ###
   constructor: (options = {}, data) ->
 
-    options.type = 'radio'
+    options.type = options['type'] = 'radio'
 
     super options, data

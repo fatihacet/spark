@@ -21,7 +21,7 @@ goog.require 'spark.components.LabeledInput'
 ###
 spark.components.FieldFactory = (options = {}, data) ->
 
-  options.type or= 'text'
+  options.type or= options['type'] or 'text'
 
   map   = spark.components.FieldFactory.typeToClassMap
   input = new map[options.type] options, data

@@ -17,8 +17,8 @@ class spark.components.Checkbox extends spark.components.Field
   ###
   constructor: (options = {}, data) ->
 
-    options.type     or= 'checkbox'
-    options.checked  or= no
+    options.type     or= options['type']    or 'checkbox'
+    options.checked  or= options['checked'] or no
 
     super options, data
 

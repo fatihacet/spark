@@ -17,11 +17,11 @@ class spark.components.Field extends spark.core.View
   ###
   constructor: (options = {}, data) ->
 
-    options.cssClass    = "#{spark.utils.concatString 'input', options.type, options.cssClass}"
-    options.tagName   or= 'input'
-    options.type      or= 'text'
-    options.name      or= null
-    options.value     or= ""
+    options.cssClass    = options['cssClass'] = "#{spark.utils.concatString 'input', options.type, options.cssClass or options['cssClass']}"
+    options.tagName   or= options['tagName'] or 'input'
+    options.type      or= options['type']    or 'text'
+    options.name      or= options['name']    or null
+    options.value     or= options['value']   or ""
 
     super options, data
 

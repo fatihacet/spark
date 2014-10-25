@@ -18,12 +18,15 @@ class spark.components.LabeledInput extends spark.core.View
   ###
   constructor: (options = {}, data) ->
 
-    options.cssClass = "#{spark.utils.concatString 'labeled-input', options.cssClass}"
+    options.cssClass = options['cssClass'] = "#{spark.utils.concatString 'labeled-input', options.cssClass}"
 
     super options, data
 
-    @label = new spark.components.Label    options.labelOptions, data
-    @input = spark.components.FieldFactory options.inputOptions, data
+    labelOptions = options.labelOptions or options['labelOptions']
+    inputOptions = options.inputOptions or options['inputOptions']
+
+    @label = new spark.components.Label    labelOptions, data
+    @input = spark.components.FieldFactory inputOptions, data
 
     @appendView @label
     @appendView @input
