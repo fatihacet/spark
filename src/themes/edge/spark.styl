@@ -1,13 +1,15 @@
-/*! normalize.styl */
-@import 'third-party/normalize.styl'
-
-/*! icons.css */
-@import '../../../../build/css/icons.css'
+// Cabin font from Google Web Fonts
+@import url(http://fonts.googleapis.com/css?family=Cabin:400,500,600,700)
 
 @import 'variables.styl'
 
-/*! button.styl */
+body
+  font-family    FONT_FAMILY
+
+@import 'third-party/normalize.styl'
+
 @import 'components/button.styl'
 
-/*! input.styl */
 @import 'components/input.styl'
+
+@import 'widgets/signup.styl'
