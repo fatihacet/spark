@@ -23,6 +23,7 @@ class spark.core.View extends spark.core.Object
     options.domId          or= options['domId']         or null
     options.template       or= options['template']      or null
     options.disabled       or= options['disabled']      or no
+    options.attributes     or= options['attributes']    or {}
     options.eventHandlers  or= options['eventHandlers'] or {}
 
     super options, data
@@ -39,12 +40,13 @@ class spark.core.View extends spark.core.Object
     Creates the element with the configuration passed to constructor.
   ###
   createDomElement: ->
-    {tagName, domId, cssClass, template} = @getOptions()
+    {tagName, domId, cssClass, template, attributes} = @getOptions()
 
     @element = document.createElement tagName
     @setClass cssClass
     @setDomId domId if domId
     @setTemplate template if template
+    @setAttribute key, value for key, value of attributes
 
 
   ###*

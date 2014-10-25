@@ -26,6 +26,9 @@ describe 'spark.core.View', ->
       cssClass      : 'hello buddy'
       domId         : 'world'
       template      : '<p>Hello World</p>'
+      attributes    :
+        type        : 'widget'
+        position    : 'left'
       eventHandlers :
         click       : -> isClicked = yes
         mouseover   : -> isHovered = yes
@@ -137,6 +140,11 @@ describe 'spark.core.View', ->
     view.toggle()
 
     expect(view.getAttribute('disabled')).toBeNull()
+
+
+  it 'should has attributes', ->
+    expect(view.getAttribute 'type').toBe 'widget'
+    expect(view.getAttribute 'position').toBe 'left'
 
 
   describe 'appendView', ->
