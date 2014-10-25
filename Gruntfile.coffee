@@ -247,7 +247,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-npm'
 
 
-  grunt.registerTask 'ci-test-only', 'Run tests for CI tools.', (app = 'app') ->
+  grunt.registerTask 'ci', 'Compile code and run tests for compiled and uncompiled code.', (app = 'app') ->
     grunt.task.run [
       'clean'
       'mkdir'
@@ -258,13 +258,15 @@ module.exports = (grunt) ->
       'deps'
       'karma:headless'
       'coveralls'
+      'builder'
+      'karma:compiled'
       'jsdoc'
-      'copy:examples'
+      'copy'
       'gh-pages'
     ]
 
 
-  grunt.registerTask 'ci-build-only', 'Build task for CI tools.', (app = 'app') ->
+  grunt.registerTask 'build', 'Compile code and run tests.', (app = 'app') ->
     grunt.task.run [
       'clean'
       'mkdir'
@@ -273,22 +275,8 @@ module.exports = (grunt) ->
       'coffee'
       'coffee2closure'
       'deps'
-      'karma:headless'
       'builder'
-    ]
-
-
-  grunt.registerTask 'build', 'Run tests and compile code with Closure Compiler.', (app = 'app') ->
-    grunt.task.run [
-      'clean'
-      'mkdir'
-      'spriteGenerator'
-      'stylus'
-      'coffee'
-      'coffee2closure'
-      'deps'
-      'karma:headless'
-      'builder'
+      'karma:compiled'
       'open:build'
       'http-server:compiled'
     ]
