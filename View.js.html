@@ -104,6 +104,7 @@ goog.require('spark.utils');
 
 /**
   @constructor
+  @export
   @param   {Object=} options Class options.
   @param   {*=} data Class data
   @extends {spark.core.Object}
@@ -112,12 +113,12 @@ spark.core.View = function(options, data) {
   if (options == null) {
     options = {};
   }
-  options.cssClass = "" + (spark.utils.concatString('view', options.cssClass));
-  options.tagName || (options.tagName = 'div');
-  options.domId || (options.domId = null);
-  options.template || (options.template = null);
-  options.disabled || (options.disabled = false);
-  options.eventHandlers || (options.eventHandlers = {});
+  options.cssClass = options['cssClass'] = "" + (spark.utils.concatString('view', options.cssClass || options['cssClass']));
+  options.tagName || (options.tagName = options['tagName'] || 'div');
+  options.domId || (options.domId = options['domId'] || null);
+  options.template || (options.template = options['template'] || null);
+  options.disabled || (options.disabled = options['disabled'] || false);
+  options.eventHandlers || (options.eventHandlers = options['eventHandlers'] || {});
   spark.core.View.superClass_.constructor.call(this, options, data);
   this.children = [];
   this.createDomElement();
@@ -146,6 +147,7 @@ spark.core.View.prototype.createDomElement = function() {
 
 /**
   Sets DOM id.
+  @export
   @param {!string} domId Id of the element.
  */
 spark.core.View.prototype.setDomId = function(domId) {
@@ -154,6 +156,7 @@ spark.core.View.prototype.setDomId = function(domId) {
 
 /**
   Returns the DOM id if exists, otherwise it will return null
+  @export
   @return {string|null}
  */
 spark.core.View.prototype.getDomId = function() {
@@ -163,6 +166,7 @@ spark.core.View.prototype.getDomId = function() {
 /**
   Sets the class name of element. This will override existing class names.
   Use `@addClass` if you want to add new class name to the element.
+  @export
   @param {!string} cssClass Class name.
  */
 spark.core.View.prototype.setClass = function(cssClass) {
@@ -171,6 +175,7 @@ spark.core.View.prototype.setClass = function(cssClass) {
 
 /**
   Returns class name of the element.
+  @export
   @return {string} Class name.
  */
 spark.core.View.prototype.getClass = function() {
@@ -179,6 +184,7 @@ spark.core.View.prototype.getClass = function() {
 
 /**
   Returns class list of the element.
+  @export
   @return {Array} List of class names.
  */
 spark.core.View.prototype.getClassList = function() {
@@ -187,6 +193,7 @@ spark.core.View.prototype.getClassList = function() {
 
 /**
   Adds new class name to element.
+  @export
   @param {!string} cssClass New class name for the element.
  */
 spark.core.View.prototype.addClass = function(cssClass) {
@@ -195,6 +202,7 @@ spark.core.View.prototype.addClass = function(cssClass) {
 
 /**
   Remove a class name from the element.
+  @export
   @param {!string} cssClass Name of the class which will be removed.
  */
 spark.core.View.prototype.removeClass = function(cssClass) {
@@ -203,6 +211,7 @@ spark.core.View.prototype.removeClass = function(cssClass) {
 
 /**
   Returns true if element has that class name.
+  @export
   @param {!string} cssClass Name of the class which will be tested.
   @return {boolean} Whether element has a class name or not.
  */
@@ -212,7 +221,8 @@ spark.core.View.prototype.hasClass = function(cssClass) {
 
 /**
   Returns the DOM element.
-  @return {Node} DOM element of this view.
+  @export
+  @return {Element} DOM element of this view.
  */
 spark.core.View.prototype.getElement = function() {
   return this.element;
@@ -221,6 +231,7 @@ spark.core.View.prototype.getElement = function() {
 /**
   Very basic support of templating. Spark Framework will provide much more
   powerful templating solution but that's better than nothing for now.
+  @export
   @param {!string} template HTML markup of the element.
  */
 spark.core.View.prototype.setTemplate = function(template) {
@@ -228,6 +239,7 @@ spark.core.View.prototype.setTemplate = function(template) {
 };
 
 /**
+  @export
   Appends view into document's body.
  */
 spark.core.View.prototype.appendToDocumentBody = function() {
@@ -236,6 +248,7 @@ spark.core.View.prototype.appendToDocumentBody = function() {
 
 /**
   Removes element from DOM if it is in DOM.
+  @export
   @return {boolean} Whether element removed from document or not.
  */
 spark.core.View.prototype.removeFromDocument = function() {
@@ -251,6 +264,7 @@ spark.core.View.prototype.removeFromDocument = function() {
 
 /**
   Appends a new view into this view's element as a child.
+  @export
   @param {!spark.core.View} view A spark.View instance to append.
  */
 spark.core.View.prototype.appendView = function(view) {
@@ -269,6 +283,7 @@ spark.core.View.prototype.appendView = function(view) {
 
 /**
   Native setAttribute wrapper.
+  @export
   @param {!string} name  Atrribute name.
   @param {!string} value Attribute value.
  */
@@ -278,6 +293,7 @@ spark.core.View.prototype.setAttribute = function(name, value) {
 
 /**
   Native getAttribute wrapper.
+  @export
   @param {!string} name  Atrribute name.
  */
 spark.core.View.prototype.getAttribute = function(name) {
@@ -286,6 +302,7 @@ spark.core.View.prototype.getAttribute = function(name) {
 
 /**
   Native removeAttribute wrapper.
+  @export
   @param {!string} name  Atrribute name.
  */
 spark.core.View.prototype.removeAttribute = function(name) {
@@ -293,6 +310,7 @@ spark.core.View.prototype.removeAttribute = function(name) {
 };
 
 /**
+  @export
   Disable view.
  */
 spark.core.View.prototype.disable = function() {
@@ -300,10 +318,11 @@ spark.core.View.prototype.disable = function() {
   disabled = 'disabled';
   this.addClass(disabled);
   this.setAttribute(disabled, disabled);
-  return this.isDisabled = true;
+  return this.disabled = true;
 };
 
 /**
+  @export
   Enable view.
  */
 spark.core.View.prototype.enable = function() {
@@ -311,14 +330,15 @@ spark.core.View.prototype.enable = function() {
   disabled = 'disabled';
   this.removeClass(disabled);
   this.removeAttribute(disabled);
-  return delete this.isDisabled;
+  return this.disabled = false;
 };
 
 /**
+  @export
   Toggle view state. Disable if enabled, enable if disabled.
  */
 spark.core.View.prototype.toggle = function() {
-  if (this.isDisabled) {
+  if (this.isDisabled()) {
     return this.enable();
   } else {
     return this.disable();
@@ -326,6 +346,15 @@ spark.core.View.prototype.toggle = function() {
 };
 
 /**
+  @export
+  Returns the current disabled state of the button.
+ */
+spark.core.View.prototype.isDisabled = function() {
+  return this.disabled || false;
+};
+
+/**
+  @export
   @override
   Override Object::on to support two way binding for DOM events.
  */
@@ -337,6 +366,7 @@ spark.core.View.prototype.on = function(eventName, callback) {
 };
 
 /**
+  @export
   @override
   Override Object::once to support two way binding for DOM events.
  */
@@ -348,6 +378,7 @@ spark.core.View.prototype.once = function(eventName, callback) {
 };
 
 /**
+  @export
   @override
   Override Object::off to remove events binded to DOM element.
  */
@@ -406,7 +437,7 @@ spark.core.View.EventTypes = goog.object.transpose(goog.events.EventType);</pre>
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a>
-		on 2014-10-21T16:27:25+00:00 using the <a
+		on 2014-10-25T11:17:42+00:00 using the <a
 			href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
