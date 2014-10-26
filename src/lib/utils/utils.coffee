@@ -12,6 +12,10 @@ spark.utils.concatString = (var_args) ->
   strings = []
 
   for arg in arguments when typeof arg is 'string'
-    strings.push arg
+    if arg.indexOf(' ') > -1
+      for item in arg.split ' '
+        strings.push item if strings.indexOf(item) is -1
+    else
+      strings.push arg
 
   return Array.prototype.join.call strings, ' '
