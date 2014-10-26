@@ -10,6 +10,7 @@ goog.require 'spark.components.Form'
 goog.require 'spark.components.FieldFactory'
 goog.require 'spark.utils'
 goog.require 'spark.components.Textarea'
+goog.require 'spark.widgets.SignUp'
 
 
 class spark.Bootstrapper
