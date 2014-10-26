@@ -17,7 +17,6 @@ class spark.widgets.SignUp extends spark.core.View
   ###
   constructor: (options = {}, data) ->
 
-    options.cssClass      = options['cssClass']     = "#{spark.utils.concatString 'sign-up-widget', options.cssClass or options['cssClass']}"
     options.withImage    ?= options['withImage']    ? yes
     options.imageUrl    or= options['imageUrl']    or 'http://lorempixel.com/460/144/city/4'
     options.title       or= options['title']       or 'Sign Up'
@@ -27,6 +26,8 @@ class spark.widgets.SignUp extends spark.core.View
 
     options.forgotPasswordCallback    or= options['forgotPasswordCallback']    or null
     options.alreadyRegisteredCallback or= options['alreadyRegisteredCallback'] or null
+
+    @getCssClass options, 'sign-up-widget'
 
     super options, data
 

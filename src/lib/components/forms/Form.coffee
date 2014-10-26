@@ -19,7 +19,7 @@ class spark.components.Form extends spark.core.View
   ###
   constructor: (options = {}, data) ->
 
-    options.cssClass = options['cssClass'] = "#{spark.utils.concatString 'form', options.cssClass or options['cssClass']}"
+    @getCssClass options, 'form'
 
     super options, data
 

@@ -22,6 +22,7 @@ class spark.components.Textarea extends spark.components.Field
   constructor: (options = {}, data) ->
 
     options.tagName = options['tagName'] = 'textarea'
+    @getCssClass options, 'textarea'
 
     super options, data
 

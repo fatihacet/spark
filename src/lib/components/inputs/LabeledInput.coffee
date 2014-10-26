@@ -18,7 +18,7 @@ class spark.components.LabeledInput extends spark.core.View
   ###
   constructor: (options = {}, data) ->
 
-    options.cssClass = options['cssClass'] = "#{spark.utils.concatString 'labeled-input', options.cssClass}"
+    @getCssClass options, 'labeled-input'
 
     super options, data
 
