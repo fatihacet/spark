@@ -18,13 +18,13 @@ class spark.core.View extends spark.core.Object
   ###
   constructor: (options = {}, data) ->
 
-    options.cssClass         = options['cssClass'] = "#{spark.utils.concatString 'view', options.cssClass or options['cssClass']}"
-    options.tagName        or= options['tagName']       or 'div'
-    options.domId          or= options['domId']         or null
-    options.template       or= options['template']      or null
-    options.disabled       or= options['disabled']      or no
-    options.attributes     or= options['attributes']    or {}
-    options.eventHandlers  or= options['eventHandlers'] or {}
+    options.tagName       or= options['tagName']       or 'div'
+    options.domId         or= options['domId']         or null
+    options.template      or= options['template']      or null
+    options.attributes    or= options['attributes']    or {}
+    options.eventHandlers or= options['eventHandlers'] or {}
+    options.disabled       ?= options['disabled']       ? no
+    @getCssClass options
 
     super options, data
 
@@ -295,6 +295,17 @@ class spark.core.View extends spark.core.Object
     for key, callback of @getOptions().eventHandlers
       if eventTypes[key] and typeof callback is 'function'
         @on goog.events.EventType[eventTypes[key]], callback
+
+
+  ###*
+    Helper method to set css class to options set.
+    @param {Object}  options  Class options.
+    @param {string=} optionalClass Optinal CSS class which will added to default.
+  ###
+  getCssClass: (options, optionalClass) ->
+    classFromOptions = options.cssClass or options['cssClass']
+    fullClassName    = spark.utils.concatString 'view', classFromOptions, optionalClass
+    options.cssClass = options['cssClass'] = fullClassName
 
 
   ###*
