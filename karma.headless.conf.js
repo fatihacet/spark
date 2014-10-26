@@ -44,7 +44,7 @@ module.exports = function(config) {
 
 
     notifyReporter: {
-      reportEachFailure: true,
+      reportEachFailure: false,
       reportSuccess: true
     },
 
