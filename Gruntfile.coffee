@@ -116,7 +116,7 @@ module.exports = (grunt) ->
           prefix         : '../../../../'
           root           : [
             'bower_components/closure-library'
-            'bower_components/closure-templates'
+            # 'bower_components/closure-templates'
             'build'
           ]
 
