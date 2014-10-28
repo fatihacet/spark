@@ -6,6 +6,12 @@ goog.require 'spark.components.FieldFactory'
 describe 'spark.components.FieldFactory', ->
 
 
+  it 'should return input[type=text] with empty option set', ->
+    input = spark.components.FieldFactory()
+
+    expect(input instanceof spark.components.Input).toBeTruthy()
+
+
   it 'should return spark.components.Input for text type', ->
     input = spark.components.FieldFactory type: 'text'
 
