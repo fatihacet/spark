@@ -11,6 +11,7 @@ goog.require 'spark.components.FieldFactory'
 goog.require 'spark.utils'
 goog.require 'spark.components.Textarea'
 goog.require 'spark.widgets.SignUp'
+goog.require 'spark.components.ToggleSwitch'
 
 
 class spark.Bootstrapper

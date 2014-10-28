@@ -1,7 +1,7 @@
 createToggleSwitches = ->
 
     container = new spark.core.View attributes: style: 'margin: 50px'
-    colors    = [ 'blue', 'green', 'yellow', 'red', 'black' ]
+    colors    = [ 'green', 'blue', 'yellow', 'red', 'black' ]
 
     for color in colors
       s = new spark.components.ToggleSwitch checked: yes, cssClass: color
