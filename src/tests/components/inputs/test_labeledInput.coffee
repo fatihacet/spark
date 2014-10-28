@@ -45,4 +45,9 @@ describe 'spark.components.LabeledInput', ->
     expect(labeledInput.getInput().hasClass('focus')).toBeFalsy()
 
 
+  it 'should have for and id attributes the same', ->
+    labelFor = labeledInput.getLabel().getAttribute 'for'
+    inputId  = labeledInput.getInput().getAttribute 'id'
+
+    expect(labelFor).toBe inputId
 

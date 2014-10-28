@@ -22,8 +22,17 @@ class spark.components.LabeledInput extends spark.core.View
 
     super options, data
 
-    labelOptions = options.labelOptions or options['labelOptions']
-    inputOptions = options.inputOptions or options['inputOptions']
+    labelOptions = options.labelOptions or options['labelOptions'] or {}
+    inputOptions = options.inputOptions or options['inputOptions'] or {}
+    inputDomId   = inputOptions.domId   or inputOptions['domId']
+    uniqueId     = @getUid()
+
+    labelOptions.attributes or= {}
+    inputOptions.attributes or= {}
+
+    labelOptions.attributes.for  = inputDomId or uniqueId
+    inputOptions.attributes.name = inputDomId or uniqueId
+    inputOptions.attributes.id = inputDomId or uniqueId
 
     @label = new spark.components.Label    labelOptions, data
     @input = spark.components.FieldFactory inputOptions, data
