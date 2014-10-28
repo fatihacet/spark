@@ -1,5 +1,6 @@
 goog.provide 'spark.core.Object'
 
+goog.require 'spark.utils'
 goog.require 'goog.events.EventTarget'
 
 
@@ -23,7 +24,7 @@ class spark.core.Object extends goog.events.EventTarget
     @setOptions options  if options
     @setData data        if data
 
-    @setUid()
+    @setUid_()
 
 
   ###*
@@ -73,19 +74,20 @@ class spark.core.Object extends goog.events.EventTarget
 
   ###*
     Sets uid.
+    @private
   ###
-  setUid: ->
-    goog.getUid this
+  setUid_: ->
+    @uid_ = spark.utils.getUid()
 
 
   ###*
-    Return unique id set by closure.
-    This method is here for naming convension.
+    Return unique id.
+
     @export
-    @return {number} Uid.
+    @return {string} Unique id of this component.
   ###
   getUid: ->
-    return goog.getUid this
+    return @uid_
 
 
   ###*

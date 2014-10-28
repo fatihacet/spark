@@ -70,7 +70,9 @@ describe 'spark.core.Object', ->
 
   it 'should return uid', ->
     object = new spark.core.Object
-    expect(object.getUid()).toBeGreaterThan 0
+
+    expect(object.getUid()).toBeDefined()
+    expect(typeof object.getUid()).toBe 'string'
 
 
   it 'should listen and fire events', ->
