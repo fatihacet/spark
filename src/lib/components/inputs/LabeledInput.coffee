@@ -18,6 +18,8 @@ class spark.components.LabeledInput extends spark.core.View
   ###
   constructor: (options = {}, data) ->
 
+    options.inputFirst ?= options['inputFirst'] ? no
+
     @getCssClass options, options.cssClass or options['cssClass'] or 'labeled-input'
 
     super options, data
@@ -37,8 +39,14 @@ class spark.components.LabeledInput extends spark.core.View
     @label = new spark.components.Label    labelOptions, data
     @input = spark.components.FieldFactory inputOptions, data
 
-    @appendView @label
-    @appendView @input
+    if options.inputFirst
+      @appendView @input
+      @appendView @label
+    else
+      @appendView @label
+      @appendView @input
+
+
   ###*
     Returns input component.
     @export

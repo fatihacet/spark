@@ -51,3 +51,13 @@ describe 'spark.components.LabeledInput', ->
 
     expect(labelFor).toBe inputId
 
+
+  it 'should create input first if inputFirst passed as true', ->
+    expect(element.firstChild.tagName).toBe 'LABEL'
+    expect(element.lastChild.tagName).toBe  'INPUT'
+
+    labeledInput = new spark.components.LabeledInput inputFirst: yes
+    element      = labeledInput.getElement()
+
+    expect(element.firstChild.tagName).toBe 'INPUT'
+    expect(element.lastChild.tagName).toBe  'LABEL'
