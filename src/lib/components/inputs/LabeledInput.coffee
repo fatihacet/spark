@@ -30,6 +30,21 @@ class spark.components.LabeledInput extends spark.core.View
 
     @appendView @label
     @appendView @input
+  ###*
+    Returns input component.
+    @export
+    @return {spark.components.Input}
+  ###
+  getInput: ->
+    return @input
+
 
     @label.on 'click', =>
       @input.focus()
+  ###*
+    Returns label component.
+    @export
+    @return {spark.components.Label}
+  ###
+  getLabel: ->
+    return @label
