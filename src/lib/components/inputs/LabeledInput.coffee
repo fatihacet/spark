@@ -39,8 +39,6 @@ class spark.components.LabeledInput extends spark.core.View
     return @input
 
 
-    @label.on 'click', =>
-      @input.focus()
   ###*
     Returns label component.
     @export

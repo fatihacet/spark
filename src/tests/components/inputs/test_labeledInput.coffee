@@ -45,7 +45,4 @@ describe 'spark.components.LabeledInput', ->
     expect(labeledInput.getInput().hasClass('focus')).toBeFalsy()
 
 
-  it 'should have focus class when clicked to its label', ->
-    labeledInput.label.emit 'click'
 
-    expect(labeledInput.input.hasClass('focus')).toBeTruthy()
