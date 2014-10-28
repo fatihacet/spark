@@ -32,6 +32,7 @@ class spark.components.Checkbox extends spark.components.Field
   ###
   check: ->
     @getElement().checked = yes
+    @emit 'StateChanged', yes
 
 
   ###*
@@ -40,6 +41,7 @@ class spark.components.Checkbox extends spark.components.Field
   ###
   uncheck: ->
     @getElement().checked = no
+    @emit 'StateChanged', no
 
 
   ###*

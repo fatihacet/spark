@@ -43,3 +43,22 @@ describe 'spark.components.Checkbox', ->
     cb.uncheck()
 
     expect(cb.isChecked()).toBeFalsy()
+
+
+  it 'should emit StateChanged event with proper state', ->
+    state = null
+
+    checkbox.on 'StateChanged', (e) ->
+      state = e.data
+
+    checkbox.check()
+
+    expect(state).toBeTruthy()
+
+    checkbox.check() # try to check again to test state change
+
+    expect(state).toBeTruthy()
+
+    checkbox.uncheck()
+
+    expect(state).toBeFalsy()
