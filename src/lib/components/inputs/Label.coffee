@@ -18,7 +18,7 @@ class spark.components.Label extends spark.core.View
   constructor: (options = {}, data) ->
 
     options.tagName     = options['tagName'] = 'label'
-    options.label     or= options['label']  or 'Input Label'
+    options.label      ?= options['label']   ? 'Input Label'
     options.template    = options.label
     @getCssClass options, 'label'
 
