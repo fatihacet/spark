@@ -1,6 +1,20 @@
 goog.provide 'spark.utils'
 
 
+counter = Math.floor Math.random() * 2147483648
+
+
+###*
+  Returns a unique id. Ported from TartJS.
+  https://github.com/tart/tartJS/blob/master/tart/tart.js#L26 -- amcalar <3
+
+  @export
+  @return {string} Unique id.
+###
+spark.utils.getUid = ->
+  return (counter++).toString 36
+
+
 ###*
   Concats strings together with a space.
 

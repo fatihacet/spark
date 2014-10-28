@@ -3,7 +3,7 @@ goog = goog or goog = require: ->
 goog.require 'spark.utils'
 
 
-describe 'spark.utils', ->
+describe 'spark.utils.concatString', ->
 
 
   it 'should concat strings', ->
@@ -22,3 +22,19 @@ describe 'spark.utils', ->
     str = spark.utils.concatString 'a', 'a b', 'd', 'a b c d'
 
     expect(str).toBe 'a b d c'
+
+
+describe 'spark.utils.getUid', ->
+
+
+  it 'should return a string', ->
+    uid = spark.utils.getUid()
+
+    expect(typeof uid).toBe 'string'
+
+
+  it 'should not same id when called more then once', ->
+    uid = spark.utils.getUid()
+    uie = spark.utils.getUid()
+
+    expect(uid).not.toBe uie
