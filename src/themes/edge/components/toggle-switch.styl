@@ -1,0 +1,142 @@
+@import '../variables.styl'
+
+.toggle-switch
+
+  .checkbox
+    position                absolute
+    margin-left             -9999px
+    visibility              hidden
+
+    & + label
+      display               block
+      position              relative
+      cursor                pointer
+      outline               none
+      -webkit-touch-callout none
+      -webkit-user-select   none
+      -moz-user-select      none
+      user-select           none
+      padding               2px
+      width                 72px
+      height                36px
+      box-sizing            border-box
+      background-color      GREY
+      border-radius         60px
+      transition            background 0.4s
+
+    & + label:before
+    & + label:after
+      display               block
+      position              absolute
+      content               ''
+
+    & + label:before
+      top                   2px
+      left                  2px
+      bottom                2px
+      right                 2px
+      background-color      WHITE
+      border-radius         60px
+      transition            background 0.4s
+
+    & + label:after
+      top                   4px
+      left                  4px
+      bottom                4px
+      width                 28px
+      background-color      GREY
+      border-radius         28px
+      transition            margin 0.4s, background 0.4s
+
+    &:checked + label
+      background-color      GREEN
+
+    &:checked + label:after
+      margin-left           36px
+      background-color      GREEN
+      content               ''
+
+
+  &.solid
+
+    .checkbox
+
+      & + label:before
+        background-color    GREY
+
+      & + label:after
+        background-color    WHITE
+
+      &:checked + label:before
+        background-color    GREEN
+
+
+  // theming for color options
+  // blue, yellow, red, black, default is green
+  // grey is not implemented since grey is default unselected color.
+  &.blue
+
+    .checkbox
+
+      &:checked + label,
+      &:checked + label:after
+        background-color    BLUE
+
+    &.solid .checkbox
+
+      &:checked + label:after
+        background-color    WHITE
+
+      &:checked + label:before
+        background-color    BLUE
+
+
+  &.red
+
+    .checkbox
+
+      &:checked + label,
+      &:checked + label:after
+        background-color    RED
+
+    &.solid .checkbox
+
+      &:checked + label:after
+        background-color    WHITE
+
+      &:checked + label:before
+        background-color    RED
+
+
+  &.yellow
+
+    .checkbox
+
+      &:checked + label,
+      &:checked + label:after
+        background-color    YELLOW
+
+    &.solid .checkbox
+
+      &:checked + label:after
+        background-color    WHITE
+
+      &:checked + label:before
+        background-color    YELLOW
+
+
+  &.black
+
+    .checkbox
+
+      &:checked + label,
+      &:checked + label:after
+        background-color    BLACK
+
+    &.solid .checkbox
+
+      &:checked + label:after
+        background-color    WHITE
+
+      &:checked + label:before
+        background-color    BLACK
