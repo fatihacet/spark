@@ -130,10 +130,6 @@ module.exports = (grunt) ->
       compiled           :
         configFile       : 'karma.compiled.conf.js'
 
-    coveralls            :
-      options            :
-        src              : 'build/coverage/**/lcov.info'
-        force            : no
 
     builder              :
       all                :
@@ -239,7 +235,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-open'
   grunt.loadNpmTasks 'grunt-jsdoc'
   grunt.loadNpmTasks 'grunt-karma'
-  grunt.loadNpmTasks 'grunt-coveralls'
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
   grunt.loadNpmTasks 'grunt-http-server'
   grunt.loadNpmTasks 'node-sprite-generator'
@@ -257,7 +252,6 @@ module.exports = (grunt) ->
       'coffee2closure'
       'deps'
       'karma:headless'
-      'coveralls'
       'builder'
       'karma:compiled'
       'jsdoc'
