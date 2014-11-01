@@ -292,7 +292,7 @@ class spark.core.View extends spark.core.Object
     eventTypes = spark.core.View.EventTypes
     element    = @getElement()
 
-    for key, callback of @getOptions().eventHandlers
+    goog.object.forEach @getOptions().eventHandlers, (callback, key) =>
       if eventTypes[key] and typeof callback is 'function'
         @on goog.events.EventType[eventTypes[key]], callback
 
