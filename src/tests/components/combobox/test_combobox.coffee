@@ -47,7 +47,7 @@ describe 'spark.components.ComboBox', ->
     expect(children[2].classList.contains('goog-menu')).toBeTruthy()
 
 
-  it 'should toggle menu when toggle is clicked', ->
+  it 'should toggle menu when it is clicked', ->
     menuElement = element.childNodes[element.childNodes.length - 1]
 
     expect(menuElement.style.display).toBe 'none'
@@ -60,11 +60,11 @@ describe 'spark.components.ComboBox', ->
 
     expect(menuElement.style.display).toBe 'none'
 
-    combobox.getArrow().emit 'click'
+    combobox.emit 'click'
 
     expect(menuElement.style.display).toBe ''
 
-    combobox.getArrow().emit 'click'
+    combobox.emit 'click'
 
     expect(menuElement.style.display).toBe 'none'
 

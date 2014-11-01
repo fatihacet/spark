@@ -44,6 +44,8 @@ class spark.components.ComboBox extends spark.core.View
 
     @menu_.render @getElement()
 
+    @on 'click', => @toggleMenu()
+
 
   ###*
     Creates menu and binds action event to menu to emit selected event.
@@ -55,7 +57,6 @@ class spark.components.ComboBox extends spark.core.View
     @menu_.setVisible no
 
     goog.events.listen @menu_, goog.ui.Component.EventType.ACTION, (e) =>
-      @toggleMenu()
       @handleSelection_ e.target
 
 
