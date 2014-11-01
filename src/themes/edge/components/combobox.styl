@@ -1,0 +1,50 @@
+@import '../variables.styl'
+
+.combobox
+  display              inline-block
+  position             relative
+  background-color     GREEN
+  color                WHITE
+  border-radius        4px
+  width                180px
+  cursor               default
+
+  .title
+    padding            10px 20px 9px
+    font-size          15px
+    user-select        none
+    -webkit-user-select none
+
+  .arrow
+    position           absolute
+    top                0
+    right              0
+    cursor             pointer
+    padding            9px 14px
+
+  .goog-menuitem
+    background-color   DARK_GREEN
+    cursor             pointer
+    padding            5px 20px
+    font-size          14px
+    &:first-child
+      padding-top      10px
+    &:last-child
+      padding-bottom   10px
+
+  .goog-menu
+    max-height         240px
+    overflow-y         auto
+    border-radius      0 0 4px 4px
+
+
+  &.blue
+    background-color   BLUE
+    .goog-menuitem
+      background-color DARK_BLUE
+
+
+  &.yellow
+    background-color   YELLOW
+    .goog-menuitem
+      background-color DARK_YELLOW
