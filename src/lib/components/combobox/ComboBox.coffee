@@ -35,12 +35,12 @@ class spark.components.ComboBox extends spark.core.View
       cssClass : 'title'
       template : options.selectionText
 
-    @arrow = new spark.core.View
+    arrow = new spark.core.View
       cssClass : 'arrow'
       template : 'v'
 
     @appendView @title
-    @appendView @arrow
+    @appendView arrow
 
     @menu_.render @getElement()
 
@@ -296,12 +296,12 @@ class spark.components.ComboBox extends spark.core.View
 
 
   ###*
-    Returns arrow element.
+    Returns title element.
 
     @export
   ###
-  getArrow: ->
-    return @arrow
+  getTitle: ->
+    return @title
 
 
   ###*
