@@ -22,25 +22,6 @@ class spark.Bootstrapper
   ###
   constructor: ->
 
-    k = new spark.components.ComboBox {}, [
-      { title: 'Fiat', value: 'fiat' }
-      { title: 'Ford', value: 'ford' }
-      { title: 'Mazda', value: 'mazda' }
-      { title: 'BMW', value: 'bmw' }
-      { title: 'Honda', value: 'honda' }
-      { title: 'Ferrari', value: 'ferrari' }
-    ]
-
-    k.appendToDocumentBody()
-
-    k.on 'selected', (event) ->
-      {title, value, data} = event.data
-
-      console.log title, value, data
-
-
-    window.k = k
-
 
 window.addEventListener "load", (->
   new spark.Bootstrapper
