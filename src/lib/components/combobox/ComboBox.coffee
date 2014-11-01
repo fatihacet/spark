@@ -134,7 +134,7 @@ class spark.components.ComboBox extends spark.core.View
     return unless item instanceof goog.ui.MenuItem
 
     if index?
-      @menu_.addItemAt item, index
+      @menu_.addChildAt item, index, yes
     else
       @menu_.addItem item
 
