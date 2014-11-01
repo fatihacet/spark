@@ -60,6 +60,11 @@ class spark.components.ComboBox extends spark.core.View
       @handleSelection_ e.target
 
 
+  ###*
+    Handles menu item selections. Emits selected event with the following data.
+
+    @private
+  ###
   handleSelection_: (item) ->
     @selectedItem = item
     selectedData  = @selectedItem.getModel()
@@ -89,7 +94,7 @@ class spark.components.ComboBox extends spark.core.View
     and add item to menu.
 
     @export
-    @param {!Object} data Data of the meni item. It should have valueField and
+    @param {!Object} data Data of the menu item. It should have valueField and
     titleField keys in it. Default keys are value and title.
     @param {boolean=} shouldAdd If you pass should add as true, it will create
     and append the menu item at the end of the menu.
