@@ -76,7 +76,7 @@ describe 'spark.components.Form', ->
 
 
   it 'should set and update form data', ->
-    form.setData { name: 'John', surname: 'Doe' }
+    form.setData { name: 'John', surname: 'Doe', notExistingInput: 'someValue' }
 
     expect(form.getInputByName('name').getValue()).toBe 'John'
     expect(form.getInputByName('surname').getValue()).toBe 'Doe'
