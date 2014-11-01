@@ -305,12 +305,25 @@ class spark.components.ComboBox extends spark.core.View
 
 
   ###*
-    Returns title element.
+    Shows menu.
 
     @export
   ###
-  getTitle: ->
-    return @title
+  showMenu: ->
+    @isMenuVisible = yes
+    @menu_.setVisible yes
+    @addClass 'menu-visible'
+
+
+  ###*
+    Hide menu.
+
+    @export
+  ###
+  hideMenu: ->
+    @isMenuVisible = no
+    @menu_.setVisible no
+    @removeClass 'menu-visible'
 
 
   ###*
@@ -319,8 +332,7 @@ class spark.components.ComboBox extends spark.core.View
     @export
   ###
   toggleMenu: ->
-    @isVisible = !@isVisible
-    @menu_.setVisible @isVisible
+    if @isMenuVisible then @hideMenu() else @showMenu()
 
 
   ###*
