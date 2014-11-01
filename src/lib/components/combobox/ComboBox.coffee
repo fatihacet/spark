@@ -36,10 +36,8 @@ class spark.components.ComboBox extends spark.core.View
       template : options.selectionText
 
     @arrow = new spark.core.View
-      cssClass      : 'arrow'
-      template      : '<strong>v</strong>'
-      eventHandlers :
-        click       : => @toggleMenu()
+      cssClass : 'arrow'
+      template : 'v'
 
     @appendView @title
     @appendView @arrow
