@@ -60,7 +60,7 @@ describe 'spark.widgets.SignUp', ->
     expect(anchors.length).toBe 2
 
 
-  it 'should execute callback for sign up button', (done) ->
+  it 'should execute callback for sign up button', ->
     flag   = no
     widget = new spark.widgets.SignUp callback: -> flag = yes
     button = widget.getForm().getButtons()[0].getElement()
