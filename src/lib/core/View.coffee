@@ -148,6 +148,7 @@ class spark.core.View extends spark.core.Object
   ###
   appendToDocumentBody: ->
     document.body.appendChild @getElement()
+    @emit 'ViewHasParent'
 
 
   ###*
@@ -180,6 +181,7 @@ class spark.core.View extends spark.core.Object
 
     @children.push view
     @getElement().appendChild view.getElement()
+    view.emit 'ViewHasParent'
 
 
   ###*
