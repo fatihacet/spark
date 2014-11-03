@@ -4,6 +4,8 @@
   "dependencies": {
     "closure-compiler": "http://dl.google.com/closure-compiler/compiler-latest.zip",
     "closure-library": "https://github.com/fatihacet/google-closure-library/archive/master.zip",
-    "closure-templates": "http://closure-templates.googlecode.com/files/closure-templates-for-javascript-latest.zip"
+    "closure-templates": "http://closure-templates.googlecode.com/files/closure-templates-for-javascript-latest.zip",
+    "jquery": "http://code.jquery.com/jquery-2.1.1.min.js",
+    "jquery-simulate": "https://github.com/jquery/jquery-simulate/archive/master.zip"
   }
 }
