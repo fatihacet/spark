@@ -117,12 +117,14 @@
 goog.provide('spark.core.View');
 goog.require('spark.core.Object');
 goog.require('spark.utils');
+goog.require('goog.dom');
 
 /**
-  Main View class of Spark Framework.
- */
+  Main View class of Spark Framework. It is basically a div element. But it's
+  configurable to be any kind of element. It's event driven. This means you
+  can attach and listen custom events with your data. It also supports native
+  DOM events.
 
-/**
   @constructor
   @export
   @param   {Object=} options Class options.
@@ -137,6 +139,7 @@ spark.core.View = function(options, data) {
   options.tagName || (options.tagName = options['tagName'] || 'div');
   options.domId || (options.domId = options['domId'] || null);
   options.template || (options.template = options['template'] || null);
+  options.renderTo || (options.renderTo = options['renderTo'] || null);
   options.attributes || (options.attributes = options['attributes'] || {});
   options.eventHandlers || (options.eventHandlers = options['eventHandlers'] || {});
   if (options.disabled == null) {
@@ -149,6 +152,9 @@ spark.core.View = function(options, data) {
   this.bindEventHandlers();
   if (options.disabled) {
     this.disable();
+  }
+  if (options.renderTo) {
+    this.render(options.renderTo);
   }
 }
 goog.inherits(spark.core.View, spark.core.Object);
@@ -177,6 +183,7 @@ spark.core.View.prototype.createDomElement = function() {
 
 /**
   Sets DOM id.
+
   @export
   @param {!string} domId Id of the element.
  */
@@ -185,7 +192,8 @@ spark.core.View.prototype.setDomId = function(domId) {
 };
 
 /**
-  Returns the DOM id if exists, otherwise it will return null
+  Returns the DOM id if exists, otherwise it will return null.
+
   @export
   @return {string|null}
  */
@@ -196,6 +204,7 @@ spark.core.View.prototype.getDomId = function() {
 /**
   Sets the class name of element. This will override existing class names.
   Use `@addClass` if you want to add new class name to the element.
+
   @export
   @param {!string} cssClass Class name.
  */
@@ -205,6 +214,7 @@ spark.core.View.prototype.setClass = function(cssClass) {
 
 /**
   Returns class name of the element.
+
   @export
   @return {string} Class name.
  */
@@ -214,6 +224,7 @@ spark.core.View.prototype.getClass = function() {
 
 /**
   Returns class list of the element.
+
   @export
   @return {Array} List of class names.
  */
@@ -223,6 +234,7 @@ spark.core.View.prototype.getClassList = function() {
 
 /**
   Adds new class name to element.
+
   @export
   @param {!string} cssClass New class name for the element.
  */
@@ -232,6 +244,7 @@ spark.core.View.prototype.addClass = function(cssClass) {
 
 /**
   Remove a class name from the element.
+
   @export
   @param {!string} cssClass Name of the class which will be removed.
  */
@@ -241,6 +254,7 @@ spark.core.View.prototype.removeClass = function(cssClass) {
 
 /**
   Returns true if element has that class name.
+
   @export
   @param {!string} cssClass Name of the class which will be tested.
   @return {boolean} Whether element has a class name or not.
@@ -251,6 +265,7 @@ spark.core.View.prototype.hasClass = function(cssClass) {
 
 /**
   Returns the DOM element.
+
   @export
   @return {Element} DOM element of this view.
  */
@@ -261,6 +276,7 @@ spark.core.View.prototype.getElement = function() {
 /**
   Very basic support of templating. Spark Framework will provide much more
   powerful templating solution but that's better than nothing for now.
+
   @export
   @param {!string} template HTML markup of the element.
  */
@@ -269,8 +285,9 @@ spark.core.View.prototype.setTemplate = function(template) {
 };
 
 /**
-  @export
   Appends view into document's body.
+
+  @export
  */
 spark.core.View.prototype.appendToDocumentBody = function() {
   document.body.appendChild(this.getElement());
@@ -279,6 +296,7 @@ spark.core.View.prototype.appendToDocumentBody = function() {
 
 /**
   Removes element from DOM if it is in DOM.
+
   @export
   @return {boolean} Whether element removed from document or not.
  */
@@ -295,6 +313,7 @@ spark.core.View.prototype.removeFromDocument = function() {
 
 /**
   Appends a new view into this view's element as a child.
+
   @export
   @param {!spark.core.View} view A spark.View instance to append.
  */
@@ -315,6 +334,7 @@ spark.core.View.prototype.appendView = function(view) {
 
 /**
   Native setAttribute wrapper.
+
   @export
   @param {!string} name  Atrribute name.
   @param {!string} value Attribute value.
@@ -325,6 +345,7 @@ spark.core.View.prototype.setAttribute = function(name, value) {
 
 /**
   Native getAttribute wrapper.
+
   @export
   @param {!string} name  Atrribute name.
  */
@@ -334,6 +355,7 @@ spark.core.View.prototype.getAttribute = function(name) {
 
 /**
   Native removeAttribute wrapper.
+
   @export
   @param {!string} name  Atrribute name.
  */
@@ -342,8 +364,9 @@ spark.core.View.prototype.removeAttribute = function(name) {
 };
 
 /**
-  @export
   Disable view.
+
+  @export
  */
 spark.core.View.prototype.disable = function() {
   var disabled;
@@ -354,8 +377,9 @@ spark.core.View.prototype.disable = function() {
 };
 
 /**
-  @export
   Enable view.
+
+  @export
  */
 spark.core.View.prototype.enable = function() {
   var disabled;
@@ -366,8 +390,9 @@ spark.core.View.prototype.enable = function() {
 };
 
 /**
-  @export
   Toggle view state. Disable if enabled, enable if disabled.
+
+  @export
  */
 spark.core.View.prototype.toggle = function() {
   if (this.isDisabled()) {
@@ -378,17 +403,45 @@ spark.core.View.prototype.toggle = function() {
 };
 
 /**
-  @export
   Returns the current disabled state of the button.
+
+  @export
  */
 spark.core.View.prototype.isDisabled = function() {
   return this.disabled || false;
 };
 
 /**
+  Renders element into another View instance or a DOM element. Be aware that
+  this method only appends the element of this class into another element.
+  If the parent element is not in DOM, this method will not append the parent
+  into DOM. Also you can use this method with `renderTo` option. If you pass
+  `renderTo` as a View instance or DOM element, View will call render method
+  by default.
+
+  @export
+  @param {spark.core.View|Element} target Target view or element to be rendered.
+ */
+spark.core.View.prototype.render = function(target) {
+  if (target instanceof spark.core.View) {
+    return target.appendView(this);
+  } else if (goog.dom.isElement(target)) {
+    if (target === document.body) {
+      return this.appendToDocumentBody();
+    } else {
+      target.appendChild(this.getElement());
+      return this.emit('ViewHasParent');
+    }
+  } else {
+    throw new Error('Render target should be View instance or a DOM element.');
+  }
+};
+
+/**
+  Override Object::on to support two way binding for DOM events.
+
   @export
   @override
-  Override Object::on to support two way binding for DOM events.
  */
 spark.core.View.prototype.on = function(eventName, callback) {
   if (spark.core.View.EventTypes[eventName]) {
@@ -398,9 +451,10 @@ spark.core.View.prototype.on = function(eventName, callback) {
 };
 
 /**
+  Override Object::once to support two way binding for DOM events.
+
   @export
   @override
-  Override Object::once to support two way binding for DOM events.
  */
 spark.core.View.prototype.once = function(eventName, callback) {
   if (spark.core.View.EventTypes[eventName]) {
@@ -410,9 +464,10 @@ spark.core.View.prototype.once = function(eventName, callback) {
 };
 
 /**
+  Override Object::off to remove events binded to DOM element.
+
   @export
   @override
-  Override Object::off to remove events binded to DOM element.
  */
 spark.core.View.prototype.off = function(eventName, callback) {
   goog.events.unlisten(this.getElement(), eventName, callback);
@@ -440,6 +495,7 @@ spark.core.View.prototype.bindEventHandlers = function() {
 
 /**
   Helper method to set css class to options set.
+
   @param {Object}  options  Class options.
   @param {string=} optionalClass Optinal CSS class which will added to default.
  */
@@ -477,7 +533,7 @@ spark.core.View.EventTypes = goog.object.transpose(goog.events.EventType);</pre>
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a>
-		on 2014-11-03T00:38:15+00:00 using the <a
+		on 2014-11-03T16:35:38+00:00 using the <a
 			href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
