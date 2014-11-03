@@ -145,7 +145,7 @@ module.exports = (grunt) ->
           '--compilation_level="ADVANCED_OPTIMIZATIONS"'
           '--warning_level="VERBOSE"'
           '--generate_exports'
-          '--formatting=PRETTY_PRINT'
+          # '--formatting=PRETTY_PRINT'
           # '--externs=src/externs/externs.js'
           '--create_source_map="build/compiled/source_map.js"'
           '--property_renaming_report="build/compiled/properties.out"'
