@@ -285,7 +285,7 @@ class spark.core.View extends spark.core.Object
     by default.
 
     @export
-    @param {spark.core.View|Element}
+    @param {spark.core.View|Element} target Target view or element to be rendered.
   ###
   render: (target) ->
     if target instanceof spark.core.View
