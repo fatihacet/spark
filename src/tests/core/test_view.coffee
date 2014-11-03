@@ -244,3 +244,57 @@ describe 'spark.core.View', ->
     view.emit 'click'
 
     expect(state).toBeFalsy()
+
+
+  describe 'render', ->
+
+    container   = null
+    view        = null
+    element     = null
+
+    beforeEach ->
+      container = new spark.core.View
+      view      = new spark.core.View
+      element   = view.getElement()
+
+
+    it 'should render element into another View instance', ->
+      view.render container
+
+      expect(element.parentNode).toBe container.getElement()
+
+
+    it 'should emit ViewHasParent event', ->
+      hasParent = no
+
+      view.on 'ViewHasParent', -> hasParent = yes
+
+      expect(hasParent).toBeFalsy()
+
+      view.render container
+
+      expect(hasParent).toBeTruthy()
+
+
+    it 'should render into document.body', ->
+      view.render document.body
+
+      expect(element.parentNode).toBe document.body
+
+
+    it 'should render element into a dom element', ->
+      view.render container.getElement()
+
+      expect(element.parentNode).toBe container.getElement()
+
+
+    it 'should throw error called with an invalid render target', ->
+      error = new Error 'Render target should be View instance or a DOM element.'
+
+      expect( -> new spark.core.View renderTo: {} ).toThrow error
+
+
+    it 'should call render if renderTo options passed', ->
+      v = new spark.core.View renderTo: container
+
+      expect(v.getElement().parentNode).toBe container.getElement()

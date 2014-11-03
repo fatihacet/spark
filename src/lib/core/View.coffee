@@ -2,6 +2,7 @@ goog.provide 'spark.core.View'
 
 goog.require 'spark.core.Object'
 goog.require 'spark.utils'
+goog.require 'goog.dom'
 
 
 class spark.core.View extends spark.core.Object
@@ -23,6 +24,7 @@ class spark.core.View extends spark.core.Object
     options.tagName       or= options['tagName']       or 'div'
     options.domId         or= options['domId']         or null
     options.template      or= options['template']      or null
+    options.renderTo      or= options['renderTo']      or null
     options.attributes    or= options['attributes']    or {}
     options.eventHandlers or= options['eventHandlers'] or {}
     options.disabled       ?= options['disabled']       ? no
@@ -36,6 +38,8 @@ class spark.core.View extends spark.core.Object
     @bindEventHandlers()
 
     @disable() if options.disabled
+
+    @render options.renderTo if options.renderTo
 
 
   ###*
@@ -273,9 +277,36 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    Renders element into another View instance or a DOM element. Be aware that
+    this method only appends the element of this class into another element.
+    If the parent element is not in DOM, this method will not append the parent
+    into DOM. Also you can use this method with `renderTo` option. If you pass
+    `renderTo` as a View instance or DOM element, View will call render method
+    by default.
+
+    @export
+    @param {spark.core.View|Element}
+  ###
+  render: (target) ->
+    if target instanceof spark.core.View
+      target.appendView this
+
+    else if goog.dom.isElement target
+      if target is document.body
+        @appendToDocumentBody()
+      else
+        target.appendChild @getElement()
+        @emit 'ViewHasParent'
+
+    else
+      throw new Error 'Render target should be View instance or a DOM element.'
+
+
+  ###*
+    Override Object::on to support two way binding for DOM events.
+
     @export
     @override
-    Override Object::on to support two way binding for DOM events.
   ###
   on: (eventName, callback) ->
     if spark.core.View.EventTypes[eventName]
