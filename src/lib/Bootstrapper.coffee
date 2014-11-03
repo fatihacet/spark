@@ -13,6 +13,7 @@ goog.require 'spark.components.Textarea'
 goog.require 'spark.widgets.SignUp'
 goog.require 'spark.components.ToggleSwitch'
 goog.require 'spark.components.ComboBox'
+goog.require 'spark.components.DraggableView'
 
 
 class spark.Bootstrapper
