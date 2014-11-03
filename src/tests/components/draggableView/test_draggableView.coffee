@@ -42,7 +42,7 @@ describe 'spark.components.DraggableView', ->
     it 'should have default options', ->
       d = new spark.components.DraggableView null, null
 
-      expect(d.getOptions().container).toBeDefined()
+      expect(d.getOptions()).toBeDefined()
 
 
     it 'should be draggable around the page', ->

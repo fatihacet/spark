@@ -96,7 +96,7 @@ class spark.components.DraggableView extends spark.core.View
   ###*
     Returns drag container.
     @export
-    @return {spark.core.View|Node}
+    @return {Element}
   ###
   getContainer: ->
     return @container
