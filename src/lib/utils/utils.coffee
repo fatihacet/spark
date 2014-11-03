@@ -32,4 +32,4 @@ spark.utils.concatString = (var_args) ->
     else
       strings.push arg
 
-  return Array.prototype.join.call strings, ' '
+  return strings.join ' '
