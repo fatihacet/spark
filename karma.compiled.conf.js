@@ -14,6 +14,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'bower_components/jquery/index.js',
+      'bower_components/jquery-simulate/jquery.simulate.js',
       'build/js/tests/**/test_*.js',
       'build/compiled/compiled.js'
     ],
