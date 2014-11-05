@@ -32,96 +32,93 @@ describe 'spark.components.DraggableView', ->
     initial = getPositions element
 
 
-  describe 'extends', ->
+  it 'should extend spark.core.View', ->
+    expect(draggable instanceof spark.core.View).toBeTruthy()
 
 
-    it 'should extend spark.core.View', ->
-      expect(draggable instanceof spark.core.View).toBeTruthy()
+  it 'should have default options', ->
+    d = new spark.components.DraggableView null, null
+
+    expect(d.getOptions()).toBeDefined()
 
 
-    it 'should have default options', ->
-      d = new spark.components.DraggableView null, null
+  it 'should be draggable around the page', ->
+    $('#' + domId).simulate 'drag', { dx: 300, dy: 100 }
 
-      expect(d.getOptions()).toBeDefined()
+    latest = getPositions element
 
-
-    it 'should be draggable around the page', ->
-      $('#' + domId).simulate 'drag', { dx: 300, dy: 100 }
-
-      latest = getPositions element
-
-      expect(latest.left - initial.left).toBe 300
-      expect(latest.top -  initial.top).toBe  100
+    expect(latest.left - initial.left).toBe 300
+    expect(latest.top -  initial.top).toBe  100
 
 
-    it 'should have only resize inside the container', ->
-      c = new spark.core.View
-        attributes:
-          style   : 'height: 500px; width: 500px; background: grey;'
+  it 'should have only resize inside the container', ->
+    c = new spark.core.View
+      attributes:
+        style   : 'height: 500px; width: 500px; background: grey;'
 
-      c.appendToDocumentBody()
+    c.appendToDocumentBody()
 
-      k = new spark.components.DraggableView
-        container : c
-        domId     : 'dragInContainer'
-        attributes:
-          style   : 'height: 50px; width: 100px; background: red; position: absolute;'
+    k = new spark.components.DraggableView
+      container : c
+      domId     : 'dragInContainer'
+      attributes:
+        style   : 'height: 50px; width: 100px; background: red; position: absolute;'
 
-      c.appendView k
+    c.appendView k
 
-      initial = getPositions k.getElement()
+    initial = getPositions k.getElement()
 
-      $('#dragInContainer').simulate 'drag', { dx: 800, dy: 800 }
+    $('#dragInContainer').simulate 'drag', { dx: 800, dy: 800 }
 
-      latest = getPositions k.getElement()
+    latest = getPositions k.getElement()
 
-      expect(latest.left - initial.left + 100).toBe 500
-      expect(latest.top  - initial.top  + 50).toBe  500
-
-
-    it 'should set container as DOM element', ->
-
-      draggable = new spark.components.DraggableView
-        container : document.body
-        domId     : 'dragInDOM'
-        attributes:
-          style   : 'height: 50px; width: 50px; background: red; position: absolute;'
+    expect(latest.left - initial.left + 100).toBe 500
+    expect(latest.top  - initial.top  + 50).toBe  500
 
 
-      draggable.appendToDocumentBody()
+  it 'should set container as DOM element', ->
+
+    draggable = new spark.components.DraggableView
+      container : document.body
+      domId     : 'dragInDOM'
+      attributes:
+        style   : 'height: 50px; width: 50px; background: red; position: absolute;'
 
 
-      $('#dragInDOM').simulate 'drag', { dx: 8000, dy: 8000 }
-      latest = getPositions draggable.getElement()
-
-      expect(latest.left < 8000).toBeTruthy()
-      expect(latest.top  < 8000).toBeTruthy()
+    draggable.appendToDocumentBody()
 
 
-    it 'should throw error for invalid container parameter', ->
-      error  = new Error 'Drag container must be a View instance or a DOM element.'
+    $('#dragInDOM').simulate 'drag', { dx: 8000, dy: 8000 }
+    latest = getPositions draggable.getElement()
 
-      expect( -> new spark.components.DraggableView container : 2).toThrow error
+    expect(latest.left < 8000).toBeTruthy()
+    expect(latest.top  < 8000).toBeTruthy()
 
 
-    it 'should unset container to free the draggable area', ->
-      draggable = new spark.components.DraggableView
-        container : document.body
-        domId     : 'dragEverywhere'
-        attributes:
-          style   : 'height: 50px; width: 50px; background: red; position: absolute;'
+  it 'should throw error for invalid container parameter', ->
+    error  = new Error 'Drag container must be a View instance or a DOM element.'
 
-      draggable.appendToDocumentBody()
+    expect( -> new spark.components.DraggableView container : 2).toThrow error
 
-      $('#dragEverywhere').simulate 'drag', { dx: 8000, dy: 8000 }
-      latest = getPositions draggable.getElement()
 
-      expect(latest.left < 8000).toBeTruthy()
-      expect(latest.top  < 8000).toBeTruthy()
+  it 'should unset container to free the draggable area', ->
+    draggable = new spark.components.DraggableView
+      container : document.body
+      domId     : 'dragEverywhere'
+      attributes:
+        style   : 'height: 50px; width: 50px; background: red; position: absolute;'
 
-      draggable.unsetContainer()
-      $('#dragEverywhere').simulate 'drag', { dx: 8000, dy: 8000 }
-      latest = getPositions draggable.getElement()
+    draggable.appendToDocumentBody()
 
-      expect(latest.left > 7800).toBeTruthy()
-      expect(latest.top  > 7800).toBeTruthy()
+    $('#dragEverywhere').simulate 'drag', { dx: 8000, dy: 8000 }
+    latest = getPositions draggable.getElement()
+
+    expect(latest.left < 8000).toBeTruthy()
+    expect(latest.top  < 8000).toBeTruthy()
+
+    draggable.unsetContainer()
+    $('#dragEverywhere').simulate 'drag', { dx: 8000, dy: 8000 }
+    latest = getPositions draggable.getElement()
+
+    expect(latest.left > 7800).toBeTruthy()
+    expect(latest.top  > 7800).toBeTruthy()
