@@ -23,6 +23,8 @@ class spark.core.View extends spark.core.Object
   constructor: (options = {}, data) ->
 
     options.tagName       or= options['tagName']       or 'div'
+    options.width         or= options['width']         or null
+    options.height        or= options['height']        or null
     options.domId         or= options['domId']         or null
     options.template      or= options['template']      or null
     options.renderTo      or= options['renderTo']      or null
@@ -40,7 +42,9 @@ class spark.core.View extends spark.core.Object
 
     @disable() if options.disabled
 
-    @render options.renderTo if options.renderTo
+    @setWidth  options.width    if options.width
+    @setHeight options.height   if options.height
+    @render    options.renderTo if options.renderTo
 
 
   ###*
