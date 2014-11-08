@@ -277,6 +277,51 @@ class spark.core.View extends spark.core.Object
     return @disabled or no
 
 
+
+  ###*
+    Sets width of this view's DOM element.
+
+    @export
+    @param {string|number} width Width of the element. It can be string with
+    'px' value or just number.
+  ###
+  setWidth: (width) ->
+    goog.style.setWidth @getElement(), width
+
+
+  ###*
+    Sets height of this view's DOM element.
+
+    @export
+    @param {string|number} height Height of the element. It can be string with
+    'px' value or just number.
+  ###
+  setHeight: (height) ->
+    goog.style.setHeight @getElement(), height
+
+
+  ###*
+    Returns the width of the element.
+
+    @export
+    @return {number} View element width.
+  ###
+  getWidth: ->
+    size = goog.style.getSize @getElement()
+    return size.width
+
+
+  ###*
+    Returns the height of the element.
+
+    @export
+    @return {number} View element height.
+  ###
+  getHeight: ->
+    size = goog.style.getSize @getElement()
+    return size.height
+
+
   ###*
     Renders element into another View instance or a DOM element. Be aware that
     this method only appends the element of this class into another element.

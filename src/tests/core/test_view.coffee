@@ -298,3 +298,32 @@ describe 'spark.core.View', ->
       v = new spark.core.View renderTo: container
 
       expect(v.getElement().parentNode).toBe container.getElement()
+
+
+  it 'should set element width if width passed in options', ->
+    v = new spark.core.View width: 200, renderTo: document.body
+
+    expect(v.getWidth()).toBe 200
+    expect(v.getElement().style.width).toBe '200px'
+
+
+  it 'should set element height if height passed in options', ->
+    v = new spark.core.View height: 200, renderTo: document.body
+
+    expect(v.getHeight()).toBe 200
+    expect(v.getElement().style.height).toBe '200px'
+
+
+  it 'should set element width/height after its appended to document', ->
+    v = new spark.core.View width: 1, height: 1, renderTo: document.body
+
+    expect(v.getWidth()).toBe  1
+    expect(v.getHeight()).toBe 1
+
+    v.setWidth  266
+    v.setHeight 133
+
+    expect(v.getWidth()).toBe  266
+    expect(v.getHeight()).toBe 133
+    expect(v.getElement().style.width).toBe  '266px'
+    expect(v.getElement().style.height).toBe '133px'
