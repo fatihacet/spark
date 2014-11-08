@@ -3,6 +3,7 @@ goog.provide 'spark.core.View'
 goog.require 'spark.core.Object'
 goog.require 'spark.utils'
 goog.require 'goog.dom'
+goog.require 'goog.style'
 
 
 class spark.core.View extends spark.core.Object
