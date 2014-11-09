@@ -1,7 +1,5 @@
 @import url("http://fonts.googleapis.com/css?family=Cabin:400,500,600,700");
 body{font-family:'Cabin',sans-serif}
-.view{position:relative;}
-.view.draggable{position:absolute}
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;height:100%}
 body{margin:0;padding:0;width:100%;height:100%}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}
@@ -39,6 +37,9 @@ table{border-collapse:collapse;border-spacing:0}
 td,th{padding:0}
 input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}
 input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+.view{position:relative}
+.view.draggable{position:absolute}
+.view.overlay{position:fixed;top:0;left:0;z-index:1000;width:100%;height:100%;background:rgba(0,0,0,0.5)}
 .button{border:none;padding:15px 30px;font-size:16px;color:#fff;border-radius:6px;}
 .button:focus{outline:0}
 .button.big{padding:21px 42px;font-size:18px}
