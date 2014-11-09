@@ -14,6 +14,7 @@ goog.require 'spark.widgets.SignUp'
 goog.require 'spark.components.ToggleSwitch'
 goog.require 'spark.components.ComboBox'
 goog.require 'spark.components.DraggableView'
+goog.require 'spark.components.Overlay'
 
 
 class spark.Bootstrapper
