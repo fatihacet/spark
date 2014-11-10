@@ -8,7 +8,11 @@ class spark.components.Modal extends spark.core.View
 
 
   ###*
-    Modal view with overlay option for Spark Framework.
+    Modal view with overlay option for Spark Framework. By default modal will be
+    appended to document body and it will have an overlay. When overlay clicked
+    the modal will be destroyed. You should pass title and content params of the
+    modal in your options. You can also customize buttons. See `@createButtons_`
+    for more information.
 
     @constructor
     @export
@@ -31,28 +35,53 @@ class spark.components.Modal extends spark.core.View
     @buttons = {}
 
     if options.overlay
-      @setOverlay()
+      @setOverlay_()
 
-    @createTitle   options.title
-    @createContent options.content
-    @createButtons options.buttons
+    @createTitle_   options.title
+    @createContent_ options.content
+    @createButtons_ options.buttons
 
 
-  createTitle: (title) ->
+  ###*
+    Creates modal content.
+
+    @private
+    @param {string} title Modal title.
+  ###
+  createTitle_: (title) ->
     @title = new spark.core.View
       template : title
       cssClass : 'modal-title'
       renderTo : this
 
 
-  createContent: (content) ->
+  ###*
+    Creates modal content.
+
+    @private
+    @param {string} content Modal content.
+  ###
+  createContent_: (content) ->
     @content   = new spark.core.View
       template : content
       cssClass : 'modal-content'
       renderTo : this
 
 
-  createButtons: (buttons) ->
+  ###*
+    Creates modal buttons. You can use preset buttons like YES, YES_NO or you
+    can pass custom array which contains button options in it. Preset buttons
+    will emit `ModalButtonClicked` with button title. You can programatically
+    listen that event and look for button title to understand which button is
+    clicked. Custom buttons should contain its callback. No other events will be
+    fired for custom buttons. All buttons will be stored in `buttons` object
+    with its names.
+
+    @private
+    @param {spark.components.Modal.Buttons|Array.<Object>} buttons Preset button
+    value in Buttons enum or custom buttons array.
+  ###
+  createButtons_: (buttons) ->
     @buttonsContainer = new spark.core.View
       cssClass : 'buttons-container'
       renderTo : this
@@ -61,7 +90,7 @@ class spark.components.Modal extends spark.core.View
 
     if presetButtons.indexOf(buttons) > -1
       buttons.forEach (title) =>
-        new spark.components.Button
+        @buttons[title] = new spark.components.Button
           cssClass : spark.components.Modal.ButtonCssClasses[title]
           title    : title
           renderTo : @buttonsContainer
@@ -69,10 +98,16 @@ class spark.components.Modal extends spark.core.View
     else
       buttons.forEach (options) =>
         options.renderTo = @buttonsContainer
-        new spark.components.Button options
+        @buttons[options.title] = new spark.components.Button options
 
 
-  setOverlay: ->
+  ###*
+    Sets overlay for modal. Overlay and modal will be destroyed when overlay
+    clicked if `removeOnOverlayClick` options is passed true in modal options.
+
+    @private
+  ###
+  setOverlay_: ->
     @overlay = new spark.components.Overlay
       removeOnClick: @getOptions().removeOnOverlayClick
 
@@ -80,14 +115,26 @@ class spark.components.Modal extends spark.core.View
       @removeFromDocument()
 
 
-  @Buttons        =
-    YES           : [ 'Yes' ]
-    NO            : [ 'No'  ]
-    YES_NO        : [ 'Yes', 'No' ]
-    YES_NO_CANCEL : [ 'Yes', 'No', 'Cancel' ]
+  ###*
+    Preset buttons enum. Created buttons will emit 'ModalButtonClicked' event
+    width button value.
+
+    @export
+    @enum {Array.<string>}
+  ###
+  @Buttons =
+    'YES'           : [ 'Yes' ]
+    'NO'            : [ 'No'  ]
+    'YES_NO'        : [ 'Yes', 'No' ]
+    'YES_NO_CANCEL' : [ 'Yes', 'No', 'Cancel' ]
 
 
+  ###*
+    Css class map for preset buttons.
+
+    @private
+  ###
   @ButtonCssClasses =
-    Yes    : 'green'
-    No     : 'red'
-    Cancel : 'grey'
+    'Yes'    : 'green'
+    'No'     : 'red'
+    'Cancel' : 'grey'
