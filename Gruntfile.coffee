@@ -186,6 +186,7 @@ module.exports = (grunt) ->
     watch                :
       options            :
         livereload       : yes
+        interrupt        : yes
       configFiles        :
         files            : [ 'Gruntfile.coffee', 'karma.conf.js' ]
         options          :
