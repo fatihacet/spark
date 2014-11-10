@@ -88,17 +88,15 @@ class spark.components.Modal extends spark.core.View
 
     presetButtons = goog.object.getValues spark.components.Modal.Buttons
 
-    if presetButtons.indexOf(buttons) > -1
-      buttons.forEach (title) =>
-        @buttons[title] = new spark.components.Button
-          cssClass : spark.components.Modal.ButtonCssClasses[title]
-          title    : title
-          renderTo : @buttonsContainer
-          callback : => @emit 'ModalButtonClicked', title
-    else
-      buttons.forEach (options) =>
-        options.renderTo = @buttonsContainer
-        @buttons[options.title] = new spark.components.Button options
+    buttons.forEach (options) =>
+      options.renderTo = @buttonsContainer
+      button = new spark.components.Button options
+
+      @buttons[options.title] = button
+
+      if presetButtons.indexOf(buttons) > -1
+        button.on goog.events.EventType.CLICK, =>
+          @emit 'ModalButtonClicked', options.title
 
 
   ###*
@@ -118,6 +116,23 @@ class spark.components.Modal extends spark.core.View
 
 
   ###*
+
+    @export
+  ###
+
+
+  ###*
+    Preset button options.
+
+    @private
+  ###
+  @ButtonOptions =
+    YES    : { title: 'Yes',    cssClass: 'small green' }
+    NO     : { title: 'No',     cssClass: 'small red'   }
+    CANCEL : { title: 'Cancel', cssClass: 'small grey'  }
+
+
+  ###*
     Preset buttons enum. Created buttons will emit 'ModalButtonClicked' event
     width button value.
 
@@ -125,19 +140,14 @@ class spark.components.Modal extends spark.core.View
     @enum {Array.<string>}
   ###
   @Buttons =
-    'YES'           : [ 'Yes' ]
-    'NO'            : [ 'No'  ]
-    'YES_NO'        : [ 'Yes', 'No' ]
-    'YES_NO_CANCEL' : [ 'Yes', 'No', 'Cancel' ]
-
-
-  ###*
-    Css class map for preset buttons.
-
-    @private
-    @enum {string}
-  ###
-  @ButtonCssClasses =
-    'Yes'    : 'green'
-    'No'     : 'red'
-    'Cancel' : 'grey'
+    'YES'           : [ spark.components.Modal.ButtonOptions.YES ]
+    'NO'            : [ spark.components.Modal.ButtonOptions.NO  ]
+    'YES_NO'        : [
+      spark.components.Modal.ButtonOptions.NO
+      spark.components.Modal.ButtonOptions.YES
+    ]
+    'YES_NO_CANCEL' : [
+      spark.components.Modal.ButtonOptions.NO
+      spark.components.Modal.ButtonOptions.CANCEL
+      spark.components.Modal.ButtonOptions.YES
+    ]
