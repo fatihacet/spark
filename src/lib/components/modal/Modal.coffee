@@ -2,6 +2,8 @@ goog.provide 'spark.components.Modal'
 
 goog.require 'spark.core.View'
 goog.require 'spark.components.Overlay'
+goog.require 'goog.dom'
+goog.require 'goog.style'
 
 
 class spark.components.Modal extends spark.core.View
@@ -40,6 +42,8 @@ class spark.components.Modal extends spark.core.View
     @createTitle_   options.title
     @createContent_ options.content
     @createButtons_ options.buttons
+
+    @setPosition()
 
 
   ###*
@@ -116,9 +120,18 @@ class spark.components.Modal extends spark.core.View
 
 
   ###*
+    Sets left and top values to center modal in the viewport.
 
     @export
   ###
+  setPosition: ->
+    viewportSize = goog.dom.getViewportSize window
+    modalSize    = goog.style.getSize @getElement()
+
+    left = Math.max viewportSize.width /  2 - modalSize.width  / 2, 0
+    top  = Math.max viewportSize.height / 2 - modalSize.height / 2, 0
+
+    goog.style.setPosition @getElement(), left, top
 
 
   ###*
