@@ -38,7 +38,7 @@ td,th{padding:0}
 input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}
 input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
 .view{position:relative}
-.view.draggable{position:absolute}
+.view.draggable{position:absolute;cursor:move}
 .view.overlay{position:fixed;top:0;left:0;z-index:1000;width:100%;height:100%;background:rgba(0,0,0,0.5)}
 .button{border:none;padding:15px 30px;font-size:16px;color:#fff;border-radius:6px;}
 .button:focus{outline:0}
@@ -196,6 +196,12 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 .combobox.blue .goog-menuitem{background-color:#5393b5}
 .combobox.yellow{background-color:#d8c171;}
 .combobox.yellow .goog-menuitem{background-color:#c8b150}
+.view.modal{z-index:1001;padding:25px;border:3px solid #383837;border-radius:6px;background-color:#fff;display:inline-block;position:fixed;}
+.view.modal .modal-title{font-size:24px;margin-bottom:14px}
+.view.modal .modal-content{font-size:16px;margin-bottom:22px}
+.view.modal .buttons-container{text-align:right;}
+.view.modal .buttons-container .button{margin-right:12px}
+.view.modal.dark{background-color:#494949;color:#fff}
 .sign-up-widget{width:300px;background:#f2f5f8;border-radius:6px;position:relative;}
 .sign-up-widget img{border-radius:6px 6px 0 0;width:460px;height:144px}
 .sign-up-widget a{text-decoration:none;font-size:14px;}
