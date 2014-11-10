@@ -141,7 +141,11 @@
     
     
     <div class="description">
-        <p>Modal view with overlay option for Spark Framework.</p>
+        <p>Modal view with overlay option for Spark Framework. By default modal will be
+  appended to document body and it will have an overlay. When overlay clicked
+  the modal will be destroyed. You should pass title and content params of the
+  modal in your options. You can also customize buttons. See <code>@createButtons_</code>
+  for more information.</p>
     </div>
     
 
@@ -273,7 +277,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Modal.js.html">components/modal/Modal.js</a>,
-				 <a href="Modal.js.html#sunlight-1-line-15">line 15</a>
+				 <a href="Modal.js.html#sunlight-1-line-19">line 19</a>
 			</li>
 		</ul>
 	</dd>
@@ -319,6 +323,290 @@
 
     
 
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<dt class="name" id="ButtonCssClasses">
+    <h4><span class="type-signature">&lt;private, static> </span>ButtonCssClasses<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Css class map for preset buttons.</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Modal.js.html">components/modal/Modal.js</a>,
+				 <a href="Modal.js.html#sunlight-1-line-153">line 153</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="Buttons">
+    <h4><span class="type-signature">&lt;static> </span>Buttons<span class="type-signature"> :Array.&lt;string></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Preset buttons enum. Created buttons will emit 'ModalButtonClicked' event
+  width button value.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+	
+
+	<h5 class="subsection-title">Properties:</h5>
+
+	<dl>
+
+<table class="props table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+		<th>Default</th>
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>YES</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    ARRAYLIT
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>NO</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    ARRAYLIT
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>YES_NO</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    ARRAYLIT
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>YES_NO_CANCEL</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    ARRAYLIT
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+</dl>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Modal.js.html">components/modal/Modal.js</a>,
+				 <a href="Modal.js.html#sunlight-1-line-141">line 141</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
     
 
     
@@ -768,6 +1056,266 @@
         
             
 <dt>
+    <h4 class="name" id="createButtons_"><span class="type-signature">&lt;private> </span>createButtons_<span class="signature">(buttons)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Creates modal buttons. You can use preset buttons like YES, YES_NO or you
+  can pass custom array which contains button options in it. Preset buttons
+  will emit <code>ModalButtonClicked</code> with button title. You can programatically
+  listen that event and look for button title to understand which button is
+  clicked. Custom buttons should contain its callback. No other events will be
+  fired for custom buttons. All buttons will be stored in <code>buttons</code> object
+  with its names.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>buttons</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="spark.components.Modal.html#Buttons">spark.components.Modal.Buttons</a></span>
+|
+
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Preset button
+  value in Buttons enum or custom buttons array.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Modal.js.html">components/modal/Modal.js</a>,
+				 <a href="Modal.js.html#sunlight-1-line-87">line 87</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="createContent_"><span class="type-signature">&lt;private> </span>createContent_<span class="signature">(content)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Creates modal content.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>content</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Modal content.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Modal.js.html">components/modal/Modal.js</a>,
+				 <a href="Modal.js.html#sunlight-1-line-66">line 66</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
     <h4 class="name" id="createDomElement"><span class="type-signature"></span>createDomElement<span class="signature">()</span><span class="type-signature"></span></h4>
     
     
@@ -824,6 +1372,131 @@
 			<li>
 				<a href="View.js.html">core/View.js</a>,
 				 <a href="View.js.html#sunlight-1-line-59">line 59</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="createTitle_"><span class="type-signature">&lt;private> </span>createTitle_<span class="signature">(title)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Creates modal content.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Modal title.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Modal.js.html">components/modal/Modal.js</a>,
+				 <a href="Modal.js.html#sunlight-1-line-52">line 52</a>
 			</li>
 		</ul>
 	</dd>
@@ -4438,6 +5111,83 @@
         
             
 <dt>
+    <h4 class="name" id="setOverlay_"><span class="type-signature">&lt;private> </span>setOverlay_<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Sets overlay for modal. Overlay and modal will be destroyed when overlay
+  clicked if <code>removeOnOverlayClick</code> options is passed true in modal options.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Modal.js.html">components/modal/Modal.js</a>,
+				 <a href="Modal.js.html#sunlight-1-line-123">line 123</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
     <h4 class="name" id="setTemplate"><span class="type-signature"></span>setTemplate<span class="signature">(template)</span><span class="type-signature"></span></h4>
     
     
@@ -4907,7 +5657,7 @@
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a>
-		on 2014-11-10T00:04:17+00:00 using the <a
+		on 2014-11-10T00:34:25+00:00 using the <a
 			href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
