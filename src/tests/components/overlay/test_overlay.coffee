@@ -6,16 +6,16 @@ goog.require 'spark.components.Overlay'
 describe 'spark.components.Overlay', ->
 
 
-  overlay     = null
-  overlayEl   = null
-  fireClick   = (element) ->
+  overlay   = null
+  overlayEl = null
+  fireClick = (element) ->
     event = document.createEvent 'MouseEvents'
     event.initEvent 'click', yes, yes
     element.dispatchEvent event
 
   beforeEach ->
-    overlay     = new spark.components.Overlay
-    overlayEl   = overlay.getElement()
+    overlay   = new spark.components.Overlay domId: 'overlay'
+    overlayEl = overlay.getElement()
 
   afterEach ->
     overlay.removeFromDocument()
@@ -30,32 +30,32 @@ describe 'spark.components.Overlay', ->
 
 
   it 'should append itself to document.body by default', ->
-    el = document.querySelectorAll '.overlay'
+    element = document.getElementById 'overlay'
 
-    expect(el.length).toBeGreaterThan 0
+    expect(element.tagName).toBe 'DIV'
 
 
   it 'should not be removable by default', ->
     fireClick(overlayEl);
 
-    elements = document.querySelectorAll '.overlay'
+    element = document.getElementById 'overlay'
 
-    expect(elements.length).toBeGreaterThan 0
+    expect(element.tagName).toBe 'DIV'
 
 
   it 'should be removable if removeOnClick passed as true in options', ->
     overlay.removeFromDocument()
 
-    removable = new spark.components.Overlay removeOnClick: yes
+    removable = new spark.components.Overlay removeOnClick: yes, domId: 'removable'
     fireClick removable.getElement()
-    elements = document.querySelectorAll '.overlay'
+    element = document.getElementById 'removable'
 
-    expect(elements.length).toBe 0
+    expect(element).toBeNull()
 
 
   it 'should be removable after setRemovable called', ->
     overlay.setRemovable()
     fireClick overlay.getElement()
-    elements = document.querySelectorAll '.overlay'
+    element = document.getElementById 'overlay'
 
-    expect(elements.length).toBe 0
+    expect(element).toBeNull()
