@@ -129,12 +129,12 @@ class spark.components.Modal extends spark.core.View
   ###
   setPosition: ->
     viewportSize = goog.dom.getViewportSize window
-    modalSize    = goog.style.getSize @getElement()
+    modalElement = @getElement()
+    modalSize    = goog.style.getSize modalElement
+    positionLeft = Math.max viewportSize.width /  2 - modalSize.width  / 2, 0
+    positionTop  = Math.max viewportSize.height / 2 - modalSize.height / 2, 0
 
-    left = Math.max viewportSize.width /  2 - modalSize.width  / 2, 0
-    top  = Math.max viewportSize.height / 2 - modalSize.height / 2, 0
-
-    goog.style.setPosition @getElement(), left, top
+    goog.style.setPosition modalElement, positionLeft, positionTop
 
 
   ###*
