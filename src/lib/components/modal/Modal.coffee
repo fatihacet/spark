@@ -108,11 +108,13 @@ class spark.components.Modal extends spark.core.View
     @private
   ###
   setOverlay_: ->
-    @overlay = new spark.components.Overlay
-      removeOnClick: @getOptions().removeOnOverlayClick
+    isRemovable = @getOptions().removeOnOverlayClick
+    @overlay    = new spark.components.Overlay
+      removeOnClick: isRemovable
 
-    @overlay.once 'OverlayRemoved', =>
-      @removeFromDocument()
+    if isRemovable
+      @overlay.once 'OverlayRemoved', =>
+        @removeFromDocument()
 
 
   ###*
@@ -133,6 +135,7 @@ class spark.components.Modal extends spark.core.View
     Css class map for preset buttons.
 
     @private
+    @enum {string}
   ###
   @ButtonCssClasses =
     'Yes'    : 'green'
