@@ -39,8 +39,9 @@ class spark.components.Modal extends spark.core.View
     if options.overlay
       @setOverlay_()
 
-    @createTitle_   options.title
-    @createContent_ options.content
+
+    @createTitleView_   options.title
+    @createContentView_ options.content
     @createButtons_ options.buttons
 
     @setPosition()
@@ -55,8 +56,8 @@ class spark.components.Modal extends spark.core.View
     @private
     @param {string} title Modal title.
   ###
-  createTitle_: (title) ->
-    @title = new spark.core.View
+  createTitleView_: (title) ->
+    @titleView = new spark.core.View
       template : title
       cssClass : 'modal-title'
       renderTo : this
@@ -68,11 +69,11 @@ class spark.components.Modal extends spark.core.View
     @private
     @param {string} content Modal content.
   ###
-  createContent_: (content) ->
-    @content   = new spark.core.View
-      template : content
-      cssClass : 'modal-content'
-      renderTo : this
+  createContentView_: (content) ->
+    @contentView = new spark.core.View
+      template   : content
+      cssClass   : 'modal-content'
+      renderTo   : this
 
 
   ###*
