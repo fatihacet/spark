@@ -26,11 +26,11 @@ describe 'spark.widgets.SignUp', ->
 
 
   it 'should have an image element and that image element should have correct src attribute ', ->
-    widget = new spark.widgets.SignUp imageUrl: 'lolo.png'
+    widget = new spark.widgets.SignUp imageUrl: 'http://localhost:9876'
     img    = widget.getElement().firstChild
 
     expect(img.tagName).toBe 'IMG'
-    expect(img.src.indexOf('lolo.png') > -1).toBeTruthy()
+    expect(img.src.indexOf('localhost') > -1).toBeTruthy()
 
 
   it 'should not have an image element if withImage option passed as false', ->
