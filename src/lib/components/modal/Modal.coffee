@@ -139,6 +139,47 @@ class spark.components.Modal extends spark.core.View
 
 
   ###*
+    Returns Overlay instance if exists.
+
+    @export
+    @return {spark.components.Overlay|null}
+  ###
+  getOverlay: ->
+    return @overlay or null
+
+
+  ###*
+    Returns button instance by its title.
+
+    @export
+    @param {!string} title Button title.
+    @return {spark.components.Button|null}
+  ###
+  getButtonByTitle: (title) ->
+    return @buttons[title] or null
+
+
+  ###*
+    Returns title view.
+
+    @export
+    @return {spark.core.View}
+  ###
+  getTitleView: ->
+    return @titleView
+
+
+  ###*
+    Returns content view.
+
+    @export
+    @return {spark.core.View}
+  ###
+  getContentView: ->
+    return @contentView
+
+
+  ###*
     Preset button options.
 
     @private
