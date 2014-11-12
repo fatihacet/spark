@@ -51,7 +51,7 @@ describe 'spark.components.DraggableView', ->
     expect(latest.top -  initial.top).toBe  100
 
 
-  it 'should have only resize inside the container', ->
+  it 'should only be draggable inside the container', ->
     c = new spark.core.View
       attributes:
         style   : 'height: 500px; width: 500px; background: grey;'
