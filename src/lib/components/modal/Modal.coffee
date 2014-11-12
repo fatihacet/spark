@@ -46,9 +46,7 @@ class spark.components.Modal extends spark.core.View
 
     @setPosition()
 
-    goog.events.listen window, 'resize', =>
-      @setPosition()
-
+    goog.events.listen window, 'resize', goog.bind @setPosition, this
 
   ###*
     Creates modal content.
