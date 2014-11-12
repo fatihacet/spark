@@ -26,7 +26,11 @@ describe 'spark.components.Overlay', ->
 
 
   it 'should has default options if no options passed', ->
-    expect(overlay.getOptions()).toBeDefined()
+    k = new spark.components.Overlay null
+
+    expect(k.getOptions()).toBeDefined()
+
+    k.removeFromDocument()
 
 
   it 'should append itself to document.body by default', ->
