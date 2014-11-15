@@ -147,7 +147,9 @@
   instance then the drag will only be allowed inside that container element
   or view. Draggable view listens for window resize and sets its limit again
   to not allow dragging offset of the container. You can also want to unset
-  the container if you don't want to force dragging inside an element.</p>
+  the container if you don't want to force dragging inside an element.
+  By default, dragging will be allowed for all element. If you want to use a
+  handle pass handle option either a view instance or an element.</p>
     </div>
     
 
@@ -279,7 +281,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="DraggableView.js.html">components/draggable/DraggableView.js</a>,
-				 <a href="DraggableView.js.html#sunlight-1-line-23">line 23</a>
+				 <a href="DraggableView.js.html#sunlight-1-line-25">line 25</a>
 			</li>
 		</ul>
 	</dd>
@@ -944,6 +946,83 @@
         
             
 <dt>
+    <h4 class="name" id="disableDrag"><span class="type-signature"></span>disableDrag<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Set dragging disabled. Users won't be able to drag the element unless
+  <code>enableDrag</code> called.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DraggableView.js.html">components/draggable/DraggableView.js</a>,
+				 <a href="DraggableView.js.html#sunlight-1-line-136">line 136</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
     <h4 class="name" id="emit"><span class="type-signature"></span>emit<span class="signature">(eventName, <span class="optional">data</span>)</span><span class="type-signature"></span></h4>
     
     
@@ -1178,6 +1257,82 @@
 			<li>
 				<a href="View.js.html">core/View.js</a>,
 				 <a href="View.js.html#sunlight-1-line-278">line 278</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="enableDrag"><span class="type-signature"></span>enableDrag<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Set dragging enabled.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DraggableView.js.html">components/draggable/DraggableView.js</a>,
+				 <a href="DraggableView.js.html#sunlight-1-line-126">line 126</a>
 			</li>
 		</ul>
 	</dd>
@@ -1603,7 +1758,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="DraggableView.js.html">components/draggable/DraggableView.js</a>,
-				 <a href="DraggableView.js.html#sunlight-1-line-101">line 101</a>
+				 <a href="DraggableView.js.html#sunlight-1-line-117">line 117</a>
 			</li>
 		</ul>
 	</dd>
@@ -2138,6 +2293,104 @@
 	<dd>
 		
 <span class="param-type">Element</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="getHandleElement_"><span class="type-signature">&lt;private> </span>getHandleElement_<span class="signature">()</span><span class="type-signature"> &rarr; {Element|null}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Returns handle element if exists.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DraggableView.js.html">components/draggable/DraggableView.js</a>,
+				 <a href="DraggableView.js.html#sunlight-1-line-146">line 146</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Element</span>
+|
+
+<span class="param-type">null</span>
 
 
 	</dd>
@@ -4097,7 +4350,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="DraggableView.js.html">components/draggable/DraggableView.js</a>,
-				 <a href="DraggableView.js.html#sunlight-1-line-76">line 76</a>
+				 <a href="DraggableView.js.html#sunlight-1-line-90">line 90</a>
 			</li>
 		</ul>
 	</dd>
@@ -4580,7 +4833,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="DraggableView.js.html">components/draggable/DraggableView.js</a>,
-				 <a href="DraggableView.js.html#sunlight-1-line-53">line 53</a>
+				 <a href="DraggableView.js.html#sunlight-1-line-67">line 67</a>
 			</li>
 		</ul>
 	</dd>
@@ -5233,7 +5486,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="DraggableView.js.html">components/draggable/DraggableView.js</a>,
-				 <a href="DraggableView.js.html#sunlight-1-line-91">line 91</a>
+				 <a href="DraggableView.js.html#sunlight-1-line-106">line 106</a>
 			</li>
 		</ul>
 	</dd>
@@ -5289,7 +5542,7 @@
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a>
-		on 2014-11-12T17:10:05+00:00 using the <a
+		on 2014-11-15T19:39:24+00:00 using the <a
 			href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
