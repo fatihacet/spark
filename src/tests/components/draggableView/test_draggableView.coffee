@@ -197,3 +197,28 @@ describe 'spark.components.DraggableView', ->
     expect(latest.top).toBeGreaterThan initial.top
 
 
+  it 'should disable and enable drag on runtime', ->
+    $('#' + domId).simulate 'drag', { dx: 300, dy: 100 }
+
+    latest = getPositions element
+
+    expect(latest.left - initial.left).toBe 300
+    expect(latest.top -  initial.top).toBe  100
+
+    draggable.disableDrag()
+
+    $('#' + domId).simulate 'drag', { dx: 300, dy: 100 }
+
+    positions = getPositions element
+
+    expect(latest.left).toBe positions.left
+    expect(latest.top).toBe  positions.top
+
+    draggable.enableDrag()
+
+    $('#' + domId).simulate 'drag', { dx: 300, dy: 100 }
+
+    dragged = getPositions element
+
+    expect(dragged.left - positions.left).toBe 300
+    expect(dragged.top -  positions.top).toBe  100

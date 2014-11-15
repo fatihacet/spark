@@ -100,6 +100,7 @@ class spark.components.DraggableView extends spark.core.View
 
   ###*
     Unset container to free dragging area.
+
     @export
   ###
   unsetContainer: ->
@@ -109,11 +110,33 @@ class spark.components.DraggableView extends spark.core.View
 
   ###*
     Returns drag container.
+
     @export
     @return {Element}
   ###
   getContainer: ->
     return @container
+
+
+  ###*
+    Set dragging enabled.
+
+    @export
+  ###
+  enableDrag: ->
+    @dragger_.setEnabled yes
+
+
+  ###*
+    Set dragging disabled. Users won't be able to drag the element unless
+    `enableDrag` called.
+
+    @export
+  ###
+  disableDrag: ->
+    @dragger_.setEnabled no
+
+
   ###*
     Returns handle element if exists.
 
