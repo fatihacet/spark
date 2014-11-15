@@ -17,6 +17,8 @@ class spark.components.DraggableView extends spark.core.View
     or view. Draggable view listens for window resize and sets its limit again
     to not allow dragging offset of the container. You can also want to unset
     the container if you don't want to force dragging inside an element.
+    By default, dragging will be allowed for all element. If you want to use a
+    handle pass handle option either a view instance or an element.
 
     @constructor
     @export
@@ -27,11 +29,23 @@ class spark.components.DraggableView extends spark.core.View
   constructor: (options = {}, data) ->
 
     @getCssClass options, 'draggable'
+
+    ###*
+      If you want to constrain drag inside an element, pass this option either
+      a View instance or a DOM element.
+    ###
     options.container or= options['container'] or null
+
+    ###*
+      To create a handle for draggable element, pass a View instance or DOM
+      element to handle option. Make sure that, you appended handle view/element
+      to this component. For now Spark won't append it for you.
+    ###
+    options.handle or= options['handle']    or null
 
     super options, data
 
-    @dragger_ = new goog.fx.Dragger @getElement()
+    @dragger_ = new goog.fx.Dragger @getElement(), @getHandleElement_()
 
     if options.container
       @setContainer options.container
@@ -100,3 +114,19 @@ class spark.components.DraggableView extends spark.core.View
   ###
   getContainer: ->
     return @container
+  ###*
+    Returns handle element if exists.
+
+    @private
+    @return {Element|null}
+  ###
+  getHandleElement_: ->
+    handle = @getOptions().handle
+
+    if handle instanceof spark.core.View
+      return handle.getElement()
+
+    else if goog.dom.isElement handle
+      return handle
+
+    return handle

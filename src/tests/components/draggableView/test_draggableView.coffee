@@ -122,3 +122,78 @@ describe 'spark.components.DraggableView', ->
 
     expect(latest.left > 7800).toBeTruthy()
     expect(latest.top  > 7800).toBeTruthy()
+
+
+  it 'should only be draggable by handler if it has a handler', ->
+    handle       = new spark.core.View
+      width      : 30
+      height     : 30
+      attributes : style: 'background: red'
+
+    draggable    = new spark.components.DraggableView
+      handle     : handle
+      attributes :
+        style    : 'width: 100px; height: 100px; position: absolute; background: red'
+
+    dragDomId    = draggable.getUid()
+    handleDomId  = handle.getUid()
+
+    draggable.setDomId dragDomId
+    handle.setDomId handleDomId
+
+    draggable.appendView handle
+    draggable.appendToDocumentBody()
+
+    initial = getPositions draggable.getElement()
+
+    $('#' + dragDomId).simulate 'drag', { dx: 300, dy: 100 }
+
+    shouldBeSame = getPositions draggable.getElement()
+
+    expect(initial.left).toBe shouldBeSame.left
+    expect(initial.top).toBe shouldBeSame.top
+
+    $('#' + handleDomId).simulate 'drag', { dx: 300, dy: 100 }
+
+    latest = getPositions draggable.getElement()
+
+    expect(latest.left).toBeGreaterThan initial.left
+    expect(latest.top).toBeGreaterThan initial.top
+
+
+  it 'should be draggable via handle and handle may be dom element', ->
+    handle = document.createElement 'div'
+    handle.id = 'handlespor'
+    handle.style =
+      width : '50px'
+      height: '50px'
+
+    draggable    = new spark.components.DraggableView
+      handle     : handle
+      attributes :
+        style    : 'width: 100px; height: 100px; position: absolute; background: red'
+
+    dragDomId    = draggable.getUid()
+
+    draggable.setDomId dragDomId
+
+    draggable.appendToDocumentBody()
+    draggable.getElement().appendChild handle
+
+    initial = getPositions draggable.getElement()
+
+    $('#' + dragDomId).simulate 'drag', { dx: 300, dy: 100 }
+
+    shouldBeSame = getPositions draggable.getElement()
+
+    expect(initial.left).toBe shouldBeSame.left
+    expect(initial.top).toBe shouldBeSame.top
+
+    $('#handlespor').simulate 'drag', { dx: 300, dy: 100 }
+
+    latest = getPositions draggable.getElement()
+
+    expect(latest.left).toBeGreaterThan initial.left
+    expect(latest.top).toBeGreaterThan initial.top
+
+
