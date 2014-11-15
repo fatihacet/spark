@@ -1,12 +1,12 @@
 goog.provide 'spark.components.Modal'
 
-goog.require 'spark.core.View'
+goog.require 'spark.components.DraggableView'
 goog.require 'spark.components.Overlay'
 goog.require 'goog.dom'
 goog.require 'goog.style'
 
 
-class spark.components.Modal extends spark.core.View
+class spark.components.Modal extends spark.components.DraggableView
 
 
   ###*
@@ -20,17 +20,24 @@ class spark.components.Modal extends spark.core.View
     @export
     @param   {Object=} options Class options.
     @param   {*=} data Class data
-    @extends {spark.core.View}
+    @extends {spark.components.DraggableView}
   ###
   constructor: (options = {}, data) ->
 
-    @getCssClass     options, 'modal'
-    options.title    or= options['title']    or 'Modal title'
-    options.content  or= options['content']  or 'Modal content'
-    options.renderTo or= options['renderTo'] or document.body
-    options.buttons  or= options['buttons']  or spark.components.Modal.Buttons.YES_NO
-    options.overlay   ?= options['overlay']   ? yes
+    @getCssClass       options, 'modal'
+    options.title      or= options['title']     or 'Modal title'
+    options.content    or= options['content']   or 'Modal content'
+    options.renderTo   or= options['renderTo']  or document.body
+    options.buttons    or= options['buttons']   or spark.components.Modal.Buttons.YES_NO
+    options.draggable   ?= options['draggable']  ? yes
+    options.overlay     ?= options['overlay']    ? yes
+
     options.removeOnOverlayClick  ?= options['removeOnOverlayClick'] ? yes
+
+    @createTitleView_ options.title
+
+    if options.draggable
+      options.handle = @titleView
 
     super options, data
 
@@ -39,8 +46,10 @@ class spark.components.Modal extends spark.core.View
     if options.overlay
       @setOverlay_()
 
+    unless options.draggable
+      @disableDrag()
 
-    @createTitleView_   options.title
+    @appendView @titleView
     @createContentView_ options.content
     @createButtons_ options.buttons
 
@@ -58,7 +67,6 @@ class spark.components.Modal extends spark.core.View
     @titleView = new spark.core.View
       template : title
       cssClass : 'modal-title'
-      renderTo : this
 
 
   ###*

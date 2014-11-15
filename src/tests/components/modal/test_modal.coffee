@@ -25,8 +25,8 @@ describe 'spark.components.Modal', ->
     modal.removeFromDocument()
 
 
-  it 'should extends spark.core.View', ->
-    expect(modal instanceof spark.core.View).toBeTruthy()
+  it 'should extends spark.components.DraggableView', ->
+    expect(modal instanceof spark.components.DraggableView).toBeTruthy()
 
 
   it 'should have default options', ->
@@ -131,3 +131,25 @@ describe 'spark.components.Modal', ->
     expect(m.getButtonByTitle('Cancel') instanceof B).toBeTruthy()
 
     m.removeFromDocument()
+
+
+  it 'should be not be draggable if draggable passed as no', ->
+
+    mm = new spark.components.Modal draggable: no
+    t  = mm.getTitleView()
+
+    t.setDomId 'my-modal-title'
+
+    left = mm.getElement().offsetLeft
+    top  = mm.getElement().offsetTop
+
+    $('#my-modal-title').simulate 'drag', { dx: 300, dy: 100 }
+
+    newLeft = mm.getElement().offsetLeft
+    newTop  = mm.getElement().offsetTop
+
+
+    expect(left).toBe newLeft
+    expect(top).toBe  newTop
+
+    mm.removeFromDocument()
