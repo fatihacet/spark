@@ -222,3 +222,47 @@ describe 'spark.components.DraggableView', ->
 
     expect(dragged.left - positions.left).toBe 300
     expect(dragged.top -  positions.top).toBe  100
+
+
+  it 'should only be draggable with desired axis', ->
+    draggableView = new spark.components.DraggableView
+      axis        : spark.components.DraggableView.Axes.y
+      domId       : 'draggableView'
+      width       : 100
+      height      : 100
+      renderTo    : document.body
+      attributes  :
+        style     : 'position: absolute; background: blue'
+
+    el = draggableView.getElement()
+
+    initial = getPositions el
+
+    $('#draggableView').simulate 'drag', { dx: 300, dy: 100 }
+
+    afterDragY = getPositions el
+
+    draggableView.setAxis 'x'
+
+    $('#draggableView').simulate 'drag', { dx: 300, dy: 100 }
+
+    afterDragX = getPositions el
+
+    expect(afterDragY.left - initial.left).toBe 0
+    expect(afterDragY.top  - initial.top).toBe  100
+
+    expect(afterDragX.left - initial.left).toBe 300
+    expect(afterDragX.top  - initial.top).toBe  100
+
+
+  it 'should return current axis', ->
+
+    expect(draggable.getAxis()).toBeNull()
+
+    draggable.setAxis 'x'
+
+    expect(draggable.getAxis()).toBe 'x'
+
+    draggable.setAxis spark.components.DraggableView.Axes.y
+
+    expect(draggable.getAxis()).toBe 'y'

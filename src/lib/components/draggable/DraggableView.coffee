@@ -41,11 +41,21 @@ class spark.components.DraggableView extends spark.core.View
       element to handle option. Make sure that, you appended handle view/element
       to this component. For now Spark won't append it for you.
     ###
-    options.handle or= options['handle']    or null
+    options.handle or= options['handle'] or null
+
+
+    ###*
+      To constrain dragging only one axis, pass this option either x or y.
+      Orientation can be `x` or `y`. If you want to allow dragging in both way
+      you can call `@setAxis` with `null` parameter.
+    ###
+    options.axis or= options['axis'] or null
 
     super options, data
 
-    @dragger_ = new goog.fx.Dragger @getElement(), @getHandleElement_()
+    @createDragger_()
+
+    @setAxis options.axis
 
     if options.container
       @setContainer options.container
@@ -153,3 +163,65 @@ class spark.components.DraggableView extends spark.core.View
       return handle
 
     return handle
+
+
+  ###*
+    Creates an instance of `goog.fx.Dragger` to operate on it.
+
+    @private
+  ###
+  createDragger_: ->
+    @dragger_ = new goog.fx.Dragger @getElement(), @getHandleElement_()
+    element   = @getElement()
+
+    ###
+      Override default action to constrain dragging in only one axis.
+    ###
+    @dragger_.defaultAction = (dragX, dragY) =>
+      axis     = @getAxis()
+      {x, y}   = spark.components.DraggableView.Axes
+      position = goog.style.getPosition element
+
+      if axis is y
+        dragX = position.x
+
+      else if axis is x
+        dragY = position.y
+
+      goog.style.setPosition element, dragX, dragY
+
+
+  ###*
+    Set allowed drag axis. Orientation should be `x` or `y`.
+    If you want to remove axis lock after set the axis you can
+    call this method with a `null` parameter.
+
+    @export
+    @param {spark.components.DraggableView.Axes|null} axis Allowed
+    drag axis. Use `null` to remove axis lock.
+  ###
+  setAxis: (axis) ->
+    @axis = axis or null
+
+
+  ###*
+    Returns draw allowed axis. If it returns `null` drag will be allowed
+    in both way.
+
+    @export
+    @return {spark.components.DraggableView.Axes|null} axis Drag
+    allowed axis.
+  ###
+  getAxis: ->
+    return @axis
+
+
+  ###*
+    Orientatons enum.
+
+    @enum {string}
+    @export
+  ###
+  @Axes =
+    'x': 'x'
+    'y': 'y'
