@@ -16,6 +16,7 @@ goog.require 'spark.components.ComboBox'
 goog.require 'spark.components.DraggableView'
 goog.require 'spark.components.Overlay'
 goog.require 'spark.components.Modal'
+goog.require 'spark.core.Router'
 
 
 class spark.Bootstrapper
