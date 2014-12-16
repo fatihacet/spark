@@ -48,7 +48,7 @@ class spark.core.Router extends spark.core.Object
     https://www.regex101.com/r/wX2kB6/1
 
     @param {!string} route Actual page route.
-    @return {RegExp} RegExp to match page URL.
+    @return {RegExp|undefined} RegExp to match page URL.
   ###
   createRegexRoute_: (route) ->
     return if route.indexOf(':') is -1
