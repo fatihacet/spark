@@ -177,7 +177,7 @@ module.exports = (grunt) ->
         path             : 'http://localhost:1111/public/debug'
         app              : 'Google Chrome'
       coverage           :
-        path             : 'http://localhost:1111/build/coverage/PhantomJS 1.9.7 (Mac OS X)/lcov-report/index.html'
+        path             : 'http://localhost:1111/build/coverage/PhantomJS 1.9.8 (Mac OS X)/lcov-report/index.html'
         app              : 'Google Chrome'
       build              :
         path             : 'http://localhost:2222/public/compiled'
