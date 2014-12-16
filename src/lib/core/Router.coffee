@@ -77,7 +77,6 @@ class spark.core.Router extends spark.core.Object
   ###*
     Execute callback function for particular route path.
 
-    @export
     @private
   ###
   handleRoute_: (path) ->
