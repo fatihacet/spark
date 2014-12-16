@@ -43,3 +43,13 @@ class spark.core.HistoryManager extends spark.core.Object
       @emit 'Navigated', e.token
 
     @history.setEnabled yes
+
+
+  ###*
+    Set token method to update history token and change the page url.
+
+    @export
+    @param {!string} token Token to change page url.
+  ###
+  setToken: (token) ->
+    @history.setToken token
