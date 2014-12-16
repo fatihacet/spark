@@ -23,6 +23,7 @@ class spark.core.Router extends spark.core.Object
 
     @historyManager = new spark.core.HistoryManager
     @routes = {}
+    @routeRegexes = {}
 
     @historyManager.on 'Navigated', (e) =>
       @handleRoute_ e.data
@@ -37,7 +38,29 @@ class spark.core.Router extends spark.core.Object
   ###
   addRoute: (route, callback) ->
     @routes[route] = callback
+    @createRegexRoute_ route
 
+
+  ###*
+    Creates a regex for route to match actual page link with our routes.
+    This method create a regex like `\/activity\/post\/(\w+)\/comment\/(\w+)$`
+    to match this route `/activity/post/1/comment/2`. Here is the regex101
+    https://www.regex101.com/r/wX2kB6/1
+
+    @param {!string} route Actual page route.
+    @return {RegExp} RegExp to match page URL.
+  ###
+  createRegexRoute_: (route) ->
+    return if route.indexOf(':') is -1
+
+    escapeSlashes = /\//g
+    captureParams = /:(\w+)/g
+
+    routeRegex = route
+                   .replace escapeSlashes, '\/'
+                   .replace captureParams, '(\\w+)'
+
+    @routeRegexes[route] = new RegExp "#{routeRegex}$"
 
   ###*
     Sets HistoryManager's token to update URL. When history token is changed
@@ -59,7 +82,12 @@ class spark.core.Router extends spark.core.Object
   ###
   handleRoute_: (path) ->
     cb = @routes[path]
-    cb() if cb
+    return cb() if cb
+
+    for route, regex of @routeRegexes when regex.exec path
+      cb = @routes[route]
+
+    cb() if cb # TODO: Pass route params.
 
 
   ###*
