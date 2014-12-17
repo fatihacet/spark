@@ -62,3 +62,17 @@ describe 'spark.core.Router', ->
     router.route '/this/route/is/not/added/to/router'
 
     expect(flag).toBe 'profile with id'
+
+
+  it 'should pass token values to callback method', ->
+    router.addRoute '/books', (values) ->
+      expect(values).not.toBeDefined()
+
+    router.addRoute '/book/:bookName/page/:pagenumber/line/:line', (values) ->
+      expect(values).toBeDefined()
+      expect(values.bookName).toBe 'thgttg'
+      expect(values.pagenumber).toBe '42'
+      expect(values.line).toBe '21'
+
+    router.route '/books'
+    router.route '/book/thgttg/page/42/line/21'

@@ -92,13 +92,24 @@ class spark.core.Router extends spark.core.Object
     @private
   ###
   handleRoute_: (path) ->
-    cb = @routes[path]
+    cb = @routes[path] # basic route no param in it. so it will match directly
     return cb() if cb
 
-    for route, regex of @routeRegexes when regex.exec path
-      cb = @routes[route]
+    for route, regex of @routeRegexes
+      values = regex.exec path # check if the route matches actual path
+      continue unless values # this is not the route we are looking for
 
-    cb() if cb # TODO: Pass route params.
+      cb     = @routes[route] # get callback of the route
+      tokens = route.match /(:\w+)/g # get tokens like [ ':id', ':name' ]
+      params = {}
+
+      values.shift() # get token values, shift the full path rest will be values
+
+      for token, index in tokens
+        token = token.replace /:/g, '' # replace the `:` for correct token name
+        params[token] = values[index]  # match token with values
+
+      cb.call this, params
 
 
   ###*
