@@ -92,8 +92,21 @@ class spark.core.Router extends spark.core.Object
     @private
   ###
   handleRoute_: (path) ->
+    uri         = new goog.Uri path
+    path        = uri.getPath()
+    params      = null
+    query       = null
+    queryData   = uri.getQueryData()
+    queryKeys   = queryData.getKeys()
+    queryValues = queryData.getValues()
+
+    if queryKeys.length
+      query = {}
+      for key, index in queryKeys
+        query[key] = queryValues[index]
+
     cb = @routes[path] # basic route no param in it. so it will match directly
-    return cb() if cb
+    return cb.call this, params, query if cb
 
     for route, regex of @routeRegexes
       values = regex.exec path # check if the route matches actual path
@@ -109,7 +122,7 @@ class spark.core.Router extends spark.core.Object
         token = token.replace /:/g, '' # replace the `:` for correct token name
         params[token] = values[index]  # match token with values
 
-      cb.call this, params
+      cb.call this, params, query
 
 
   ###*

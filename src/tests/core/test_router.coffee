@@ -66,7 +66,7 @@ describe 'spark.core.Router', ->
 
   it 'should pass token values to callback method', ->
     router.addRoute '/books', (values) ->
-      expect(values).not.toBeDefined()
+      expect(values).toBeNull()
 
     router.addRoute '/book/:bookName/page/:pagenumber/line/:line', (values) ->
       expect(values).toBeDefined()
@@ -76,3 +76,19 @@ describe 'spark.core.Router', ->
 
     router.route '/books'
     router.route '/book/thgttg/page/42/line/21'
+
+
+  it 'should parse query string and pass it to callback method as second argument', ->
+    router.addRoute '/search', (params, query) ->
+      expect(params).toBeNull()
+      expect(query).toBeDefined()
+      expect(query.sortBy).toBe 'name'
+      expect(query.publishedBefore).toBe '2012'
+      expect(query.author).toBe 'jrrtolkien'
+
+    router.addRoute '/books/:author', (params, query) ->
+      expect(params.author).toBe 'jrrtolkien'
+      expect(query.sortBy).toBe 'name'
+
+    router.route '/search?sortBy=name&publishedBefore=2012&author=jrrtolkien'
+    router.route '/books/jrrtolkien?sortBy=name'

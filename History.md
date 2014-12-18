@@ -1,5 +1,10 @@
 0.0.1 / 2014-12-17
 ==================
+  - Router: Handle query string and pass them to route callback.
+
+
+0.0.1 / 2014-12-17
+==================
   - Router: Added tests.
   - Router: Added getHistoryManager and getRoutes methods.
   - Router: Passed route params to callback method.
