@@ -24,9 +24,15 @@ class spark.core.Router extends spark.core.Object
     @historyManager = new spark.core.HistoryManager
     @routes = {}
     @routeRegexes = {}
+    @latestHandledRoute = null
 
     @historyManager.on 'Navigated', (e) =>
-      @handleRoute_ e.data
+      path = e.data
+
+      return if @latestHandledRoute is path
+
+      @handleRoute_ path
+      @latestHandledRoute = path
 
 
   ###*
