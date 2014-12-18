@@ -151,3 +151,14 @@ class spark.core.Router extends spark.core.Object
                    .replace captureParams, '(\\w+)'
 
     @routeRegexes[route] = new RegExp "#{routeRegex}$"
+
+
+  ###*
+    Destroy the router instance. If you want to create a new router instance
+    for some reason, you have to destroy previously created instances. Otherwise
+    HistoryManager events will be triggered multiple times.
+
+    @expose
+  ###
+  destroy: ->
+    @historyManager.disposeInternal()
