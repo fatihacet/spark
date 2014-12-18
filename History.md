@@ -1,3 +1,12 @@
+0.0.1 / 2014-12-17
+==================
+  - Router: Added tests.
+  - Router: Added getHistoryManager and getRoutes methods.
+  - Router: Passed route params to callback method.
+  - HistoryManager: Added tests.
+  - HistoryManager: Added setToken method.
+
+
 0.0.1 / 2014-12-16
 ==================
 ##### Introduced HistoryManager and Router core components.
@@ -10,7 +19,7 @@
 ==================
 ##### DraggableView supports axes.
 
-  - DraggableView: Implemented axis for draggable view.
+  - DraggableView: Implemented axes for draggable view.
 
 
 0.0.1 / 2014-11-15
