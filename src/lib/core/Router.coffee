@@ -122,7 +122,7 @@ class spark.core.Router extends spark.core.Object
         token = token.replace /:/g, '' # replace the `:` for correct token name
         params[token] = values[index]  # match token with values
 
-      cb.call this, params, query
+      cb.call this, params, query if cb
 
 
   ###*
