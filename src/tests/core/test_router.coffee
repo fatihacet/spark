@@ -16,6 +16,10 @@ describe 'spark.core.Router', ->
     router.addRoute '/profile/:id', -> flag = 'profile with id'
 
 
+  afterEach ->
+    router.destroy()
+
+
   it 'should extend spark.core.Object', ->
     expect(router instanceof spark.core.Object).toBeTruthy()
 
