@@ -96,3 +96,16 @@ describe 'spark.core.Router', ->
 
     router.route '/search?sortBy=name&publishedBefore=2012&author=jrrtolkien'
     router.route '/books/jrrtolkien?sortBy=name'
+
+
+  it 'should not call handleRoute_ for currently active route', ->
+    counter = 0
+    router.addRoute '/apps', -> ++counter
+
+    router.route '/apps'
+
+    expect(counter).toBe 1
+
+    router.route '/apps'
+
+    expect(counter).toBe 1
