@@ -1,4 +1,17 @@
-0.0.1 / 2014-12-17
+0.0.1 / 2014-12-20
+==================
+  - HistoryManager: Implemented TokenTransformer to fix buggy query strings.
+
+
+0.0.1 / 2014-12-19
+==================
+  - Router: Added destroy method.
+  - Router: Destroy router instance after each test.
+  - Router: Don't handle the route if it's already the path is same.
+  - Router: Call route callback if a callback exists.
+
+
+0.0.1 / 2014-12-18
 ==================
   - Router: Handle query string and pass them to route callback.
 
