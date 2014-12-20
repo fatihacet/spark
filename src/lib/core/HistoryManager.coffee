@@ -1,4 +1,5 @@
 goog.provide 'spark.core.HistoryManager'
+goog.provide 'spark.core.HistorManager.TokenTransformer'
 
 goog.require 'spark.core.Object'
 goog.require 'goog.History'
@@ -33,7 +34,8 @@ class spark.core.HistoryManager extends spark.core.Object
     isHtml5HistorySupported = goog.history.Html5History.isSupported()
 
     if isHtml5HistorySupported
-      @history = new goog.history.Html5History()
+      tokenTransformer = new spark.core.HistorManager.TokenTransformer
+      @history = new goog.history.Html5History null, tokenTransformer
       @history.setPathPrefix  options.pathPrefix
       @history.setUseFragment no
     else
@@ -53,3 +55,31 @@ class spark.core.HistoryManager extends spark.core.Object
   ###
   setToken: (token) ->
     @history.setToken token
+
+
+
+###*
+  This class is an implementation of goog.history.Html5History.TokenTransformer.
+  I needed to create a new TokenTransformer, because goog's TokenTransformer
+  always appends the query string end of the created url. See http://goo.gl/8q40Cc
+  That behaviour creates URLs like which has multiple `?` in it somethig like
+  that `/books?sortBy=name&order=asc?query=alex?section=sci-fi`.
+  I thought it's a bug and created my own TokenTransformer.
+
+  @constructor
+  @implements {goog.history.Html5History.TokenTransformer}
+###
+class spark.core.HistorManager.TokenTransformer
+
+  ###*
+    @override
+  ###
+  createUrl: (token, pathPrefix, location) ->
+    return pathPrefix + token
+
+
+  ###*
+    @override
+  ###
+  retrieveToken: (pathPrefix, location) ->
+    return location.pathname.substr pathPrefix.length
