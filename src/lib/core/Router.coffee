@@ -29,10 +29,9 @@ class spark.core.Router extends spark.core.Object
     @historyManager.on 'Navigated', (e) =>
       path = e.data
 
-      return if @latestHandledRoute is path
-
-      @handleRoute_ path
-      @latestHandledRoute = path
+      unless @latestHandledRoute is path
+        @handleRoute_ path
+        @latestHandledRoute = path
 
 
   ###*
@@ -128,7 +127,7 @@ class spark.core.Router extends spark.core.Object
         token = token.replace /:/g, '' # replace the `:` for correct token name
         params[token] = values[index]  # match token with values
 
-      cb.call this, params, query if cb
+      cb?.call this, params, query
 
 
   ###*
@@ -137,6 +136,7 @@ class spark.core.Router extends spark.core.Object
     to match this route `/activity/post/1/comment/2`. Here is the regex101
     https://www.regex101.com/r/wX2kB6/1
 
+    @private
     @param {!string} route Actual page route.
     @return {RegExp|undefined} RegExp to match page URL.
   ###
