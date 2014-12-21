@@ -176,6 +176,9 @@ module.exports = (grunt) ->
       dev                :
         path             : 'http://localhost:1111/public/debug'
         app              : 'Google Chrome'
+      examples           :
+        path             : 'http://localhost:1111/build/docs/examples/'
+        app              : 'Google Chrome'
       coverage           :
         path             : 'http://localhost:1111/build/coverage/PhantomJS 1.9.8 (Mac OS X)/lcov-report/index.html'
         app              : 'Google Chrome'
@@ -261,7 +264,7 @@ module.exports = (grunt) ->
     ]
 
 
-  grunt.registerTask 'build', 'Compile code and run tests.', (app = 'app') ->
+  grunt.registerTask 'build', 'Compile code and run tests.', ->
     grunt.task.run [
       'clean'
       'mkdir'
@@ -277,7 +280,23 @@ module.exports = (grunt) ->
     ]
 
 
-  grunt.registerTask 'default', 'Run tests and watch the stack for changes', (app = 'app') ->
+  grunt.registerTask 'examples', 'Compile and open examples directory', ->
+    grunt.task.run [
+      'coffee'
+      'coffee2closure'
+      'deps'
+      'builder'
+      'jsdoc'
+      'coffee:examples'
+      'stylus'
+      'copy'
+      'open:examples'
+      'http-server:debug'
+      'watch:examples'
+    ]
+
+
+  grunt.registerTask 'default', 'Run tests and watch the stack for changes', ->
     grunt.task.run [
       'clean'
       'mkdir'
