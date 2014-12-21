@@ -207,3 +207,19 @@ describe 'spark.components.ComboBox', ->
     cb = new spark.components.ComboBox
 
     expect(cb.getName()).toBeNull()
+
+
+  it 'should select item by value if selectedItemValue passed', ->
+
+    options = { selectedItemValue: 'item2' }
+    data    = [
+      { title: 'item 1', value: 'item1'  }
+      { title: 'item 2', value: 'item2'  }
+      { title: 'item 3', value: 'item3'  }
+    ]
+    cb = new spark.components.ComboBox options, data
+
+    selectedData = cb.getSelectedItemData()
+
+    expect(selectedData.title).toBe 'item 2'
+    expect(selectedData.value).toBe 'item2'

@@ -18,9 +18,10 @@ class spark.components.ComboBox extends spark.core.View
   ###
   constructor: (options = {}, data = []) ->
 
-    options.valueField    or= options['valueField']    or 'value'
-    options.titleField    or= options['titleField']    or 'title'
-    options.selectionText or= options['selectionText'] or 'Select one...'
+    options.valueField        or= options['valueField']        or 'value'
+    options.titleField        or= options['titleField']        or 'title'
+    options.selectionText     or= options['selectionText']     or 'Select one...'
+    options.selectedItemValue or= options['selectedItemValue'] or null
 
     @getCssClass options, 'combobox'
 
@@ -45,6 +46,9 @@ class spark.components.ComboBox extends spark.core.View
     @menu_.render @getElement()
 
     @on 'click', => @toggleMenu()
+
+    if options.selectedItemValue
+      @selectItemByValue options.selectedItemValue
 
 
   ###*
