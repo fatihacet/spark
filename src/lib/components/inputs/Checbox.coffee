@@ -3,12 +3,11 @@ goog.provide 'spark.components.Checkbox'
 goog.require 'spark.components.Field'
 
 
-###*
-  Checkbox component of Spark Framework.
-###
 class spark.components.Checkbox extends spark.components.Field
 
   ###*
+    Checkbox component of Spark Framework.
+
     @constructor
     @export
     @param   {Object=} options Class options.
@@ -28,6 +27,7 @@ class spark.components.Checkbox extends spark.components.Field
 
   ###*
     Check the element.
+
     @export
   ###
   check: ->
@@ -37,6 +37,7 @@ class spark.components.Checkbox extends spark.components.Field
 
   ###*
     Uncheck the element.
+
     @export
   ###
   uncheck: ->
@@ -46,6 +47,7 @@ class spark.components.Checkbox extends spark.components.Field
 
   ###*
     Returns element's checked state.
+
     @export
     @return {boolean} Checked state.
   ###
