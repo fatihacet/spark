@@ -184,7 +184,7 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 .toggle-switch.black .checkbox:checked + label,.toggle-switch.black .checkbox:checked + label:after{background-color:#383837}
 .toggle-switch.black.solid .checkbox:checked + label:after{background-color:#fff}
 .toggle-switch.black.solid .checkbox:checked + label:before{background-color:#383837}
-.combobox{display:inline-block;position:relative;background-color:#2ea998;color:#fff;border-radius:4px;width:180px;cursor:default;margin:50px;}
+.combobox{display:inline-block;position:relative;background-color:#2ea998;color:#fff;border-radius:4px;width:180px;cursor:default;}
 .combobox.menu-visible{border-radius:4px 4px 0 0}
 .combobox .title{padding:10px 20px 9px;font-size:15px;user-select:none;-webkit-user-select:none}
 .combobox .arrow{position:absolute;top:0;right:0;cursor:pointer;padding:9px 14px}
@@ -196,10 +196,10 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 .combobox.blue .goog-menuitem{background-color:#5393b5}
 .combobox.yellow{background-color:#d8c171;}
 .combobox.yellow .goog-menuitem{background-color:#c8b150}
-.view.modal{z-index:1001;padding:25px;border:3px solid #383837;border-radius:6px;background-color:#fff;display:inline-block;position:fixed;cursor:default;}
+.view.modal{z-index:1001;padding:25px;border:3px solid #494949;box-shadow:0 0 35px rgba(0,0,0,0.38);border-radius:6px;background-color:#fff;display:inline-block;position:fixed;cursor:default;}
 .view.modal.draggable .modal-title{cursor:move}
 .view.modal .modal-close{position:absolute;top:20px;right:20px;z-index:1002;cursor:pointer;color:#b4bbc1}
-.view.modal .modal-title{font-size:24px;margin-bottom:14px}
+.view.modal .modal-title{font-size:24px;margin-bottom:14px;min-width:300px}
 .view.modal .modal-content{font-size:16px;margin-bottom:22px}
 .view.modal .buttons-container{text-align:right;}
 .view.modal .buttons-container .button{margin-right:12px}
