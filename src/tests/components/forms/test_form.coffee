@@ -112,3 +112,27 @@ describe 'spark.components.Form', ->
 
     expect(f.getInputByName('email').getValue()).toBe    'fatih@fatihacet.com.'
     expect(f.getInputByName('password').getValue()).toBe '123'
+
+
+  it 'should create input first for type checkbox or radio', ->
+    form = new spark.components.Form
+      inputs: [
+        {
+          type: 'checkbox'
+          label: 'Are you sure'
+          name: 'cb'
+        }
+        {
+          type: 'radio'
+          label: 'Hello'
+          name: 'rd'
+        }
+      ]
+
+    cb = form.getInputByName('cb').getElement()
+    rd = form.getInputByName('rd').getElement()
+
+    expect(cb.tagName).toBe 'INPUT'
+    expect(cb.nextSibling.tagName).toBe 'LABEL'
+    expect(rd.tagName).toBe 'INPUT'
+    expect(rd.nextSibling.tagName).toBe 'LABEL'
