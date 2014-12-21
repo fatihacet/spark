@@ -61,7 +61,10 @@ class spark.components.Form extends spark.core.View
     @param {!Object} options Field options to create a field component.
   ###
   createInput: (options) ->
-    {name, label} = options
+    {name, label, type} = options
+
+    if type is 'combobox'
+      data = options.items
 
     if label
       labelOptions = {}
@@ -73,18 +76,17 @@ class spark.components.Form extends spark.core.View
         labelOptions[key] = value
 
       allOptions = { labelOptions, inputOptions }
-      inputType  = inputOptions.type
 
-      if inputType is 'checkbox' or inputType is 'radio'
+      if type is 'checkbox' or type is 'radio'
         allOptions.inputFirst = yes
 
-      labeledInput = new spark.components.LabeledInput allOptions
+      labeledInput = new spark.components.LabeledInput allOptions, data
 
       @inputsContainer.appendView labeledInput
       @inputs.push input = labeledInput.input
 
     else
-      input = spark.components.FieldFactory options
+      input = spark.components.FieldFactory options, data
       @inputsContainer.appendView input
       @inputs.push input
 

@@ -136,3 +136,33 @@ describe 'spark.components.Form', ->
     expect(cb.nextSibling.tagName).toBe 'LABEL'
     expect(rd.tagName).toBe 'INPUT'
     expect(rd.nextSibling.tagName).toBe 'LABEL'
+
+
+  it 'should create combobox with proper items', ->
+    form = new spark.components.Form
+      inputs: [
+        {
+          type  : 'combobox'
+          name  : 'combo1'
+          items : [
+            { title: 'item 1', value: 'item1' }
+            { title: 'item 2', value: 'item2' }
+            { title: 'item 3', value: 'item3' }
+          ]
+        }
+        {
+          type  : 'combobox'
+          name  : 'combo2'
+          label : 'hello'
+          items : [
+            { title: 'item 1', value: 'item1' }
+            { title: 'item 2', value: 'item2' }
+          ]
+        }
+      ]
+
+    c1 = form.getInputByName('combo1')
+    c2 = form.getInputByName('combo2')
+
+    expect(c1.getItems().length).toBe 3
+    expect(c2.getItems().length).toBe 2
