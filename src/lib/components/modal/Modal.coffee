@@ -31,6 +31,7 @@ class spark.components.Modal extends spark.components.DraggableView
     options.buttons    or= options['buttons']   or spark.components.Modal.Buttons.YES_NO
     options.draggable   ?= options['draggable']  ? yes
     options.overlay     ?= options['overlay']    ? yes
+    options.closable    ?= options['closable']   ? yes
 
     options.removeOnOverlayClick  ?= options['removeOnOverlayClick'] ? yes
 
@@ -52,6 +53,9 @@ class spark.components.Modal extends spark.components.DraggableView
     @appendView @titleView
     @createContentView_ options.content
     @createButtons_ options.buttons
+
+    if options.closable
+      @createCloseButton_()
 
     @setPosition()
 
@@ -81,6 +85,20 @@ class spark.components.Modal extends spark.components.DraggableView
       template   : content
       cssClass   : 'modal-content'
       renderTo   : this
+
+
+  ###*
+    Creates a close button to top right of the modal.
+
+    @private
+  ###
+  createCloseButton_: ->
+    @closeButton = new spark.core.View
+      cssClass      : 'modal-close'
+      template      : 'x'
+      renderTo      : this
+      eventHandlers :
+        click       : => @destroy()
 
 
   ###*

@@ -8,6 +8,19 @@
   background-color   WHITE
   display            inline-block
   position           fixed
+  cursor             default
+
+  &.draggable
+    .modal-title
+      cursor         move
+
+  .modal-close
+    position         absolute
+    top              20px
+    right            20px
+    z-index          1002
+    cursor           pointer
+    color            DARK_GREY
 
   .modal-title
     font-size        24px

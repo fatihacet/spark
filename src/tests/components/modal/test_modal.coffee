@@ -154,6 +154,41 @@ describe 'spark.components.Modal', ->
     expect(top).toBe  newTop
 
     mm.removeFromDocument()
+
+
+  it 'should have close icon by default', ->
+    element   = modal.getElement()
+    closeIcon = element.querySelector '.modal-close'
+
+    expect(closeIcon).not.toBeNull()
+
+
+  it 'should not have close icon when closable passed false', ->
+    modal = new spark.components.Modal closable: no
+
+    element   = modal.getElement()
+    closeIcon = element.querySelector '.modal-close'
+
+    expect(closeIcon).toBeNull()
+
+
+  it 'should be destroyable with close icon', ->
+    mid = spark.utils.getUid()
+    oid = spark.utils.getUid()
+
+    modal.setDomId mid
+    modal.getOverlay().setDomId oid
+
+    expect(document.getElementById(mid)).not.toBeNull()
+    expect(document.getElementById(oid)).not.toBeNull()
+
+    closeIcon = modal.getElement().querySelector '.modal-close'
+    fireClick closeIcon
+
+    expect(document.getElementById(mid)).toBeNull()
+    expect(document.getElementById(oid)).toBeNull()
+
+
   it 'should be destroyed after calling destoy method', ->
     mid = spark.utils.getUid()
     oid = spark.utils.getUid()
