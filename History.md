@@ -1,3 +1,21 @@
+0.0.1 / 2014-12-22
+==================
+  - ComboBox: Added getName method.
+  - ComboBox: Implemented options.selectedItemValue to select item when ComboBox constructed.
+  - Checkbox: Override getValue method to return boolean state.
+  - FieldFactory: Implemented ComboBox in FieldFactory.
+  - Form: Added input first test for checkbox and radio.
+  - Form: Implemented ComboBox type.
+  - Examples: Added modal example.
+
+
+0.0.1 / 2014-12-21
+==================
+  - Modal: Implemented destroy method.
+  - Modal: Destroy now unlistens window resize event.
+  - Modal: Implemented closable option with a close icon.
+
+
 0.0.1 / 2014-12-20
 ==================
   - HistoryManager: Implemented TokenTransformer to fix buggy query strings.
