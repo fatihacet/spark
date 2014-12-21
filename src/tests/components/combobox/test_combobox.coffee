@@ -11,7 +11,7 @@ describe 'spark.components.ComboBox', ->
 
 
   beforeEach ->
-    options = {}
+    options = { name: 'combo2x' }
     data    = [
       { title: 'Fiat',    value: 'fiat'    }
       { title: 'Ford',    value: 'ford'    }
@@ -199,3 +199,11 @@ describe 'spark.components.ComboBox', ->
       combobox.selectItemAt 1
       try
         goog.events.dispatchEvent combobox.menu_, 'action'
+
+
+  it 'should return combobox name or null', ->
+    expect(combobox.getName()).toBe 'combo2x'
+
+    cb = new spark.components.ComboBox
+
+    expect(cb.getName()).toBeNull()

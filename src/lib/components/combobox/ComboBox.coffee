@@ -242,6 +242,15 @@ class spark.components.ComboBox extends spark.core.View
 
 
   ###*
+    Return combobox name from options.
+
+    @return {string|null} Name of the combobox.
+  ###
+  getName: ->
+    return @options.name or null
+
+
+  ###*
     Returns selected item's value.
 
     @export
