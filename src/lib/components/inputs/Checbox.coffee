@@ -53,3 +53,13 @@ class spark.components.Checkbox extends spark.components.Field
   ###
   isChecked: ->
     return @getElement().checked
+
+
+  ###*
+    Returns element value. It's actually checked state.
+
+    @export
+    @return {boolean} Checked state.
+  ###
+  getValue: ->
+    return @isChecked()

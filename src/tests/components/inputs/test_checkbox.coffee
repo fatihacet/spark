@@ -62,3 +62,11 @@ describe 'spark.components.Checkbox', ->
     checkbox.uncheck()
 
     expect(state).toBeFalsy()
+
+
+  it 'should return value as boolean', ->
+    expect(checkbox.getValue()).toBeTruthy()
+
+    checkbox.uncheck()
+
+    expect(checkbox.getValue()).toBeFalsy()
