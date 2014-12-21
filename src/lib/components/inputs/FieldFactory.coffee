@@ -7,6 +7,7 @@ goog.require 'spark.components.Password'
 goog.require 'spark.components.Checkbox'
 goog.require 'spark.components.Button'
 goog.require 'spark.components.LabeledInput'
+goog.require 'spark.components.ComboBox'
 
 
 ###*
@@ -41,3 +42,4 @@ spark.components.FieldFactory.typeToClassMap =
   'checkbox' : spark.components.Checkbox
   'label'    : spark.components.Label
   'button'   : spark.components.Button
+  'combobox' : spark.components.ComboBox

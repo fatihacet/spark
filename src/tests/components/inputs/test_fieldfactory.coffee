@@ -46,3 +46,9 @@ describe 'spark.components.FieldFactory', ->
     button = spark.components.FieldFactory type: 'button'
 
     expect(button instanceof spark.components.Button).toBeTruthy()
+
+
+  it 'should return spark.components.ComboBox for combobox type', ->
+    combobox = spark.components.FieldFactory type: 'combobox'
+
+    expect(combobox instanceof spark.components.ComboBox).toBeTruthy()
