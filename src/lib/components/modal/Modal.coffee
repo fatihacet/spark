@@ -55,7 +55,8 @@ class spark.components.Modal extends spark.components.DraggableView
 
     @setPosition()
 
-    goog.events.listen window, 'resize', goog.bind @setPosition, this
+    resizeCallback     = goog.bind @setPosition, this
+    @resizeListenerKey = goog.events.listen window, 'resize', resizeCallback
 
   ###*
     Creates modal content.
@@ -153,6 +154,9 @@ class spark.components.Modal extends spark.components.DraggableView
   destroy: ->
     @overlay?.removeFromDocument()
     @removeFromDocument()
+    goog.events.unlistenByKey @resizeListenerKey
+
+
   ###*
     Returns Overlay instance if exists.
 
