@@ -25,8 +25,8 @@ class spark.components.Modal extends spark.components.DraggableView
   constructor: (options = {}, data) ->
 
     @getCssClass       options, 'modal'
-    options.title      or= options['title']     or 'Modal title'
-    options.content    or= options['content']   or 'Modal content'
+    options.title      or= options['title']     or 'Default modal title'
+    options.content    or= options['content']   or 'Default modal content'
     options.renderTo   or= options['renderTo']  or document.body
     options.buttons    or= options['buttons']   or spark.components.Modal.Buttons.YES_NO
     options.draggable   ?= options['draggable']  ? yes

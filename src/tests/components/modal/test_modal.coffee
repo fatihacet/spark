@@ -35,8 +35,8 @@ describe 'spark.components.Modal', ->
     o = m.getOptions()
 
     expect(o).toBeDefined()
-    expect(o['title']).toBe   'Modal title'
-    expect(o['content']).toBe 'Modal content'
+    expect(o['title']).toBe   'Default modal title'
+    expect(o['content']).toBe 'Default modal content'
 
     m.removeFromDocument()
 
