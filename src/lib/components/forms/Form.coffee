@@ -72,7 +72,12 @@ class spark.components.Form extends spark.core.View
         inputOptions[key] = value
         labelOptions[key] = value
 
-      allOptions   = { labelOptions, inputOptions }
+      allOptions = { labelOptions, inputOptions }
+      inputType  = inputOptions.type
+
+      if inputType is 'checkbox' or inputType is 'radio'
+        allOptions.inputFirst = yes
+
       labeledInput = new spark.components.LabeledInput allOptions
 
       @inputsContainer.appendView labeledInput
