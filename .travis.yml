@@ -14,6 +14,7 @@ script:
 - grunt ci
 after_script:
 - cat ./build/coverage/**/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+- cat ./build/coverage/**/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
 env:
   global:
   - secure: K3DLNNiTZqp0I9VIwsLKxEyGwMrw7tYUanUNkRS83U1OkFYVzNm0QJ7gng4hIRqxJezuqKBBF7lyq8Or/UwhYtcOjcRzfTi1M37iC01ogO1FevwOrEMCd9Lg3gFK02n3Jur1mguXrffsq9PxaUZ9S7Pr6Q4iC5e17nrnhrCOjs8=
