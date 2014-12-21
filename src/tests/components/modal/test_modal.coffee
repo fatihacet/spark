@@ -11,6 +11,7 @@ describe 'spark.components.Modal', ->
     event.initEvent 'click', yes, yes
     element.dispatchEvent event
 
+
   beforeEach ->
     modal       = new spark.components.Modal
       'title'   : 'Are you sure you want to logout?'
@@ -20,9 +21,9 @@ describe 'spark.components.Modal', ->
     overlay   = modal.getOverlay()
     overlay.setDomId 'modal-overlay'
 
+
   afterEach ->
-    overlay.removeFromDocument()
-    modal.removeFromDocument()
+    modal.destroy()
 
 
   it 'should extends spark.components.DraggableView', ->
