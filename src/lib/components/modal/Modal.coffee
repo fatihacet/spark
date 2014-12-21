@@ -157,8 +157,8 @@ class spark.components.Modal extends spark.components.DraggableView
     viewportSize = goog.dom.getViewportSize window
     modalElement = @getElement()
     modalSize    = goog.style.getSize modalElement
-    positionLeft = Math.max viewportSize.width /  2 - modalSize.width  / 2, 0
-    positionTop  = Math.max viewportSize.height / 2 - modalSize.height / 2, 0
+    positionLeft = Math.max (viewportSize.width /  2 - modalSize.width  / 2), 0
+    positionTop  = Math.max (viewportSize.height / 2 - modalSize.height / 2), 0
 
     goog.style.setPosition modalElement, positionLeft, positionTop
 
