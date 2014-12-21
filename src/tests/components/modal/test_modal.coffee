@@ -154,3 +154,17 @@ describe 'spark.components.Modal', ->
     expect(top).toBe  newTop
 
     mm.removeFromDocument()
+  it 'should be destroyed after calling destoy method', ->
+    mid = spark.utils.getUid()
+    oid = spark.utils.getUid()
+
+    modal.setDomId mid
+    modal.getOverlay().setDomId oid
+
+    expect(document.getElementById(mid)).not.toBeNull()
+    expect(document.getElementById(oid)).not.toBeNull()
+
+    modal.destroy()
+
+    expect(document.getElementById(mid)).toBeNull()
+    expect(document.getElementById(oid)).toBeNull()
