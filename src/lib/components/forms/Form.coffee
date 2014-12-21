@@ -64,9 +64,16 @@ class spark.components.Form extends spark.core.View
     {name, label} = options
 
     if label
-      labeledInput   = new spark.components.LabeledInput
-        labelOptions : options
-        inputOptions : options
+      labelOptions = {}
+      inputOptions = {}
+
+      # Copy objects to make them separate since objects are passed by reference
+      for key, value of options
+        inputOptions[key] = value
+        labelOptions[key] = value
+
+      allOptions   = { labelOptions, inputOptions }
+      labeledInput = new spark.components.LabeledInput allOptions
 
       @inputsContainer.appendView labeledInput
       @inputs.push input = labeledInput.input
