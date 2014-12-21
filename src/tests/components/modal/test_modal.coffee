@@ -139,6 +139,8 @@ describe 'spark.components.Modal', ->
     mm = new spark.components.Modal draggable: no
     t  = mm.getTitleView()
 
+    expect(mm.hasClass('draggable')).toBeFalsy()
+
     t.setDomId 'my-modal-title'
 
     left = mm.getElement().offsetLeft
@@ -148,7 +150,6 @@ describe 'spark.components.Modal', ->
 
     newLeft = mm.getElement().offsetLeft
     newTop  = mm.getElement().offsetTop
-
 
     expect(left).toBe newLeft
     expect(top).toBe  newTop

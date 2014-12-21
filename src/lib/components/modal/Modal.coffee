@@ -49,6 +49,7 @@ class spark.components.Modal extends spark.components.DraggableView
 
     unless options.draggable
       @disableDrag()
+      @removeClass 'draggable'
 
     @appendView @titleView
     @createContentView_ options.content
