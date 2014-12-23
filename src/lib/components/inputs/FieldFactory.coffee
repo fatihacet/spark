@@ -12,10 +12,10 @@ goog.require 'spark.components.ToggleSwitch'
 
 
 ###*
-  This class is a helper factory class to create inputs, checbox, selects vs.
+  This class is a helper factory class to create inputs, checkbox, selects vs.
   from a set of options. If you are not sure which instance should be created
   with your input options, this class will take care of the problem. If you
-  pass `type: 'checbox'` in your options this class will return an instance of
+  pass `type: 'checkbox'` in your options this class will return an instance of
   spark.components.Checkbox for you.
 
   @export
