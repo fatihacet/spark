@@ -8,6 +8,7 @@ goog.require 'spark.components.Checkbox'
 goog.require 'spark.components.Button'
 goog.require 'spark.components.LabeledInput'
 goog.require 'spark.components.ComboBox'
+goog.require 'spark.components.ToggleSwitch'
 
 
 ###*
@@ -43,3 +44,4 @@ spark.components.FieldFactory.typeToClassMap =
   'label'    : spark.components.Label
   'button'   : spark.components.Button
   'combobox' : spark.components.ComboBox
+  'toggle'   : spark.components.ToggleSwitch
