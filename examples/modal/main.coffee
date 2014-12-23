@@ -35,27 +35,30 @@ window.addEventListener 'load', ->
         selectedItemValue: spark.components.Modal.Buttons.YES_NO
       }
       {
-        type : 'checkbox'
+        type : 'toggle'
         name : 'draggable'
-        label: 'Is draggable'
-        checked: yes
+        label: 'Should be draggable?'
+        cssClass: 'small blue'
+        checked : yes
       }
       {
-        type : 'checkbox'
+        type : 'toggle'
         name : 'closable'
-        label: 'Is closable'
-        checked: yes
+        label: 'Should have a close icon?'
+        cssClass: 'small blue'
+        checked : yes
       }
       {
-        type : 'checkbox'
+        type : 'toggle'
         name : 'removeOnOverlayClick'
-        label: 'Is removable when overlay clicked'
-        checked: yes
+        label: 'Should be removed after overlay clicked?'
+        cssClass: 'small blue'
+        checked : yes
       }
     ]
     buttons: [
       {
-        title    : 'Show Modal'
+        title    : 'Create your modal'
         cssClass : 'blue small dark'
         callback : => new spark.components.Modal form.getData()
       }

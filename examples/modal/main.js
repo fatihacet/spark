@@ -40,25 +40,28 @@ window.addEventListener('load', function() {
         ],
         selectedItemValue: spark.components.Modal.Buttons.YES_NO
       }, {
-        type: 'checkbox',
+        type: 'toggle',
         name: 'draggable',
-        label: 'Is draggable',
+        label: 'Should be draggable?',
+        cssClass: 'small blue',
         checked: true
       }, {
-        type: 'checkbox',
+        type: 'toggle',
         name: 'closable',
-        label: 'Is closable',
+        label: 'Should have a close icon?',
+        cssClass: 'small blue',
         checked: true
       }, {
-        type: 'checkbox',
+        type: 'toggle',
         name: 'removeOnOverlayClick',
-        label: 'Is removable when overlay clicked',
+        label: 'Should be removed after overlay clicked?',
+        cssClass: 'small blue',
         checked: true
       }
     ],
     buttons: [
       {
-        title: 'Show Modal',
+        title: 'Create your modal',
         cssClass: 'blue small dark',
         callback: (function(_this) {
           return function() {
