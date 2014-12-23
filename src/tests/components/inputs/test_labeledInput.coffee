@@ -61,3 +61,16 @@ describe 'spark.components.LabeledInput', ->
 
     expect(element.firstChild.tagName).toBe 'INPUT'
     expect(element.lastChild.tagName).toBe  'LABEL'
+
+
+  it 'should return input name and value', ->
+
+    li = new spark.components.LabeledInput
+      inputOptions:
+        name      : 'hello'
+        value     : 'world'
+      labelOptions:
+        label     : 'hello world'
+
+    expect(li.getName()).toBe  'hello'
+    expect(li.getValue()).toBe 'world'

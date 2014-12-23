@@ -4,12 +4,11 @@ goog.require 'spark.components.Input'
 goog.require 'spark.components.Label'
 
 
-###*
-  Input with label component of Spark Framework.
-###
 class spark.components.LabeledInput extends spark.core.View
 
   ###*
+    Input with label component of Spark Framework.
+
     @constructor
     @export
     @param   {Object=} options Class options.
@@ -49,6 +48,7 @@ class spark.components.LabeledInput extends spark.core.View
 
   ###*
     Returns input component.
+
     @export
     @return {spark.components.Input}
   ###
@@ -58,8 +58,29 @@ class spark.components.LabeledInput extends spark.core.View
 
   ###*
     Returns label component.
+
     @export
     @return {spark.components.Label}
   ###
   getLabel: ->
     return @label
+
+
+  ###*
+    Returns name of the input.
+
+    @export
+    @return {string} Input name.
+  ###
+  getName: ->
+    return @input.getName()
+
+
+  ###*
+    Returns value of the input.
+
+    @export
+    @return {string} Input value.
+  ###
+  getValue: ->
+    return @input.getValue()
