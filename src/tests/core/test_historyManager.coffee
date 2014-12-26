@@ -13,7 +13,7 @@ describe 'spark.core.HistoryManager', ->
   useGoogHistory  = -> goog.history.Html5History.isSupported = -> return no
   getHtml5History = ->
     useHtml5History()
-    return new spark.core.HistoryManager
+    return new spark.core.HistoryManager useHtml5History: yes
 
   getGoogHistory  = ->
     useGoogHistory()
@@ -69,7 +69,10 @@ describe 'spark.core.HistoryManager', ->
 
 
   it 'should have path prefix if a pathPrefix option passed', ->
-    hm = new spark.core.HistoryManager pathPrefix: 'prefix'
+    hm = new spark.core.HistoryManager
+      pathPrefix: 'prefix'
+      useHtml5History: yes
+
     hm.setToken '/world'
 
     expect(document.location.href.indexOf('/prefix/world')).toBeGreaterThan -1

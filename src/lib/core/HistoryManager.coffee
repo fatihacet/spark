@@ -10,11 +10,11 @@ class spark.core.HistoryManager extends spark.core.Object
 
   ###*
     HistoryManager class for Spark Framework to handle hashbang or push state
-    navigations. This class uses goog.history.Html5History if supported and
-    fallbacks to goog.History. HistoryManager can be used as standalone but it's
-    more powerful with Router. They will developerd to provide a fully working
-    routing mechanism. You should listen `Navigated` event to use HistoryManager
-    as standalone.
+    navigations. This class uses classic hashbang routes but if you want to
+    use HTML5 History API you can also use it. Pass `useHtml5History` option as
+    true. Make sure your browser supports HTML5 History API. HistoryManager can
+    be used as standalone but it's more powerful with Router. You should listen
+    `Navigated` event to use HistoryManager when you use it standalone.
 
     @constructor
     @export
@@ -27,13 +27,15 @@ class spark.core.HistoryManager extends spark.core.Object
     ###*
       Add a prefix to all routes. Only available for Html5History.
     ###
-    options.pathPrefix or= options['pathPrefix'] or ''
+    options.pathPrefix      or= options['pathPrefix']      or ''
+    options.useHtml5History or= options['useHtml5History']  ? no
 
     super options, data
 
     isHtml5HistorySupported = goog.history.Html5History.isSupported()
+    {useHtml5History} = options
 
-    if isHtml5HistorySupported
+    if isHtml5HistorySupported and useHtml5History
       tokenTransformer = new spark.core.HistorManager.TokenTransformer
       @history = new goog.history.Html5History null, tokenTransformer
       @history.setPathPrefix  options.pathPrefix

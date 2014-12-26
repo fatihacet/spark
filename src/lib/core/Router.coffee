@@ -19,9 +19,13 @@ class spark.core.Router extends spark.core.Object
   ###
   constructor: (options = {}, data) ->
 
+    options.useHtml5History or= options['useHtml5History'] ? no
+
     super options, data
 
     @historyManager = new spark.core.HistoryManager
+      useHtml5History: options.useHtml5History
+
     @routes = {}
     @routeRegexes = {}
     @latestHandledRoute = null
