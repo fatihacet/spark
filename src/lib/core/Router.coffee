@@ -71,8 +71,10 @@ class spark.core.Router extends spark.core.Object
     @export
   ###
   init: ->
-    uri = new goog.Uri document.location.href
-    @handleRoute_ uri.getPath()
+    {href, host, protocol} = document.location
+    route = href.replace "#{protocol}//#{host}", ''
+
+    @handleRoute_ route.replace '/#', ''
 
 
   ###*
