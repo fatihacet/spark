@@ -1,3 +1,17 @@
+0.0.1 / 2014-12-26
+==================
+  - HistoryManager: Hashbang is now default.
+  - Router: Fixed init to handle token and query params correctly.
+  - Changed `eventHandlers` option name to `events`.
+
+
+0.0.1 / 2014-12-23
+==================
+  - LabeledInput: Added getName and getValue methods.
+  - FieldFactory: Added ToggleSwitch as toggle.
+  - Theme: Styling for small toggle.
+
+
 0.0.1 / 2014-12-22
 ==================
   - ComboBox: Added getName method.
