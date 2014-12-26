@@ -19,22 +19,22 @@ describe 'spark.core.View', ->
     element.dispatchEvent event
 
   beforeEach ->
-    isClicked       = null
-    isHovered       = null
-    options         =
-      tagName       : 'span'
-      cssClass      : 'hello buddy'
-      domId         : 'world'
-      template      : '<p>Hello World</p>'
-      attributes    :
-        type        : 'widget'
-        position    : 'left'
-      eventHandlers :
-        click       : -> isClicked = yes
-        mouseover   : -> isHovered = yes
+    isClicked     = null
+    isHovered     = null
+    options       =
+      tagName     : 'span'
+      cssClass    : 'hello buddy'
+      domId       : 'world'
+      template    : '<p>Hello World</p>'
+      attributes  :
+        type      : 'widget'
+        position  : 'left'
+      events      :
+        click     : -> isClicked = yes
+        mouseover : -> isHovered = yes
 
-    view            = new spark.core.View options
-    element         = view.getElement()
+    view    = new spark.core.View options
+    element = view.getElement()
 
 
   it 'should has default options if no options passed', ->
@@ -55,7 +55,7 @@ describe 'spark.core.View', ->
     document.body.appendChild element
 
 
-  it 'should bind events in eventHandlers object', ->
+  it 'should bind events in events object', ->
     expect(isClicked).toBe null
     expect(isHovered).toBe null
 

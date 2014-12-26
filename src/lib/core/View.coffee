@@ -29,7 +29,7 @@ class spark.core.View extends spark.core.Object
     options.template      or= options['template']      or null
     options.renderTo      or= options['renderTo']      or null
     options.attributes    or= options['attributes']    or {}
-    options.eventHandlers or= options['eventHandlers'] or {}
+    options.events        or= options['events']        or {}
     options.disabled       ?= options['disabled']       ? no
     @getCssClass options
 
@@ -38,7 +38,7 @@ class spark.core.View extends spark.core.Object
     @children = []
 
     @createDomElement()
-    @bindEventHandlers()
+    @bindEvents()
 
     @disable() if options.disabled
 
@@ -392,14 +392,14 @@ class spark.core.View extends spark.core.Object
   ###*
     This method is responsible from binding DOM events to the element of this view.
     It uses native DOM event names which is all lowercase. If your options
-    has an event name and a callback function in eventHandlers object
+    has an event name and a callback function in events object
     View will bind and listen those events automatically.
   ###
-  bindEventHandlers: ->
+  bindEvents: ->
     eventTypes = spark.core.View.EventTypes
     element    = @getElement()
 
-    goog.object.forEach @getOptions().eventHandlers, (callback, key) =>
+    goog.object.forEach @getOptions().events, (callback, key) =>
       if eventTypes[key] and typeof callback is 'function'
         @on goog.events.EventType[eventTypes[key]], callback
 

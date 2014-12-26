@@ -70,23 +70,23 @@ class spark.widgets.SignUp extends spark.core.View
   createLinks_: ->
     {forgotPasswordCallback, alreadyRegisteredCallback} = @getOptions()
 
-    registered      = new spark.core.View
-      tagName       : 'a'
-      template      : 'Already Registered?'
-      cssClass      : 'already-registered'
-      attributes    : href: '#'
-      eventHandlers :
-        click       : =>
+    registered   = new spark.core.View
+      tagName    : 'a'
+      template   : 'Already Registered?'
+      cssClass   : 'already-registered'
+      attributes : href: '#'
+      events     :
+        click    : =>
           alreadyRegisteredCallback.call this  if alreadyRegisteredCallback
           @emit 'AlreadyRegisteredLinkClicked'
 
     forgotPassword  = new spark.core.View
-      tagName       : 'a'
-      template      : 'Forgot password?'
-      cssClass      : 'forgot-password'
-      attributes    : href: '#'
-      eventHandlers :
-        click       : =>
+      tagName    : 'a'
+      template   : 'Forgot password?'
+      cssClass   : 'forgot-password'
+      attributes : href: '#'
+      events     :
+        click    : =>
           forgotPasswordCallback.call this  if forgotPasswordCallback
           @emit 'ForgotPasswordLinkClicked'
 

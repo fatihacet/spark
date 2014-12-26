@@ -95,11 +95,11 @@ class spark.components.Modal extends spark.components.DraggableView
   ###
   createCloseButton_: ->
     @closeButton = new spark.core.View
-      cssClass      : 'modal-close'
-      template      : 'x'
-      renderTo      : this
-      eventHandlers :
-        click       : => @destroy()
+      cssClass   : 'modal-close'
+      template   : 'x'
+      renderTo   : this
+      events     :
+        click    : => @destroy()
 
 
   ###*

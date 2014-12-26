@@ -17,16 +17,16 @@ class spark.components.Button extends spark.core.View
   ###
   constructor: (options = {}, data) ->
 
-    options.tagName          = options['tagName']        = 'button'
-    options.title          or= options['title']         or null
-    options.callback       or= options['callback']      or null
-    options.iconClass      or= options['iconClass']     or null
-    options.eventHandlers  or= options['eventHandlers'] or {}
+    options.tagName       = options['tagName']        = 'button'
+    options.title       or= options['title']         or null
+    options.callback    or= options['callback']      or null
+    options.iconClass   or= options['iconClass']     or null
+    options.events      or= options['events'] or {}
     @getCssClass options, 'button'
 
     {callback} = options
     if typeof callback is 'function'
-      options.eventHandlers.click = callback
+      options.events.click = callback
 
     icon  = ''
     title = ''
