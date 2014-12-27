@@ -25,7 +25,7 @@ class spark.core.Store extends spark.core.Object
     Returns value of the given key from the store.
 
     @export
-    @param {!string} key Key to be returned.
+    @param {string} key Key to be returned.
     @return {*}
   ###
   get: (key) ->
@@ -36,11 +36,42 @@ class spark.core.Store extends spark.core.Object
     Sets a new key value pair into store.
 
     @export
-    @param {!string} key Key to be returned.
+    @param {string} key Key to be returned.
     @param {*} value Value of the key.
   ###
   set: (key, value) ->
     @map_.set key, value if value?
+
+
+  ###*
+    Removes a key from strore.
+
+    @export
+    @param {string} key Key to be removed.
+    @return {boolean} Whether the key removed or not.
+  ###
+  unset: (key) ->
+    @map_.remove key
+
+
+  ###*
+    Removes all keys from store.
+
+    @export
+  ###
+  clear:->
+    @map_.clear()
+
+
+  ###*
+    Returns `true` if the store has the given key.
+
+    @export
+    @param {string} key Key to be searched in store.
+    @return {boolean} Whether the store has the key or not.
+  ###
+  has: (key) ->
+    @map_.containsKey key
 
 
   ###*
