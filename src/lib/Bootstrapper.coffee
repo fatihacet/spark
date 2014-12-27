@@ -3,6 +3,7 @@ goog.provide 'spark.Bootstrapper'
 goog.require 'spark.core.Object'
 goog.require 'spark.core.View'
 goog.require 'spark.core.Router'
+goog.require 'spark.core.Store'
 
 goog.require 'spark.components.Button'
 goog.require 'spark.components.Checkbox'
