@@ -91,6 +91,17 @@ class spark.core.Object extends goog.events.EventTarget
 
 
   ###*
+    Freezes object to prevent adding new properties, updating or deleting
+    existing properties.
+
+    @export
+  ###
+  freeze: ->
+    if window.Object.freeze
+      window.Object.freeze this
+
+
+  ###*
     Adds an event listener.
     See also {@link goog.events.Listenable.prototype.listen}
     @export

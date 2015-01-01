@@ -141,3 +141,12 @@ describe 'spark.core.Object', ->
     object.emit 'Add'
 
     expect(results.length).toEqual 6
+
+
+  it 'should freeze Object', ->
+    o = new spark.core.Object
+    o.prop = 42
+    o.freeze()
+    o.prop = 43
+
+    expect(o.prop).toBe 42
