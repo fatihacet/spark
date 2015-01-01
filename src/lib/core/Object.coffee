@@ -19,12 +19,16 @@ class spark.core.Object extends goog.events.EventTarget
   ###
   constructor: (options = {}, data) ->
 
+    options.frozen ?= options['frozen'] ? no
+
     super
 
-    @setOptions options  if options
-    @setData data        if data
-
     @setUid_()
+
+    @setOptions options if options
+    @setData data       if data
+    @freeze()           if options.frozen
+
 
 
   ###*

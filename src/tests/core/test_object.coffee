@@ -150,3 +150,10 @@ describe 'spark.core.Object', ->
     o.prop = 43
 
     expect(o.prop).toBe 42
+
+
+  it 'should be frozen when instantiated with frozen true in options', ->
+    o = new spark.core.Object frozen: yes
+    o.prop = 42
+
+    expect(o.prop).toBeUndefined()
