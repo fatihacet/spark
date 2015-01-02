@@ -5,6 +5,8 @@ goog.require 'spark.core.View'
 goog.require 'spark.core.Router'
 goog.require 'spark.core.Store'
 
+goog.require 'spark.validation'
+
 goog.require 'spark.components.Button'
 goog.require 'spark.components.Checkbox'
 goog.require 'spark.components.Label'

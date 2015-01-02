@@ -1,0 +1,141 @@
+goog.provide 'spark.validation'
+
+
+###*
+  Validates the given string has length.
+
+  @export
+  @param {string} value The string to be tested.
+  @return {boolean} The validation result.
+###
+spark.validation.hasText = (value) ->
+  if goog.isString value
+    return value.length > 0
+
+  return no
+
+
+###*
+  Validates the given value is number only.
+
+  @export
+  @param {string|number} value The number to be tested.
+  @return {boolean} The validation result.
+###
+spark.validation.isNumeric = (value) ->
+  return spark.validation.NUMBER_ONLY_REGEX.test value
+
+
+###*
+  Validates the given string has only alphabetic charactes in it.
+  FIXME: Current implementation will not work for non English chars like ç, ü or
+  Chinnese, Russian letters.
+
+  @export
+  @param {string} value The valut to be tested.
+  @return {boolean} The validation result.
+###
+spark.validation.isAlphabetic = (value) ->
+  return spark.validation.WORD_ONLY_REGEX.test value
+
+
+###*
+  Validates email addresses.
+  FIXME: Current implementation will not work email addresses which contains
+  plus in it like acet+fatih@gmail.com. It's valid email bug my RegExp sucks!
+
+  @export
+  @param {string} value The email to be tested.
+  @return {boolean} The validation result.
+###
+spark.validation.isEmail = (value) ->
+  if goog.isString value
+    return spark.validation.EMAIL_REGEX.test value
+
+  return no
+
+
+###*
+  Validates that the given string has the exact length.
+
+  @export
+  @param {string} value The string to be tested.
+  @return {boolean} The validation result.
+###
+spark.validation.hasLength = (value, length) ->
+  if goog.isString value
+    return value.length is length
+
+  return no
+
+
+###*
+  Validates that the given string has minimum length.
+
+  @export
+  @param {string} value The string to be tested.
+  @return {boolean} The validation result.
+###
+spark.validation.hasMinLength = (value, minLength) ->
+  if goog.isString value
+    return value.length >= minLength
+
+  return no
+
+
+###*
+  Validates that the given string has maximum length.
+
+  @export
+  @param {string} value The string to be tested.
+  @return {boolean} The validation result.
+###
+spark.validation.hasMaxLength = (value, maxLength) ->
+  if goog.isString value
+    return value.length <= maxLength
+
+  return no
+
+
+###*
+  Validates that the given string is equal with another string.
+
+  @export
+  @param {string} value1 The base string to be compared with another.
+  @param {string} value2 The string to be compared with the base one.
+  @return {boolean} The validation result.
+###
+spark.validation.isEqual = (value1, value2) ->
+  return value1 is value2
+
+
+###*
+  Validates that the given string is equal with another string.
+
+  @export
+  @param {string} value1 The base string to be compared with another.
+  @param {string} value2 The string to be compared with the base one.
+  @return {boolean} The validation result.
+###
+spark.validation.isNotEqual = (value1, value2) ->
+  return value1 isnt value2
+
+
+###*
+  Tests the given RegExp with given string.
+
+  @export
+  @param {string} value The string which will be tested with the regex.
+  @param {RegExp} regex RegExp to be tested with the given string.
+  @return {boolean} The validation result.
+###
+spark.validation.regex = (value, regex) ->
+  if regex instanceof RegExp
+    return regex.test value
+
+  return no
+
+
+spark.validation.EMAIL_REGEX = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+spark.validation.NUMBER_ONLY_REGEX = /^\d+$/
+spark.validation.WORD_ONLY_REGEX = /^([a-zA-z]+)$/
