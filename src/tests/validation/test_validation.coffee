@@ -5,22 +5,22 @@ goog.require 'spark.validation'
 
 describe 'spark.validation', ->
 
-  describe 'hasText', ->
+  describe 'isText', ->
 
 
     it 'should return true for a string', ->
-      expect(spark.validation.hasText('Fatih')).toBeTruthy()
+      expect(spark.validation.isText('Fatih')).toBeTruthy()
 
 
     it 'should return false for an empty string', ->
-      expect(spark.validation.hasText('')).toBeFalsy()
+      expect(spark.validation.isText('')).toBeFalsy()
 
 
     it 'should return false if the given value is not a string', ->
-      expect(spark.validation.hasText(5)).toBeFalsy()
-      expect(spark.validation.hasText({})).toBeFalsy()
-      expect(spark.validation.hasText([])).toBeFalsy()
-      expect(spark.validation.hasText(no)).toBeFalsy()
+      expect(spark.validation.isText(5)).toBeFalsy()
+      expect(spark.validation.isText({})).toBeFalsy()
+      expect(spark.validation.isText([])).toBeFalsy()
+      expect(spark.validation.isText(no)).toBeFalsy()
 
 
   describe 'isNumeric', ->

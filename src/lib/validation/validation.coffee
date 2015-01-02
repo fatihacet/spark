@@ -8,7 +8,7 @@ goog.provide 'spark.validation'
   @param {string} value The string to be tested.
   @return {boolean} The validation result.
 ###
-spark.validation.hasText = (value) ->
+spark.validation.isText = (value) ->
   if goog.isString value
     return value.length > 0
 
