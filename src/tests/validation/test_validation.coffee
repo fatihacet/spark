@@ -80,6 +80,11 @@ describe 'spark.validation', ->
       expect(spark.validation.isEmail('acetfatih.com')).toBeFalsy()
 
 
+    it 'should return if given value is not string', ->
+      expect(spark.validation.isEmail(123)).toBeFalsy()
+      expect(spark.validation.isEmail(yes)).toBeFalsy()
+
+
   describe 'hasLength', ->
 
 
@@ -140,6 +145,10 @@ describe 'spark.validation', ->
 
 
     it 'should test regexes for the given value', ->
-
       expect(spark.validation.regex('fatih', /\w+/)).toBeTruthy()
       expect(spark.validation.regex(1212311, /\d+/)).toBeTruthy()
+      expect(spark.validation.regex('fatih', /\d+/)).toBeFalsy()
+
+
+    it 'should return false if given regex is not a RegExp instance', ->
+      expect(spark.validation.regex('fatih', {})).toBeFalsy()
