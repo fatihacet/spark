@@ -29,20 +29,30 @@ describe 'spark.core.Store', ->
 
     store = new spark.core.Store options, data
 
-
-  it 'should extends spark.core.Object', ->
-    expect(store instanceof spark.core.Object).toBeTruthy()
+  describe 'constructor', ->
 
 
-  it 'should have default options', ->
-    s = new spark.core.Store null, null
-    expect(s.getOptions()).toBeDefined()
-    expect(s.map_).toBeDefined() if goog.debug
+    it 'should extends spark.core.Object', ->
+      expect(store instanceof spark.core.Object).toBeTruthy()
 
 
-  it 'should create a goog.structs.Map with given data', ->
-    if goog.structs?.Map
-      expect(store.map_ instanceof goog.structs.Map).toBeTruthy()
+    it 'should have default options', ->
+      s = new spark.core.Store null, null
+      expect(s.getOptions()).toBeDefined()
+      expect(s.map_).toBeDefined() if goog.debug
+
+
+    it 'should create a goog.structs.Map with given data', ->
+      if goog.structs?.Map
+        expect(store.map_ instanceof goog.structs.Map).toBeTruthy()
+
+
+    it 'should throw error when initial validation failed', ->
+      error = new Error "Failed to validate store data, name: null"
+
+      expect(
+        -> new spark.core.Store { validations: name: required: yes }, name: null
+      ).toThrow error
 
 
   describe 'get', ->
@@ -189,9 +199,15 @@ describe 'spark.core.Store', ->
       expect(store.validate 'notExistKey', 'itdoesnotmatter').toBeTruthy()
 
 
+    it 'should validate all', ->
+      expect(store.validateAll()).toBeTruthy()
+
+
     it 'should throw error when no validator found', ->
       error   = new Error 'Validation type foo does not exist.'
-      options = validations: name: foo:  yes
+      options =
+        validations: name: foo:  yes
+        validateWhenConstructed: no
       data    = name: 'Acetz'
       store   = new spark.core.Store options, data
 

@@ -18,10 +18,14 @@ class spark.core.Store extends spark.core.Object
   constructor: (options = {}, data) ->
 
     options.validations or= options['validations'] or {}
+    options.validateWhenConstructed ?= options['validateWhenConstructed'] ? yes
 
-    super options
+    super options, data
 
     @map_ = new goog.structs.Map data
+
+    if options.validateWhenConstructed
+      @validateAll()
 
 
   ###*
@@ -89,6 +93,19 @@ class spark.core.Store extends spark.core.Object
       break unless isValid
 
     return isValid
+
+
+  ###*
+    Validates all data and throw an error if validation fails.
+
+    @export
+  ###
+  validateAll: ->
+    for key, value of @getData()
+      unless @validate key, value
+        throw new Error "Failed to validate store data, #{key}: #{value}"
+
+    return yes
 
 
   ###*
