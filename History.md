@@ -1,3 +1,37 @@
+0.0.1 / 2015-01-03
+==================
+##### Store and validations, BFF.
+
+  - Store: Implemented validation in store.
+  - Store: `set` method now validates the given value before set.
+  - Validation: Added `getValidator` method.
+
+
+0.0.1 / 2015-01-02
+==================
+##### Introduced `spark.validation`.
+
+  - Validation: Added validation methods and tests.
+
+
+0.0.1 / 2015-01-01
+==================
+  - Object: Added freeze method.
+  - Object: Allow frozen option to create by default frozen Objects.
+
+
+0.0.1 / 2014-12-28
+==================
+##### Introduced `spark.core.Store`.
+
+  - Store: Added `has` `clear` and `unset` methods.
+
+
+0.0.1 / 2014-12-27
+==================
+  - Store: Added verly early implementation.
+
+
 0.0.1 / 2014-12-26
 ==================
   - HistoryManager: Hashbang is now default.
