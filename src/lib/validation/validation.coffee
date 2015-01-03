@@ -139,6 +139,10 @@ spark.validation.regex = (value, regex) ->
   return no
 
 
+spark.validation.getValidator = (type) ->
+  return spark.validation.TYPE_TO_METHOD[type] or null
+
+
 spark.validation.EMAIL_REGEX = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
 spark.validation.NUMBER_ONLY_REGEX = /^\d+$/
 spark.validation.WORD_ONLY_REGEX = /^([a-zA-z]+)$/
