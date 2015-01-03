@@ -235,3 +235,10 @@ spark.validation.TYPE_TO_METHOD =
   'equal'      : spark.validation.isEqual
   'notEqual'   : spark.validation.isNotEqual
   'regex'      : spark.validation.regex
+  'dataType'   :
+    'string'   : spark.validation.isString
+    'number'   : spark.validation.isNumber
+    'boolean'  : spark.validation.isBoolean
+    'array'    : spark.validation.isArray
+    'object'   : spark.validation.isObject
+    'function' : spark.validation.isFunction
