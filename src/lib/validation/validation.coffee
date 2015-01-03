@@ -32,7 +32,7 @@ spark.validation.isNumeric = (value) ->
   Chinnese, Russian letters. It will also normalize whitespaces.
 
   @export
-  @param {string} value The valut to be tested.
+  @param {string} value The value to be tested.
   @return {boolean} The validation result.
 ###
 spark.validation.isAlphabetic = (value) ->
@@ -139,6 +139,78 @@ spark.validation.regex = (value, regex) ->
   return no
 
 
+###*
+  Validates the given value is a string.
+
+  @export
+  @param {*} value The value to be tested.
+  @return {boolean} Whether the value is a string or not.
+###
+spark.validation.isString = (value) ->
+  return goog.isString value
+
+
+###*
+  Validates the given value is a number.
+
+  @export
+  @param {*} value The value to be tested.
+  @return {boolean} Whether the value is a number or not.
+###
+spark.validation.isNumber = (value) ->
+  return goog.isNumber value
+
+
+###*
+  Validates the given value is a boolean.
+
+  @export
+  @param {*} value The value to be tested.
+  @return {boolean} Whether the value is a boolean or not.
+###
+spark.validation.isBoolean = (value) ->
+  return goog.isBoolean value
+
+
+###*
+  Validates the given value is a function.
+
+  @export
+  @param {*} value The value to be tested.
+  @return {boolean} Whether the value is a function or not.
+###
+spark.validation.isFunction = (value) ->
+  return goog.isFunction value
+
+
+###*
+  Validates the given value is an array.
+
+  @export
+  @param {*} value The value to be tested.
+  @return {boolean} Whether the value is an array or not.
+###
+spark.validation.isArray = (value) ->
+  return goog.isArray value
+
+
+###*
+  Validates the given value is an object.
+
+  @export
+  @param {*} value The value to be tested.
+  @return {boolean} Whether the value is an object or not.
+###
+spark.validation.isObject = (value) ->
+  return value and typeof value is 'object' and not value.length?
+
+
+###*
+  Returns validator function by type.
+
+  @param {string} type Validation type. See `spark.validation.TYPE_TO_METHOD`
+  @return {Function|null}
+###
 spark.validation.getValidator = (type) ->
   return spark.validation.TYPE_TO_METHOD[type] or null
 

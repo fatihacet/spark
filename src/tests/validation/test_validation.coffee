@@ -157,3 +157,90 @@ describe 'spark.validation', ->
 
     it 'should return false if given regex is not a RegExp instance', ->
       expect(spark.validation.regex('fatih', {})).toBeFalsy()
+
+
+  describe 'isString', ->
+
+
+    it 'should validate strings', ->
+      expect(spark.validation.isString('')).toBeTruthy()
+      expect(spark.validation.isString('fatihacet')).toBeTruthy()
+      expect(spark.validation.isString(null)).toBeFalsy()
+      expect(spark.validation.isString(undefined)).toBeFalsy()
+      expect(spark.validation.isNumber(yes)).toBeFalsy()
+      expect(spark.validation.isNumber(no)).toBeFalsy()
+      expect(spark.validation.isString({})).toBeFalsy()
+      expect(spark.validation.isString([])).toBeFalsy()
+      expect(spark.validation.isString(5)).toBeFalsy()
+      expect(spark.validation.isString(->)).toBeFalsy()
+
+
+  describe 'isNumber', ->
+
+
+    it 'should validate numbers', ->
+      expect(spark.validation.isNumber(5)).toBeTruthy()
+      expect(spark.validation.isNumber('')).toBeFalsy()
+      expect(spark.validation.isNumber('fatihacet')).toBeFalsy()
+      expect(spark.validation.isNumber(null)).toBeFalsy()
+      expect(spark.validation.isNumber(undefined)).toBeFalsy()
+      expect(spark.validation.isNumber(yes)).toBeFalsy()
+      expect(spark.validation.isNumber(no)).toBeFalsy()
+      expect(spark.validation.isNumber({})).toBeFalsy()
+      expect(spark.validation.isNumber([])).toBeFalsy()
+      expect(spark.validation.isNumber(->)).toBeFalsy()
+
+
+  describe 'isBoolean', ->
+
+
+    it 'should validate boolean type', ->
+      expect(spark.validation.isBoolean(yes)).toBeTruthy()
+      expect(spark.validation.isBoolean(no)).toBeTruthy()
+      expect(spark.validation.isBoolean('')).toBeFalsy()
+      expect(spark.validation.isBoolean('fatihacet')).toBeFalsy()
+      expect(spark.validation.isBoolean(null)).toBeFalsy()
+      expect(spark.validation.isBoolean(undefined)).toBeFalsy()
+      expect(spark.validation.isBoolean({})).toBeFalsy()
+      expect(spark.validation.isBoolean([])).toBeFalsy()
+      expect(spark.validation.isBoolean(->)).toBeFalsy()
+
+
+  describe 'isFunction', ->
+
+
+    it 'should validate functions', ->
+      expect(spark.validation.isFunction(->)).toBeTruthy()
+      expect(spark.validation.isFunction('')).toBeFalsy()
+      expect(spark.validation.isFunction('fatihacet')).toBeFalsy()
+      expect(spark.validation.isFunction(null)).toBeFalsy()
+      expect(spark.validation.isFunction(undefined)).toBeFalsy()
+      expect(spark.validation.isFunction({})).toBeFalsy()
+      expect(spark.validation.isFunction([])).toBeFalsy()
+
+
+  describe 'isArray', ->
+
+
+    it 'should validate arrays', ->
+      expect(spark.validation.isArray([])).toBeTruthy()
+      expect(spark.validation.isArray('')).toBeFalsy()
+      expect(spark.validation.isArray('fatihacet')).toBeFalsy()
+      expect(spark.validation.isArray(null)).toBeFalsy()
+      expect(spark.validation.isArray(undefined)).toBeFalsy()
+      expect(spark.validation.isArray({})).toBeFalsy()
+      expect(spark.validation.isArray(->)).toBeFalsy()
+
+
+  describe 'isObject', ->
+
+
+    it 'should validate objects', ->
+      expect(spark.validation.isObject({})).toBeTruthy()
+      expect(spark.validation.isObject({a: 1, b: 2})).toBeTruthy()
+      expect(spark.validation.isObject([])).toBeFalsy()
+      expect(spark.validation.isObject('')).toBeFalsy()
+      expect(spark.validation.isObject('fatihacet')).toBeFalsy()
+      expect(spark.validation.isObject(null)).toBeFalsy()
+      expect(spark.validation.isObject(undefined)).toBeFalsy()
+      expect(spark.validation.isObject(->)).toBeFalsy()
