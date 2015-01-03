@@ -9,7 +9,7 @@ goog.provide 'spark.validation'
   @return {boolean} The validation result.
 ###
 spark.validation.isText = (value) ->
-  if goog.isString value
+  if spark.validation.isString value
     return value.length > 0
 
   return no
@@ -36,7 +36,7 @@ spark.validation.isNumeric = (value) ->
   @return {boolean} The validation result.
 ###
 spark.validation.isAlphabetic = (value) ->
-  if goog.isString value
+  if spark.validation.isString value
     return spark.validation.WORD_ONLY_REGEX.test value.split(' ').join('')
 
   return no
@@ -52,7 +52,7 @@ spark.validation.isAlphabetic = (value) ->
   @return {boolean} The validation result.
 ###
 spark.validation.isEmail = (value) ->
-  if goog.isString value
+  if spark.validation.isString value
     return spark.validation.EMAIL_REGEX.test value
 
   return no
@@ -66,7 +66,7 @@ spark.validation.isEmail = (value) ->
   @return {boolean} The validation result.
 ###
 spark.validation.hasLength = (value, length) ->
-  if goog.isString value
+  if spark.validation.isString value
     return value.length is length
 
   return no
@@ -80,7 +80,7 @@ spark.validation.hasLength = (value, length) ->
   @return {boolean} The validation result.
 ###
 spark.validation.hasMinLength = (value, minLength) ->
-  if goog.isString value
+  if spark.validation.isString value
     return value.length >= minLength
 
   return no
@@ -94,7 +94,7 @@ spark.validation.hasMinLength = (value, minLength) ->
   @return {boolean} The validation result.
 ###
 spark.validation.hasMaxLength = (value, maxLength) ->
-  if goog.isString value
+  if spark.validation.isString value
     return value.length <= maxLength
 
   return no
