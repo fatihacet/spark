@@ -202,7 +202,11 @@ spark.validation.isArray = (value) ->
   @return {boolean} Whether the value is an object or not.
 ###
 spark.validation.isObject = (value) ->
-  return value and typeof value is 'object' and not value.length?
+  if value
+    return typeof value is 'object' and not value.length?
+
+  return no
+
 
 
 ###*
