@@ -29,14 +29,17 @@ spark.validation.isNumeric = (value) ->
 ###*
   Validates the given string has only alphabetic charactes in it.
   FIXME: Current implementation will not work for non English chars like ç, ü or
-  Chinnese, Russian letters.
+  Chinnese, Russian letters. It will also normalize whitespaces.
 
   @export
   @param {string} value The valut to be tested.
   @return {boolean} The validation result.
 ###
 spark.validation.isAlphabetic = (value) ->
-  return spark.validation.WORD_ONLY_REGEX.test value
+  if goog.isString value
+    return spark.validation.WORD_ONLY_REGEX.test value.split(' ').join('')
+
+  return no
 
 
 ###*
