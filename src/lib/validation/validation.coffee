@@ -142,3 +142,16 @@ spark.validation.regex = (value, regex) ->
 spark.validation.EMAIL_REGEX = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
 spark.validation.NUMBER_ONLY_REGEX = /^\d+$/
 spark.validation.WORD_ONLY_REGEX = /^([a-zA-z]+)$/
+
+
+spark.validation.TYPE_TO_METHOD =
+  'required'   : spark.validation.isText
+  'numeric'    : spark.validation.isNumeric
+  'alphabetic' : spark.validation.isAlphabetic
+  'email'      : spark.validation.isEmail
+  'length'     : spark.validation.hasLength
+  'minLength'  : spark.validation.hasMinLength
+  'maxLength'  : spark.validation.hasMaxLength
+  'equal'      : spark.validation.isEqual
+  'notEqual'   : spark.validation.isNotEqual
+  'regex'      : spark.validation.regex
