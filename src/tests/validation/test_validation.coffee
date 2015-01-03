@@ -48,6 +48,11 @@ describe 'spark.validation', ->
       expect(spark.validation.isAlphabetic('fatihacet')).toBeTruthy()
 
 
+    it 'should return true if string includes whitespaces', ->
+      expect(spark.validation.isAlphabetic('fatih acet')).toBeTruthy()
+      expect(spark.validation.isAlphabetic('my name is fatih acet ')).toBeTruthy()
+
+
     it 'should return false if string has a number in it', ->
       expect(spark.validation.isAlphabetic('1988')).toBeFalsy()
       expect(spark.validation.isAlphabetic(2015)).toBeFalsy()
