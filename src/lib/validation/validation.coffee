@@ -212,11 +212,17 @@ spark.validation.isObject = (value) ->
 ###*
   Returns validator function by type.
 
-  @param {string} type Validation type. See `spark.validation.TYPE_TO_METHOD`
-  @return {Function|null}
+  @param {string} type  Validation type. See `spark.validation.TYPE_TO_METHOD`
+  @param {string} value Value to select correct validator.
+  @return {Function|null} Validator function
 ###
-spark.validation.getValidator = (type) ->
-  return spark.validation.TYPE_TO_METHOD[type] or null
+spark.validation.getValidator = (type, value) ->
+  method = spark.validation.TYPE_TO_METHOD[type]
+
+  if spark.validation.isObject method
+    method = method[value]
+
+  return method or null
 
 
 spark.validation.EMAIL_REGEX = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
