@@ -260,6 +260,9 @@ describe 'spark.core.Store', ->
       store2.set 'isOnline', no
       expect(passed).toBe 2
 
+      message = store2.get('fetch')()
+      expect(message).toBe 'fetched user data...'
+
       store2.set 'fetch', 'it must be a function to pass'
       expect(failed).toBe 3
 
