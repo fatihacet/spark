@@ -1,6 +1,7 @@
 goog.provide 'spark.core.Store'
 
 goog.require 'spark.core.Object'
+goog.require 'spark.validation'
 goog.require 'goog.structs.Map'
 
 
@@ -15,6 +16,8 @@ class spark.core.Store extends spark.core.Object
     @extends {spark.core.Object}
   ###
   constructor: (options = {}, data) ->
+
+    options.validations or= options['validations'] or {}
 
     super options
 
@@ -41,6 +44,30 @@ class spark.core.Store extends spark.core.Object
   ###
   set: (key, value) ->
     @map_.set key, value if value?
+  ###*
+    Validates the given value for given key's validation rules.
+
+    @export
+    @param {string} key Key to be validated.
+    @param {*} value Value of the key to validate.
+    @return {boolean} Whether the validation is passed or failed.
+  ###
+  validate: (key, value) ->
+    {validations} = @getOptions()
+    rules   = validations?[key]
+    isValid = yes
+
+    return yes unless rules
+
+    for type, rule of rules
+      method = spark.validation.getValidator type
+
+      throw new Error "Validation type #{type} does not exist." unless method
+
+      isValid = method.call this, value, rule
+      break unless isValid
+
+    return isValid
 
 
   ###*
