@@ -85,7 +85,7 @@ class spark.core.Store extends spark.core.Object
     return yes unless rules
 
     for type, rule of rules
-      method = spark.validation.getValidator type
+      method = spark.validation.getValidator type, rule
 
       throw new Error "Validation type #{type} does not exist." unless method
 

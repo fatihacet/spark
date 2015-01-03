@@ -5,9 +5,12 @@ goog.require 'spark.core.Store'
 
 describe 'spark.core.Store', ->
 
-  store = null
+  store  = null
+  store2 = null
 
   beforeEach ->
+
+    # Store created for validations.
     options =
       validations :
         firstName : required: yes, maxLength: 32, minLength: 2, alphabetic: yes
@@ -16,7 +19,6 @@ describe 'spark.core.Store', ->
         email     : email   : yes
         userId    : length  : 8
         uniqueKey : equal   : 'unique', notEqual: 'notUnique'
-
 
     data =
       firstName   : 'Fatih'
@@ -28,6 +30,29 @@ describe 'spark.core.Store', ->
       uniqueKey   : 'unique'
 
     store = new spark.core.Store options, data
+
+    # Another store created to validate data type validations.
+    storeOptions  =
+      validations :
+        userId    : dataType: 'string'
+        username  : dataType: 'string'
+        pageIds   : dataType: 'array'
+        meta      : dataType: 'object'
+        isOnline  : dataType: 'boolean'
+        likeCount : dataType: 'number'
+        fetch     : dataType: 'function'
+
+    storeData =
+      userId    : '123456'
+      username  : 'fatihacet'
+      pageIds   : [ 34, 42, 70 ]
+      meta      : { registedAt: 1420323019571 }
+      isOnline  : yes
+      likeCount : 22
+      fetch     : -> return 'fetched user data...'
+
+    store2 = new spark.core.Store storeOptions, storeData
+
 
   describe 'constructor', ->
 
@@ -212,3 +237,49 @@ describe 'spark.core.Store', ->
       store   = new spark.core.Store options, data
 
       expect( -> store.validate('name', 'fatih')).toThrow error
+
+
+    it 'should validate data types', ->
+      passed = 0
+      failed = 0
+
+      expect(store2.validateAll()).toBeTruthy()
+
+      store2.on 'PropertySet', -> ++passed
+      store2.on 'PropertyRejected', -> ++failed
+
+      store2.set 'userId', 5423091
+      expect(failed).toBe 1
+
+      store2.set 'username', 'fatih'
+      expect(passed).toBe 1
+
+      store2.set 'isOnline', 'yes'
+      expect(failed).toBe 2
+
+      store2.set 'isOnline', no
+      expect(passed).toBe 2
+
+      store2.set 'fetch', 'it must be a function to pass'
+      expect(failed).toBe 3
+
+      store2.set 'fetch', ->
+      expect(passed).toBe 3
+
+      store2.set 'meta', ->
+      expect(failed).toBe 4
+
+      store2.set 'meta', { a: 1, b: 2 }
+      expect(passed).toBe 4
+
+      store2.set 'pageIds', { a: 1 }
+      expect(failed).toBe 5
+
+      store2.set 'pageIds', [ 1, 2, 3 ]
+      expect(passed).toBe 5
+
+      store2.set 'likeCount', 'ok'
+      expect(failed).toBe 6
+
+      store2.set 'likeCount', store.get('likeCount') + 1
+      expect(passed).toBe 6
