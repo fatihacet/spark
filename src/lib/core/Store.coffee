@@ -53,13 +53,16 @@ class spark.core.Store extends spark.core.Object
   set: (key, value) ->
     return no if not key or not value?
 
+    isValid = yes
+
     if @validate key, value
       @map_.set key, value
       @emit 'PropertySet', { key, value }
-      return yes
     else
       @emit 'PropertyRejected', { key, value }
-      return no
+      isValid = no
+
+    return isValid
 
 
   ###*
