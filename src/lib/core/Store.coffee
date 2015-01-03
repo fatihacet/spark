@@ -36,14 +36,32 @@ class spark.core.Store extends spark.core.Object
 
 
   ###*
-    Sets a new key value pair into store.
+    Sets a new key value pair into store. It will also make a validation before
+    setting the new value. If you set a validation rule in options.validations
+    for that property, when validation failed, the property won't be updated.
+    Store::set will return no and emit a 'PropertyRejected' event otherwise
+    it will return true and it will also emit 'ProperySet'. Both events will
+    include key and value. If the key and value passed to set does not related
+    with a validation rule, it will directly set to store. This makes validation
+    optional.
 
     @export
     @param {string} key Key to be returned.
     @param {*} value Value of the key.
+    @return {boolean} Whether the set is completed or not.
   ###
   set: (key, value) ->
-    @map_.set key, value if value?
+    return no if not key or not value?
+
+    if @validate key, value
+      @map_.set key, value
+      @emit 'PropertySet', { key, value }
+      return yes
+    else
+      @emit 'PropertyRejected', { key, value }
+      return no
+
+
   ###*
     Validates the given value for given key's validation rules.
 
