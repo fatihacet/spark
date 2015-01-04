@@ -1,5 +1,5 @@
 goog.provide 'spark.core.HistoryManager'
-goog.provide 'spark.core.HistorManager.TokenTransformer'
+goog.provide 'spark.core.HistoryManager.TokenTransformer'
 
 goog.require 'spark.core.Object'
 goog.require 'goog.History'
@@ -36,7 +36,7 @@ class spark.core.HistoryManager extends spark.core.Object
     {useHtml5History} = options
 
     if isHtml5HistorySupported and useHtml5History
-      tokenTransformer = new spark.core.HistorManager.TokenTransformer
+      tokenTransformer = new spark.core.HistoryManager.TokenTransformer
       @history = new goog.history.Html5History null, tokenTransformer
       @history.setPathPrefix  options.pathPrefix
       @history.setUseFragment no
@@ -71,7 +71,7 @@ class spark.core.HistoryManager extends spark.core.Object
   @constructor
   @implements {goog.history.Html5History.TokenTransformer}
 ###
-class spark.core.HistorManager.TokenTransformer
+class spark.core.HistoryManager.TokenTransformer
 
   ###*
     @override
