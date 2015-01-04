@@ -2,6 +2,7 @@ goog.provide 'spark.core.HistoryManager'
 goog.provide 'spark.core.HistoryManager.TokenTransformer'
 
 goog.require 'spark.core.Object'
+goog.require 'spark.components.Input'
 goog.require 'goog.History'
 goog.require 'goog.history.Html5History'
 
@@ -41,7 +42,7 @@ class spark.core.HistoryManager extends spark.core.Object
       @history.setPathPrefix  options.pathPrefix
       @history.setUseFragment no
     else
-      @history = new goog.History()
+      @history = new goog.History null, null, @getHistoryInput_()
 
     goog.events.listen @history, goog.history.EventType.NAVIGATE, (e) =>
       @emit 'Navigated', e.token
@@ -58,6 +59,16 @@ class spark.core.HistoryManager extends spark.core.Object
   setToken: (token) ->
     @history.setToken token
 
+
+  ###*
+    Returns a input element to give goog's History class. This prevents Firefox
+    to reload the page. Also Firefox was throwing a security error on localhost
+    when HistoryManager constructed. So this trick will also fix that issue too.
+
+    @private
+  ###
+  getHistoryInput_: ->
+    return new spark.components.Input().getElement()
 
 
 ###*
