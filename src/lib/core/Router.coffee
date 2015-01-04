@@ -37,6 +37,7 @@ class spark.core.Router extends spark.core.Object
         @handleRoute_ path
         @latestHandledRoute = path
 
+    @init()
 
   ###*
     Add route with callback function to handle it.

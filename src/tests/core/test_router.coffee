@@ -35,7 +35,6 @@ describe 'spark.core.Router', ->
 
 
   it 'should have routes', ->
-    router.init()
     routes = router.getRoutes()
 
     expect(routes['/activity']).toBeDefined()
