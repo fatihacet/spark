@@ -75,7 +75,11 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['sl_chrome', 'sl_firefox', 'sl_ie_11' ],
+    browsers: [
+      'chromeOnWin8', 'chromeOnLinux',
+      'firefoxOnWin8', 'firefoxOnLinux',
+      'ieOnWin8'
+    ],
 
 
     // Continuous Integration mode
@@ -87,22 +91,35 @@ module.exports = function(config) {
     },
 
     customLaunchers: {
-      sl_chrome: {
+      chromeOnWin8: {
         base: 'SauceLabs',
         browserName: 'chrome',
-        platform: 'Windows 7',
-        version: '35'
+        platform: 'Windows 8.1',
+        version: '39'
       },
-      sl_firefox: {
+      chromeOnLinux: {
         base: 'SauceLabs',
-        browserName: 'firefox',
-        version: '30'
+        browserName: 'chrome',
+        platform: 'Linux',
+        version: '39'
       },
-      sl_ie_11: {
+      ieOnWin8: {
         base: 'SauceLabs',
         browserName: 'internet explorer',
         platform: 'Windows 8.1',
         version: '11'
+      },
+      firefoxOnWin8: {
+        base: 'SauceLabs',
+        browserName: 'firefox',
+        version: '34',
+        platform: 'Windows 8.1',
+      },
+      FirefoxOnLinux: {
+        base: 'SauceLabs',
+        browserName: 'firefox',
+        version: '34',
+        platform: 'Linux',
       }
     }
 
