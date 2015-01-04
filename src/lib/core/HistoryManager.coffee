@@ -42,7 +42,7 @@ class spark.core.HistoryManager extends spark.core.Object
       @history.setPathPrefix  options.pathPrefix
       @history.setUseFragment no
     else
-      @history = new goog.History null, null, @getHistoryInput_()
+      @history = new goog.History undefined, undefined, @getHistoryInput_()
 
     goog.events.listen @history, goog.history.EventType.NAVIGATE, (e) =>
       @emit 'Navigated', e.token
