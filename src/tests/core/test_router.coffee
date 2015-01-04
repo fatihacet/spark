@@ -108,3 +108,49 @@ describe 'spark.core.Router', ->
     router.route '/apps'
 
     expect(counter).toBe 1
+
+
+  it 'should add routes in options.routes', ->
+    visitedRoute = null
+    paramsObject = null
+    queryObject  = null
+
+    r = new spark.core.Router
+      routes:
+        '/users': (params, query) ->
+          visitedRoute = '/users'
+          paramsObject = params
+          queryObject  = query
+
+        '/users/:username': (params, query) ->
+          visitedRoute = "/users/#{params.username}"
+          paramsObject = params
+          queryObject  = query
+
+    routes = r.getRoutes()
+    expect(routes['/users']).toBeDefined()
+    expect(routes['/users/:username']).toBeDefined()
+    expect(visitedRoute).toBeNull()
+    expect(paramsObject).toBeNull()
+    expect(queryObject).toBeNull()
+
+    r.route '/users'
+
+    expect(visitedRoute).toBe '/users'
+    expect(paramsObject).toBeNull()
+    expect(queryObject).toBeNull()
+
+    r.route '/users/acet'
+
+    expect(visitedRoute).toBe '/users/acet'
+    expect(paramsObject).toBeDefined()
+    expect(paramsObject.username).toBe 'acet'
+    expect(queryObject).toBeNull()
+
+    r.route '/users/facet?page=settings'
+
+    expect(visitedRoute).toBe '/users/facet'
+    expect(paramsObject).toBeDefined()
+    expect(paramsObject.username).toBe 'facet'
+    expect(queryObject).toBeDefined()
+    expect(queryObject.page).toBe 'settings'

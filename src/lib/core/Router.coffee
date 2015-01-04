@@ -19,7 +19,8 @@ class spark.core.Router extends spark.core.Object
   ###
   constructor: (options = {}, data) ->
 
-    options.useHtml5History or= options['useHtml5History'] ? no
+    options.useHtml5History ?= options['useHtml5History'] ? no
+    options.routes or= options['routes'] or {}
 
     super options, data
 
@@ -36,6 +37,11 @@ class spark.core.Router extends spark.core.Object
       unless @latestHandledRoute is path
         @handleRoute_ path
         @latestHandledRoute = path
+
+    {routes} = options
+
+    for route, callback of routes
+      @addRoute route, callback
 
     @init()
 
