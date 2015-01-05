@@ -154,3 +154,27 @@ describe 'spark.core.Router', ->
     expect(paramsObject.username).toBe 'facet'
     expect(queryObject).toBeDefined()
     expect(queryObject.page).toBe 'settings'
+
+
+  it 'should route back and forward', (done) ->
+
+    visitedRoute = null
+
+    r = new spark.core.Router
+      routes:
+        '/users'  : -> visitedRoute = 'users'
+        '/profile': -> visitedRoute = 'profile'
+
+    expect(visitedRoute).toBeNull()
+
+    r.route '/users'
+    expect(visitedRoute).toBe 'users'
+
+    r.route '/profile'
+    expect(visitedRoute).toBe 'profile'
+
+    r.back()
+
+    setTimeout ( -> expect(visitedRoute).toBe 'users' ; r.forward() ) , 0
+    setTimeout ( -> expect(visitedRoute).toBe 'profile' ), 100
+    setTimeout ( -> done() ), 200

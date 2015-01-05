@@ -70,6 +70,24 @@ class spark.core.Router extends spark.core.Object
 
 
   ###*
+    Routes back on the page. If there is no previous route, it will do nothing.
+
+    @export
+  ###
+  back: ->
+    window.history.back()
+
+
+  ###*
+    Routes forward on the page. If there is no next route, it will do nothing.
+
+    @export
+  ###
+  forward: ->
+    window.history.forward()
+
+
+  ###*
     Handle route for current page path. This is useful for handling the initial
     route of the page when page reload. This method should be called by user
     because Router doesn't actually know when all routes are added.
