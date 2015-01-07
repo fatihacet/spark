@@ -8,6 +8,11 @@ class spark.components.TextareaWithCharCounter extends spark.components.Textarea
 
   ###*
     Texarea component with built-in char counter like Twitter 140 char input.
+    By default char limit is 140. See `charLimit` option. Counter element may be
+    configured to be invisible. See `isCounterVisible` option. Default char
+    counter is a remaining counter also it may be an incremental counter. See
+    `showRemainingCount` option. By default the counter view will be appended to
+    `document.body`. To change it see `counterContainer` option.
 
     @constructor
     @export
