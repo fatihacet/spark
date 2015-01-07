@@ -30,7 +30,6 @@ class spark.core.Object extends goog.events.EventTarget
     @freeze()           if options.frozen
 
 
-
   ###*
     Sets options object of this class.
     @export
