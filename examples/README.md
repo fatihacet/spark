@@ -5,6 +5,7 @@ Spark Framework Examples
 - [Button](http://fatihacet.github.io/spark/examples/button/)
 - [Input](http://fatihacet.github.io/spark/examples/input/)
 - [Toggle Switch](http://fatihacet.github.io/spark/examples/toggle-switch/)
+- [Textarea](http://fatihacet.github.io/spark/examples/textarea/)
 - [Combobox](http://fatihacet.github.io/spark/examples/combobox/)
 - [Modal](http://fatihacet.github.io/spark/examples/modal/)
 - [Draggable View](http://fatihacet.github.io/spark/examples/draggable/)
