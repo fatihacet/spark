@@ -62,3 +62,13 @@ class spark.components.Textarea extends spark.components.Field
     return unless @textarea_
 
     @textarea_.resize()
+
+
+  ###*
+    Destroy the component.
+
+    @export
+  ###
+  destroy: ->
+    @removeFromDocument()
+    @textarea_.disposeInternal()
