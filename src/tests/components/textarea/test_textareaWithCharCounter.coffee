@@ -7,8 +7,6 @@ goog.require 'spark.components.Textarea'
 describe 'spark.components.TextareaWithCharCounter', ->
 
   textarea = null
-  options  = null
-  customTextarea = null
 
   beforeEach ->
     options  =
@@ -19,7 +17,6 @@ describe 'spark.components.TextareaWithCharCounter', ->
 
   afterEach ->
     textarea.destroy()
-    customTextarea?.destroy()
 
 
   it 'should extends spark.components.Textarea', ->
@@ -28,61 +25,62 @@ describe 'spark.components.TextareaWithCharCounter', ->
 
   it 'should have default options', ->
     if goog.debug
-      customTextarea = new spark.components.TextareaWithCharCounter
-      {charLimit, counterContainer} = customTextarea.getOptions()
+      textarea = new spark.components.TextareaWithCharCounter
+      {charLimit, counterContainer} = textarea.getOptions()
       expect(charLimit).toBe 140
       expect(counterContainer).toBe document.body
 
 
   it 'should have char counter', ->
-    customTextarea = new spark.components.TextareaWithCharCounter
+    counterView = textarea.getCounterView()
+    counterEl   = counterView.getElement()
 
-    counter = document.querySelector('.textarea-counter')
-    expect(counter.innerHTML).toBe '130'
+    expect(counterView).toBeDefined()
+    expect(counterView instanceof spark.core.View).toBeTruthy()
+    expect(counterEl.innerHTML).toBe '130'
 
     textarea.setValue 'fatih'
 
-    expect(counter.innerHTML).toBe '135'
+    expect(counterEl.innerHTML).toBe '135'
 
 
   it 'should truncate the content by char limit', ->
-    customTextarea = new spark.components.TextareaWithCharCounter charLimit: 10
+    textarea    = new spark.components.TextareaWithCharCounter
+      charLimit : 10
 
-    customTextarea.setValue 'hello world this is long'
+    textarea.setValue 'hello world this is long'
 
-    expect(customTextarea.getValue()).toBe 'hello worl'
+    expect(textarea.getValue()).toBe 'hello worl'
 
 
   it 'should have hidden counter', ->
-    customTextarea = new spark.components.TextareaWithCharCounter
+    textarea = new spark.components.TextareaWithCharCounter
       isCounterVisible: no
 
-    counter = document.querySelectorAll('.textarea-counter')[1]
-    expect(counter.classList.contains('hidden')).toBeTruthy()
+    expect(textarea.getCounterView().hasClass 'hidden').toBeTruthy()
 
 
   it 'should show incremental count on counter', ->
-    customTextarea = new spark.components.TextareaWithCharCounter
+    textarea = new spark.components.TextareaWithCharCounter
       showRemainingCount: no
       value: 'lorem ipsum dolor'
 
-    counter = document.querySelectorAll('.textarea-counter')[1]
-    expect(counter.innerHTML).toBe '17'
+    expect(textarea.getCounterView().getElement().innerHTML).toBe '17'
 
 
   it 'should set/update char limit', ->
-    customTextarea = new spark.components.TextareaWithCharCounter
+    textarea = new spark.components.TextareaWithCharCounter
       charLimit: 20
       value: 'lorem ipsum dolor'
 
-    counter = document.querySelectorAll('.textarea-counter')[1]
-    expect(counter.innerHTML).toBe '3'
+    counterEl = textarea.getCounterView().getElement()
+    expect(counterEl.innerHTML).toBe '3'
 
-    customTextarea.setCharLimit 10
-    expect(counter.innerHTML).toBe '0'
-    expect(customTextarea.getValue()).toBe 'lorem ipsu'
+    textarea.setCharLimit 10
+    expect(counterEl.innerHTML).toBe '0'
+    expect(textarea.getValue()).toBe 'lorem ipsu'
 
-    customTextarea.setCharLimit 50
-    customTextarea.setValue 'lorem ipsum dolor sit amet'
-    expect(counter.innerHTML).toBe '24'
-    expect(customTextarea.getValue()).toBe 'lorem ipsum dolor sit amet'
+    textarea.setCharLimit 50
+    textarea.setValue 'lorem ipsum dolor sit amet'
+    expect(counterEl.innerHTML).toBe '24'
+    expect(textarea.getValue()).toBe 'lorem ipsum dolor sit amet'

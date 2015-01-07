@@ -90,6 +90,16 @@ class spark.components.TextareaWithCharCounter extends spark.components.Textarea
 
 
   ###*
+    Returns counter view instance.
+
+    @export
+    @return {spark.core.View}
+  ###
+  getCounterView: ->
+    return @counterView
+
+
+  ###*
     Destroy's the component.
 
     @export
@@ -98,7 +108,7 @@ class spark.components.TextareaWithCharCounter extends spark.components.Textarea
     super
 
     @removeFromDocument()
-    @counterView.removeFromDocument()
     @counter.disposeInternal()
     @counter = null
+    @getCounterView().removeFromDocument()
     @counterView = null
