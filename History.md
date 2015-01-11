@@ -1,3 +1,33 @@
+0.0.1 / 2015-01-12
+==================
+
+  - Karma: Just show coverage data under lib folder.
+  - Utils: Added `spark.utils.parseTemplateTags`
+  - View: Template improvements. Supports mustache variable keys now.
+
+
+0.0.1 / 2015-01-07
+==================
+
+  - TextareaWithCharCounter: Added new component.
+  - Textarea: Added destroy method.
+  - Examples: Added textarea example.
+
+
+0.0.1 / 2015-01-05
+==================
+
+  - Router: Added `back` and `forward` methods.
+  - Karma: Updated browsers and platforms for SauceLabs.conf.
+
+0.0.1 / 2015-01-04
+==================
+
+  - Validation: Added dataType validations to methods map.
+  - Store: Store now validates data types.
+  - Router: Routes can be added in options.
+
+
 0.0.1 / 2015-01-03
 ==================
 ##### Store and validations, BFF.
