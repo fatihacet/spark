@@ -8,6 +8,7 @@ module.exports = (grunt) ->
           force          : yes
         src              : 'build'
 
+
     mkdir                :
       all                :
         options          :
@@ -23,6 +24,7 @@ module.exports = (grunt) ->
             'build/images'
           ]
 
+
     copy                 :
       examples           :
         expand           : yes
@@ -35,6 +37,7 @@ module.exports = (grunt) ->
       allCSS             :
         src              : 'build/css/spark.css'
         dest             : 'build/docs/spark.css'
+
 
     coffee               :
       all                :
@@ -66,6 +69,7 @@ module.exports = (grunt) ->
         stylesheet       : 'css'
         stylesheetPath   : 'build/css/icons.css'
 
+
     coffee2closure       :
       all                :
         files            : [
@@ -73,6 +77,7 @@ module.exports = (grunt) ->
           src            : 'build/js/**/*.js'
           ext            : '.js'
         ]
+
 
     stylus               :
       options            :
@@ -104,10 +109,12 @@ module.exports = (grunt) ->
           ext            : '.css'
         ]
 
+
     templates            :
       all                :
         src              : 'src/templates/**/*.soy'
         dest             : 'build/templates/'
+
 
     deps                 :
       all                :
@@ -119,6 +126,7 @@ module.exports = (grunt) ->
             # 'bower_components/closure-templates'
             'build'
           ]
+
 
     karma                :
       headless           :
@@ -163,6 +171,7 @@ module.exports = (grunt) ->
           '--jscomp_error=visibility'
         ]
 
+
     "http-server"        :
       debug              :
         host             : '127.0.0.1'
@@ -171,6 +180,7 @@ module.exports = (grunt) ->
       compiled           :
         host             : '127.0.0.1'
         port             : 2222
+
 
     open                 :
       dev                :
@@ -185,6 +195,7 @@ module.exports = (grunt) ->
       build              :
         path             : 'http://localhost:2222/public/compiled'
         app              : 'Google Chrome'
+
 
     watch                :
       options            :
@@ -209,6 +220,7 @@ module.exports = (grunt) ->
         files            : [ 'src/examples/**/*.styl', 'src/examples/**/*.coffee' ]
         tasks            : [ 'stylus:examples', 'coffee:examples', 'copy' ]
 
+
     jsdoc                :
       dist               :
         src              : [ 'build/js/lib/**/*.js', 'README.md', '!build/js/lib/Bootstrapper.js' ],
@@ -216,6 +228,7 @@ module.exports = (grunt) ->
           destination    : 'build/docs'
           template       : 'node_modules/grunt-jsdoc/node_modules/ink-docstrap/template',
           configure      : 'jsdoc.conf.json'
+
 
     'gh-pages'           :
       src                : '**/*'
