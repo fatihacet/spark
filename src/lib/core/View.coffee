@@ -153,14 +153,33 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
-    Very basic support of templating. Spark Framework will provide much more
-    powerful templating solution but that's better than nothing for now.
+    Basic templating support for Spark Framework. Currently templates can include
+    variable tags like in Mustache templates. This can be changed in the future
+    versions of the framework.
+
+    Variable tags should start with `{{` and end with `}}`. That's borrowed from
+    Mustache. Tags are not whitespace sensitive, so `{{name}}` and `{{ name }}`
+    is the same.
+
+    Template should also be a function. Just make sure that function returns a
+    string which will be the template. `setTemplate` will call the template
+    function by passing the data of this View. So you can use class data in your
+    template function. This will allow framework to easily integrate other
+    template engines.
+
+    Spark Framework will use Closure Templates as it's default template engine.
+    This is because to maintain the compiled code size advantage. I am also
+    considering to support Mustache and Handlebar templates in Spark.
 
     @export
-    @param {!string} template HTML markup of the element.
+    @param {string|Function} template HTML string of the element or function
+    which will return the html string. Function will be called with class data.
   ###
   setTemplate: (template) ->
-    @getElement().innerHTML = template
+    if spark.validation.isFunction template
+      template = template.call this, @getData()
+
+    @getElement().innerHTML = spark.utils.parseTemplateTags template, @getData()
 
 
   ###*

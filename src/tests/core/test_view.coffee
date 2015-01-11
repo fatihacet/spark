@@ -73,13 +73,50 @@ describe 'spark.core.View', ->
     expect(newView.getDomId()).toBeNull()
 
 
-  it 'should set element template', ->
-    expect(element.firstChild.tagName).toBe 'P'
+  describe 'setTemplate', ->
 
-    view.setTemplate '<div><span></span></div>'
+    it 'should set element template', ->
+      expect(element.firstChild.tagName).toBe 'P'
 
-    expect(element.firstChild.tagName).toBe 'DIV'
-    expect(element.firstChild.firstChild.tagName).toBe 'SPAN'
+      view.setTemplate '<div><span></span></div>'
+
+      expect(element.firstChild.tagName).toBe 'DIV'
+      expect(element.firstChild.firstChild.tagName).toBe 'SPAN'
+
+
+    it 'should render tags in template', ->
+      template = '<div><p>{{name}}</p><p>{{age}}</p><p>{{job}}</p></div>'
+      data     = name: 'Fatih', age: 27, job: 'Developer'
+      v = new spark.core.View { template }, data
+      e = v.getElement()
+
+      first = e.firstChild
+
+      expect(first.tagName).toBe 'DIV'
+
+      expect(first.firstChild.tagName).toBe 'P'
+      expect(first.firstChild.innerHTML).toBe 'Fatih'
+
+      expect(first.lastChild.tagName).toBe  'P'
+      expect(first.lastChild.innerHTML).toBe 'Developer'
+
+
+    it 'should render tags in function templates', ->
+      v = new spark.core.View
+        template: -> '<div>Hello {{name}}</div>'
+      , { name: 'acet' }
+
+      expect(v.getElement().firstChild.tagName).toBe 'DIV'
+      expect(v.getElement().firstChild.innerHTML).toBe 'Hello acet'
+
+
+    it 'should have class data in function templates', ->
+      v = new spark.core.View
+        template: (data) -> "<p>Hola #{data.name}</p>"
+      , { name: 'fatih' }
+
+      expect(v.getElement().firstChild.tagName).toBe 'P'
+      expect(v.getElement().firstChild.innerHTML).toBe 'Hola fatih'
 
 
   it 'should add new class', ->
