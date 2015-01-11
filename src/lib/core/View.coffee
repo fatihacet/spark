@@ -172,8 +172,9 @@ class spark.core.View extends spark.core.Object
     considering to support Mustache and Handlebar templates in Spark.
 
     @export
-    @param {string|Function} template HTML string of the element or function
+    @param {(string|Function)=} template HTML string of the element or function
     which will return the html string. Function will be called with class data.
+    FIXME: Fix annotation for template variable, it should be `{string|Function}`
   ###
   setTemplate: (template) ->
     if spark.validation.isFunction template

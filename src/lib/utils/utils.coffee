@@ -58,7 +58,7 @@ spark.utils.concatString = (var_args) ->
 
   @export
   @param {!string} template Template string will the parser executed on.
-  @param {!Object} data Data of the template.
+  @param {*=} data Data of the template. # FIXME: annotation, should be `{Object}`
   @param {string=} defaultText Default text which will be replaced if the tag
   keyword doesn't exist in the given data.
   @return {string} Template with parsed and replaced data.
@@ -74,7 +74,7 @@ spark.utils.parseTemplateTags = (template, data, defaultText) ->
 
   tags.forEach (tag) ->
     keyword  = tag.match(TAG_REGEX_SINGLE)[1]
-    value    = goog.string.htmlEscape(data[keyword]) or defaultText
+    value    = goog.string.htmlEscape data[keyword] or defaultText
     template = template.replace tag, value
 
   return template

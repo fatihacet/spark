@@ -42,49 +42,47 @@ describe 'spark.utils.getUid', ->
 
 describe 'spark.utils.parseTemplateTags', ->
 
-  ptt = spark.utils.parseTemplateTags
-
   it 'should parse tags', ->
     template = '<div>{{name}}</div>'
 
-    expect(ptt(template, { name: 'acet' })).toBe '<div>acet</div>'
+    expect(spark.utils.parseTemplateTags(template, { name: 'acet' })).toBe '<div>acet</div>'
 
 
   it 'should return the same string if there is no tag in it', ->
     t = '<div></div>'
 
-    expect(ptt(t, {})).toBe t
+    expect(spark.utils.parseTemplateTags(t, {})).toBe t
 
 
   it 'should parse tags with trailing whitespace or whitespaces', ->
     template1 = '<div>{{name }}</div>'
     template2 = '<div>{{text         }}</div>'
 
-    expect(ptt(template1, { name: 'fatih' })).toBe '<div>fatih</div>'
-    expect(ptt(template2, { text: 'lorem' })).toBe '<div>lorem</div>'
+    expect(spark.utils.parseTemplateTags(template1, { name: 'fatih' })).toBe '<div>fatih</div>'
+    expect(spark.utils.parseTemplateTags(template2, { text: 'lorem' })).toBe '<div>lorem</div>'
 
 
   it 'should parse tags with facing whitespace or whitespaces', ->
     template1 = '<div>{{   name}}</div>'
     template2 = '<div>{{ text}}</div>'
 
-    expect(ptt(template1, { name: 'acet' })).toBe '<div>acet</div>'
-    expect(ptt(template2, { text: 'sit ' })).toBe '<div>sit </div>'
+    expect(spark.utils.parseTemplateTags(template1, { name: 'acet' })).toBe '<div>acet</div>'
+    expect(spark.utils.parseTemplateTags(template2, { text: 'sit ' })).toBe '<div>sit </div>'
 
 
   it 'should parse tags with has whitespace or whitespaces', ->
     template1 = '<div>{{ name }}</div>'
     template2 = '<div>{{    text     }}</div>'
 
-    expect(ptt(template1, { name: 'didem' })).toBe '<div>didem</div>'
-    expect(ptt(template2, { text: 'ipsum' })).toBe '<div>ipsum</div>'
+    expect(spark.utils.parseTemplateTags(template1, { name: 'didem' })).toBe '<div>didem</div>'
+    expect(spark.utils.parseTemplateTags(template2, { text: 'ipsum' })).toBe '<div>ipsum</div>'
 
 
   it 'should parse multiple tags', ->
     template = '<div>{{firstName}} {{lastName}} - {{ city }}</div>'
     data     = firstName: 'Fatih', lastName: 'Acet', city: 'Istanbul'
 
-    expect(ptt(template, data)).toBe '<div>Fatih Acet - Istanbul</div>'
+    expect(spark.utils.parseTemplateTags(template, data)).toBe '<div>Fatih Acet - Istanbul</div>'
 
 
   it 'should parse complex templates', ->
@@ -111,18 +109,18 @@ describe 'spark.utils.parseTemplateTags', ->
       lastName : 'Acet'
       username : 'fatihacet'
 
-    expect(ptt(template, data)).toBe expected
+    expect(spark.utils.parseTemplateTags(template, data)).toBe expected
 
 
   it 'should put default text if key not exists in data', ->
     t = '<div>isOnline: {{isOnline}}</div>'
 
-    expect(ptt(t, {})).toBe '<div>isOnline: </div>'
-    expect(ptt(t, {}, 'N/A')).toBe '<div>isOnline: N/A</div>'
+    expect(spark.utils.parseTemplateTags(t, {})).toBe '<div>isOnline: </div>'
+    expect(spark.utils.parseTemplateTags(t, {}, 'N/A')).toBe '<div>isOnline: N/A</div>'
 
 
   it 'should html escape the value in data', ->
     t = '{{code}}'
     d = code: '<div></div>'
 
-    expect(ptt(t, d)).toBe '&lt;div&gt;&lt;/div&gt;'
+    expect(spark.utils.parseTemplateTags(t, d)).toBe '&lt;div&gt;&lt;/div&gt;'
