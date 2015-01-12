@@ -25,6 +25,9 @@ goog.require 'spark.utils'
 
 goog.require 'spark.widgets.SignUp'
 
+goog.require 'goog.soy'
+goog.require 'spark.templates'
+
 
 class spark.Bootstrapper
 

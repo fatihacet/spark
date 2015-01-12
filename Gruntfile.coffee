@@ -74,7 +74,7 @@ module.exports = (grunt) ->
       all                :
         files            : [
           expand         : yes
-          src            : 'build/js/**/*.js'
+          src            : [ 'build/js/lib/**/*.js', '!build/js/lib/templates/**/*.js' ]
           ext            : '.js'
         ]
 
@@ -112,8 +112,8 @@ module.exports = (grunt) ->
 
     templates            :
       all                :
-        src              : 'src/templates/**/*.soy'
-        dest             : 'build/templates/'
+        src              : 'src/lib/templates/**/*.soy'
+        dest             : 'build/js/lib/templates/'
 
 
     deps                 :
@@ -123,8 +123,8 @@ module.exports = (grunt) ->
           prefix         : '../../../../'
           root           : [
             'bower_components/closure-library'
-            # 'bower_components/closure-templates'
-            'build'
+            'bower_components/closure-templates'
+            'build/js/'
           ]
 
 
@@ -172,7 +172,7 @@ module.exports = (grunt) ->
         ]
 
 
-    "http-server"        :
+    'http-server'        :
       debug              :
         host             : '127.0.0.1'
         port             : 1111
@@ -259,7 +259,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-npm'
 
 
-  grunt.registerTask 'ci', 'Compile code and run tests for compiled and uncompiled code.', (app = 'app') ->
+  grunt.registerTask 'ci', 'Compile code and run tests for compiled and uncompiled code.', ->
     grunt.task.run [
       'clean'
       'mkdir'
@@ -283,6 +283,7 @@ module.exports = (grunt) ->
       'mkdir'
       'spriteGenerator'
       'stylus'
+      'templates'
       'coffee'
       'coffee2closure'
       'deps'
@@ -315,12 +316,13 @@ module.exports = (grunt) ->
       'mkdir'
       'spriteGenerator'
       'stylus'
+      'templates'
       'coffee'
       'coffee2closure'
       'deps'
       'karma:headless'
       'http-server:debug'
-      'open:dev'
-      'open:coverage'
+      # 'open:dev'
+      # 'open:coverage'
       'watch'
     ]
