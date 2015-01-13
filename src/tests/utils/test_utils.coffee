@@ -124,3 +124,30 @@ describe 'spark.utils.parseTemplateTags', ->
     d = code: '<div></div>'
 
     expect(spark.utils.parseTemplateTags(t, d)).toBe '&lt;div&gt;&lt;/div&gt;'
+
+
+  it 'should extract the value from nested variables', ->
+    t = """
+      <div>{{ a.b }}<div>
+      <span>{{a.c}}</span>
+      <p>{{      a.d.e }} </p>
+      <p> {{ a.d.f}} </p>
+    """
+
+    e = """
+      <div>hello<div>
+      <span>world</span>
+      <p>again </p>
+      <p> and again </p>
+    """
+
+    d =
+      a:
+        b: 'hello'
+        c: 'world'
+        d:
+          e: 'again'
+          f: 'and again'
+
+    expect(spark.utils.parseTemplateTags(t, d)).toBe e
+

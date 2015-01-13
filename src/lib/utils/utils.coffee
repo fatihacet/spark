@@ -1,4 +1,6 @@
 goog.provide 'spark.utils'
+
+goog.require 'spark.validation'
 goog.require 'goog.string'
 
 
@@ -42,18 +44,23 @@ spark.utils.concatString = (var_args) ->
   more powerful with upcoming releases. Tags are not whitespace sensitive.
   So `{{ name }}` and `{{name}}` and `{{   name   }}` are the same. Here is a
   usage example. Replaced values are html escaped to avoid possible XSS attempt.
+  You can also use nested variables to walk in your object keys.
 
   ```coffee
-    template = '<span>{{firstName}} {{lastName}} - @{{userName}}</span>'
-    data     = firstName: 'Fatih', lastName: 'Acet', userName: 'fatihacet'
+    template = """
+      <img src="{{ details.avatar.full }}" />
+      <span>{{firstName}} {{lastName}} - @{{userName}}</span>
+    """
+    data     =
+      firstName   : 'Fatih'
+      lastName    : 'Acet'
+      userName    : 'fatihacet'
+      details     :
+        avatar    :
+          full    : 'fatihacet.png'
 
     spark.utils.parseTemplateTags template, data
-  ```
-
-  The code is above returns the following result.
-
-  ```html
-    <span>Fatih Acet - @fatihacet</span>
+    # will return "<img src="fatihacet.png" />\n<span>Fatih Acet - @fatihacet</span>"
   ```
 
   @export
@@ -64,17 +71,24 @@ spark.utils.concatString = (var_args) ->
   @return {string} Template with parsed and replaced data.
 ###
 spark.utils.parseTemplateTags = (template, data, defaultText) ->
-  TAG_REGEX_GLOBAL = /{{\s*(\w+)\s*}}/g
-  TAG_REGEX_SINGLE = /{{\s*(\w+)\s*}}/
+  TAG_MATCHER_REGEX = /({{\s*[a-zA-z0-9.]+\s*}})/g
+  TAG_CAPTURE_REGEX = /(\s*[a-zA-z0-9.]+\s*)/
   defaultText    or= ''
 
-  tags = template.match TAG_REGEX_GLOBAL
+  tags = template.match TAG_MATCHER_REGEX
 
   return template unless tags
 
   tags.forEach (tag) ->
-    keyword  = tag.match(TAG_REGEX_SINGLE)[1]
-    value    = goog.string.htmlEscape data[keyword] or defaultText
-    template = template.replace tag, value
+    keyword  = goog.string.trim tag.match(TAG_CAPTURE_REGEX)[1]
+    parts    = keyword.split '.'
+    value    = data[parts.shift()]
+
+    if parts.length
+      for part, index in parts
+        value = value[part]
+
+    # value    = if spark.validation.isString value then value else defaultText
+    template = template.replace tag, goog.string.htmlEscape value or defaultText
 
   return template

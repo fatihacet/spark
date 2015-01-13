@@ -103,11 +103,11 @@ describe 'spark.core.View', ->
 
     it 'should render tags in function templates', ->
       v = new spark.core.View
-        template: -> '<div>Hello {{name}}</div>'
-      , { name: 'acet' }
+        template: -> '<div>Hello {{user.firstName}} {{ user.lastName}}</div>'
+      , user: firstName: 'Fatih', lastName: 'Acet'
 
       expect(v.getElement().firstChild.tagName).toBe 'DIV'
-      expect(v.getElement().firstChild.innerHTML).toBe 'Hello acet'
+      expect(v.getElement().firstChild.innerHTML).toBe 'Hello Fatih Acet'
 
 
     it 'should have class data in function templates', ->
