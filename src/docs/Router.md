@@ -17,7 +17,7 @@ Currently you can only use `:` in routes when you want to set a keyword as varia
 
 This route will be handled when `/artist/Skrillex/song/Kyoto` url visited and your callback called with a `params` object as first argument which will be like this.
 
-```
+```coffee
 params: {
   artistName: 'Skrillex'
   songName  : 'Kyoto'
@@ -26,7 +26,7 @@ params: {
 
 It will also work if there is query string in the visited URL. A route example for this case might be `/artist/Skrillex/song/Kyoto?autoplay=true&time=142`. When this route visited your callback will be called with two parameters and the objects will be like this.
 
-```
+```coffee
 params: {
   artistName: 'Skrillex'
   songName  : 'Kyoto'
@@ -40,7 +40,7 @@ query: {
 
 ##### Router with lazy routes.
 
-```
+```coffee
 router = new spark.core.Router
 
 router.add '/books', ->
@@ -65,7 +65,7 @@ router.route '/search/tolkien?order=asc' # this will log 'search requested for k
 
 ##### Router with routes defined in options
 
-```
+```coffee
 router = new spark.core.Router
   options:
     routes:

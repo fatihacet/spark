@@ -13,7 +13,7 @@ All Spark classes accepts two arguments. First one is options and the second one
 
 Here is a sample Store creation.
 
-```
+```coffee
 options =
   validations :
     firstName : required: yes, alphabetic: yes
@@ -34,7 +34,7 @@ store = new spark.core.Store options, data
 
 You can also mix `dataType` in the objects in `validations`. Something like that.
 
-```
+```coffee
 storeOptions  =
   validations :
     userId    : dataType: 'string', readOnly: yes
