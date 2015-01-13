@@ -1,3 +1,10 @@
+0.0.1 / 2015-01-13
+==================
+##### Integrated Closure Templates.
+
+  - Templates: Integrated closure-templates to dev stack.
+
+
 0.0.1 / 2015-01-12
 ==================
 
@@ -19,6 +26,7 @@
 
   - Router: Added `back` and `forward` methods.
   - Karma: Updated browsers and platforms for SauceLabs.conf.
+
 
 0.0.1 / 2015-01-04
 ==================
