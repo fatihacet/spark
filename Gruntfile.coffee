@@ -17,7 +17,7 @@ module.exports = (grunt) ->
             'src/externs'
             'src/images'
             'src/themes/edge'
-            'src/templates'
+            'src/lib/templates'
             'src/third-party'
             'build/css'
             'build/compiled'
@@ -322,7 +322,7 @@ module.exports = (grunt) ->
       'deps'
       'karma:headless'
       'http-server:debug'
-      # 'open:dev'
-      # 'open:coverage'
+      'open:dev'
+      'open:coverage'
       'watch'
     ]
