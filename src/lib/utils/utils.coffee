@@ -88,7 +88,7 @@ spark.utils.parseTemplateTags = (template, data, defaultText) ->
       for part, index in parts
         value = value[part]
 
-    # value    = if spark.validation.isString value then value else defaultText
+    value    = if spark.validation.isString value then value else defaultText
     template = template.replace tag, goog.string.htmlEscape value or defaultText
 
   return template

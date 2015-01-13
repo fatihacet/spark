@@ -151,3 +151,10 @@ describe 'spark.utils.parseTemplateTags', ->
 
     expect(spark.utils.parseTemplateTags(t, d)).toBe e
 
+
+  it 'should fallback to defaultText if given variable path is not a string', ->
+    d = a: b: 5
+    t = '<div>{{a}}</div>'
+    e = '<div></div>'
+
+    expect(spark.utils.parseTemplateTags(t, d)).toBe e
