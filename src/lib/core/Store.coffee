@@ -3,6 +3,7 @@ goog.provide 'spark.core.Store'
 goog.require 'spark.core.Object'
 goog.require 'spark.validation'
 goog.require 'goog.structs.Map'
+goog.require 'goog.string'
 
 
 class spark.core.Store extends spark.core.Object
@@ -29,14 +30,21 @@ class spark.core.Store extends spark.core.Object
 
 
   ###*
-    Returns value of the given key from the store.
+    Returns value of the given key from the store. String values will be encoded
+    by default to prevent possible XSS attacks. If you don't want the encoding
+    for some reason pass a second `false` parameter.
 
     @export
     @param {string} key Key to be returned.
     @return {*}
   ###
-  get: (key) ->
-    return @map_.get key
+  get: (key, escape = yes) ->
+    value = @map_.get key
+
+    if escape and spark.validation.isString value
+      value = goog.string.htmlEscape value
+
+    return value
 
 
   ###*
@@ -124,7 +132,7 @@ class spark.core.Store extends spark.core.Object
 
     @export
   ###
-  clear:->
+  clear: ->
     @map_.clear()
 
 
