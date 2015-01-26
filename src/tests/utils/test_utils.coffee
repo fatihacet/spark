@@ -33,7 +33,7 @@ describe 'spark.utils.getUid', ->
     expect(typeof uid).toBe 'string'
 
 
-  it 'should not same id when called more then once', ->
+  it 'should not return the same id when called more than once', ->
     uid = spark.utils.getUid()
     uie = spark.utils.getUid()
 
@@ -48,7 +48,7 @@ describe 'spark.utils.parseTemplateTags', ->
     expect(spark.utils.parseTemplateTags(template, { name: 'acet' })).toBe '<div>acet</div>'
 
 
-  it 'should return the same string if there is no tag in it', ->
+  it 'should return the same template if there is no tag in it', ->
     t = '<div></div>'
 
     expect(spark.utils.parseTemplateTags(t, {})).toBe t
