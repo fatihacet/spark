@@ -21,7 +21,9 @@ goog.require 'goog.net.XhrIo'
 
   ```coffee
     spark.ajax.request
+      type     : 'POST'
       url      : 'http://reqr.es/api/users/12'
+      data     : name: 'fatih'
       dataType : 'json' # optional if the JSON response header set.
       success  : (response) -> console.log response.data.first_name
       error    : -> console.log 'error'
@@ -34,6 +36,12 @@ spark.ajax.request = (options) ->
   options = spark.ajax.getOptions_ options
 
   { type, url, data, dataType, success, error } = options
+
+  if data and spark.validation.isObject data
+    try
+      data    = JSON.stringify data
+      headers =
+        'Content-Type': 'application/json; charset=UTF-8'
 
   callbackWrapper = (e) =>
     target   = e.target
@@ -48,7 +56,7 @@ spark.ajax.request = (options) ->
 
     success.call spark.ajax, response, e
 
-  goog.net.XhrIo.send url, callbackWrapper, type
+  goog.net.XhrIo.send url, callbackWrapper, type, data, headers
 
 
 ###*
