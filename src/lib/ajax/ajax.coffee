@@ -1,5 +1,7 @@
 goog.provide 'spark.ajax'
+
 goog.require 'goog.net.XhrIo'
+goog.require 'goog.Uri'
 
 
 ###*
@@ -16,6 +18,10 @@ goog.require 'goog.net.XhrIo'
   correct content type header for JSON and you are sure that the response is a
   valid JSON, you are free to use `dataType: 'json'` in your options object to
   parse your data as JSON.
+
+  To post data with request method put your data into `options.data`. If your
+  method is GET post data will be appended end of the URL as query string.
+  Otherwise it will be posted as `application/json`.
 
   Here is a sample Ajax request in Spark Framework.
 
@@ -38,6 +44,11 @@ spark.ajax.request = (options) ->
   { type, url, data, dataType, success, error } = options
 
   if data and spark.validation.isObject data
+    if type is 'GET'
+      url = new goog.Uri url
+      url.setParameterValue key, value  for key, value of data
+      url = url.toString()
+    else
     try
       data    = JSON.stringify data
       headers =
