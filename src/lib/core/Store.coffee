@@ -166,3 +166,13 @@ class spark.core.Store extends spark.core.Object
   ###
   getValues: ->
     return @map_.getValues()
+
+
+  ###*
+    Returns the current data as object.
+
+    @export
+    @return {Object} Store data.
+  ###
+  toObject: ->
+    return @map_.toObject()

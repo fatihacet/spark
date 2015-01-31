@@ -286,3 +286,15 @@ describe 'spark.core.Store', ->
 
       store2.set 'likeCount', store.get('likeCount') + 1
       expect(passed).toBe 6
+
+
+  it 'should return all the data as an object', ->
+
+    snapshot = store2.toObject()
+
+    expect(snapshot.userId).toBe '123456'
+    expect(snapshot.username).toBe 'fatihacet'
+    expect(snapshot.pageIds.length).toBe 3
+    expect(snapshot.meta.registedAt).toBe 1420323019571
+    expect(snapshot.isOnline).toBe yes
+    expect(snapshot.likeCount).toBe 22
