@@ -62,9 +62,11 @@ spark.ajax.request = (options) ->
     if reqError
       return error reqError, e
 
-    contentType = target.getResponseHeader goog.net.XhrIo.CONTENT_TYPE_HEADER
-    isJSON      = contentType?.indexOf('application/json') > -1
-    response    = if isJSON then target.getResponseJson() else target.getResponse()
+    contentType    = target.getResponseHeader goog.net.XhrIo.CONTENT_TYPE_HEADER
+    hasJSONHeader  = contentType?.indexOf('application/json') > -1
+    isDataTypeJSON = dataType?.toLowerCase() is 'json'
+    isJSON         = hasJSONHeader or isDataTypeJSON
+    response       = if isJSON then target.getResponseJson() else target.getResponse()
 
     success response, e
 

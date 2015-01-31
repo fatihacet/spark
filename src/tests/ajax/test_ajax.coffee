@@ -24,6 +24,7 @@ describe 'spark.ajax', ->
 
     spark.ajax.request
       url     : 'http://reqr.es/api/users/12'
+      dataType: 'json'
       success : (response) ->
         expect(response.data.id).toBe 12
         expect(response.data.first_name).toBe 'maeby'
