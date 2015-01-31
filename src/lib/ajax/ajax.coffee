@@ -37,6 +37,7 @@ goog.require 'goog.Uri'
 
   @export
   @param {Object=} options Options object to configure the Ajax request.
+  @this {Object}
 ###
 spark.ajax.request = (options) ->
   options = spark.ajax.getOptions_ options
@@ -59,13 +60,13 @@ spark.ajax.request = (options) ->
     reqError = target.getLastError()
 
     if reqError
-      return error.call spark.ajax, error, e
+      return error reqError, e
 
     contentType = target.getResponseHeader goog.net.XhrIo.CONTENT_TYPE_HEADER
     isJSON      = contentType?.indexOf('application/json') > -1
     response    = if isJSON then target.getResponseJson() else target.getResponse()
 
-    success.call spark.ajax, response, e
+    success response, e
 
   goog.net.XhrIo.send url, callbackWrapper, type, data, headers
 
