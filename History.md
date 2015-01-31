@@ -6,6 +6,9 @@
   - Gruntfile: Use load-grunt-tasks to automize package loading.
   - Router: Emit 'RouteChanged' event when history manager navigated.
   - Store: Added toObject method.
+  - Ajax: Implemented `dataType: 'json'` support.
+  - Button: Create button elements as a view instance.
+  - Button: Added `getIcon` `getTitle` methods.
 
 
 0.0.1 / 2015-01-27
