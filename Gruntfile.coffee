@@ -235,20 +235,7 @@ module.exports = (grunt) ->
           email          : 'fatih@fatihacet.com'
 
 
-  grunt.loadNpmTasks 'grunt-contrib-clean'
-  grunt.loadNpmTasks 'grunt-contrib-coffee'
-  grunt.loadNpmTasks 'grunt-contrib-stylus'
-  grunt.loadNpmTasks 'grunt-contrib-watch'
-  grunt.loadNpmTasks 'grunt-contrib-copy'
-  grunt.loadNpmTasks 'grunt-mkdir'
-  grunt.loadNpmTasks 'grunt-open'
-  grunt.loadNpmTasks 'grunt-jsdoc'
-  grunt.loadNpmTasks 'grunt-karma'
-  grunt.loadNpmTasks 'grunt-closure-coffee-stack'
-  grunt.loadNpmTasks 'grunt-http-server'
-  grunt.loadNpmTasks 'node-sprite-generator'
-  grunt.loadNpmTasks 'grunt-gh-pages'
-  grunt.loadNpmTasks 'grunt-npm'
+  require('load-grunt-tasks')(grunt)
 
 
   grunt.registerTask 'ci', 'Compile code and run tests for compiled and uncompiled code.', ->
