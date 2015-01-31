@@ -49,10 +49,10 @@ spark.ajax.request = (options) ->
       url.setParameterValue key, value  for key, value of data
       url = url.toString()
     else
-    try
-      data    = JSON.stringify data
-      headers =
-        'Content-Type': 'application/json; charset=UTF-8'
+      try
+        data    = JSON.stringify data
+        headers =
+          'Content-Type': 'application/json; charset=UTF-8'
 
   callbackWrapper = (e) =>
     target   = e.target
