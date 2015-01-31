@@ -1,3 +1,28 @@
+0.0.1 / 2015-01-31
+==================
+##### Introduced RemoteStore component.
+
+  - RemoteStore: Added new store type to interact the data on the server.
+  - Gruntfile: Use load-grunt-tasks to automize package loading.
+  - Router: Emit 'RouteChanged' event when history manager navigated.
+  - Store: Added toObject method.
+
+
+0.0.1 / 2015-01-27
+==================
+##### Introduced Ajax helper to make Ajax requests.
+
+  - Ajax: Added ajax request helper.
+  - Ajax: Allow posting data.
+  - Ajax: Get method query stringify the data.
+
+
+0.0.1 / 2015-01-26
+==================
+
+  - Store: `get` now encodes the values by default.
+
+
 0.0.1 / 2015-01-13
 ==================
 ##### Integrated Closure Templates.
