@@ -36,6 +36,7 @@ class spark.core.Store extends spark.core.Object
 
     @export
     @param {string} key Key to be returned.
+    @param {boolean=} escape Whether you want to espace the value or not.
     @return {*}
   ###
   get: (key, escape = yes) ->
