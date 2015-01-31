@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Spark Framework Class: View</title>
+	<title>Spark Framework Class: RemoteStore</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -140,12 +140,12 @@
 					
 
 
-	<h1 class="page-title">Class: View</h1>
+	<h1 class="page-title">Class: RemoteStore</h1>
 <section>
 
 <header>
     <h2>
-    View
+    RemoteStore
     </h2>
     
 </header>
@@ -157,7 +157,7 @@
     
         
 <dt>
-    <h4 class="name" id="View"><span class="type-signature"></span>new View<span class="signature">(<span class="optional">options</span>, <span class="optional">data</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="RemoteStore"><span class="type-signature"></span>new RemoteStore<span class="signature">(<span class="optional">options</span>, <span class="optional">data</span>)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -165,10 +165,10 @@
     
     
     <div class="description">
-        <p>Main View class of Spark Framework. It is basically a div element. But it's
-  configurable to be any kind of element. It's event driven. This means you
-  can attach and listen custom events with your data. It also supports native
-  DOM events.</p>
+        <p>RemoteStore implementation of the Spark Framework. Makes HTTP GET, POST
+  PUT or DELETE request to manage the data on the server. Use fetch to get or
+  update the data, use save to write data back to server or remove to delete
+  the data from the server.</p>
     </div>
     
 
@@ -299,8 +299,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-20">line 20</a>
+				<a href="RemoteStore.js.html">core/RemoteStore.js</a>,
+				 <a href="RemoteStore.js.html#sunlight-1-line-19">line 19</a>
 			</li>
 		</ul>
 	</dd>
@@ -334,7 +334,7 @@
         <h3 class="subsection-title">Extends</h3>
 
         <ul>
-            <li><a href="spark.core.Object.html">spark.core.Object</a></li>
+            <li><a href="spark.core.Store.html">spark.core.Store</a></li>
         </ul>
     
 
@@ -352,21 +352,236 @@
         <dl>
             
 <dt class="name" id="EventTypes">
-    <h4><span class="type-signature">&lt;static> </span>EventTypes<span class="type-signature"></span></h4>
+    <h4><span class="type-signature">&lt;static> </span>EventTypes<span class="type-signature"> :string</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        <p>A transposed map of goog.events.EventType</p>
+        <p>Emitted event types.</p>
     </div>
     
 
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+            </li>
+        </ul>
+    
 
     
 <dl class="details">
+	
+
+	<h5 class="subsection-title">Properties:</h5>
+
+	<dl>
+
+<table class="props table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+		<th>Default</th>
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>SAVED</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    Saved
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>SAVE_FAILED</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    SaveFailed
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>FETCHED</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    Fetched
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>FETCH_FAILED</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    FetchFailed
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>REMOVED</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    Removed
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>REMOVE_FAILED</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    RemoveFailed
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+</dl>
+
 	
 
 	
@@ -392,8 +607,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-472">line 472</a>
+				<a href="RemoteStore.js.html">core/RemoteStore.js</a>,
+				 <a href="RemoteStore.js.html#sunlight-1-line-178">line 178</a>
 			</li>
 		</ul>
 	</dd>
@@ -419,7 +634,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="addClass"><span class="type-signature"></span>addClass<span class="signature">(cssClass)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="clear"><span class="type-signature"></span>clear<span class="signature">()</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -427,7 +642,7 @@
     
     
     <div class="description">
-        <p>Adds new class name to element.</p>
+        <p>Removes all keys from store.</p>
     </div>
     
 
@@ -435,55 +650,6 @@
     
     
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>cssClass</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>New class name for the element.</p></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
     
     
     
@@ -495,26 +661,11 @@
 	
 
 	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-135">line 135</a>
+				<a href="spark.core.Store.html#clear">spark.core.Store#clear</a>
 			</li>
 		</ul>
 	</dd>
@@ -525,58 +676,6 @@
 	
 
 	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="appendToDocumentBody"><span class="type-signature"></span>appendToDocumentBody<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Appends view into document's body.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
 
 	
 
@@ -589,364 +688,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-206">line 206</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="appendView"><span class="type-signature"></span>appendView<span class="signature">(view)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Appends a new view into this view's element as a child.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>view</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="spark.core.View.html">spark.core.View</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>A spark.View instance to append.</p></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-234">line 234</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="bindEvents"><span class="type-signature"></span>bindEvents<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>This method is responsible from binding DOM events to the element of this view.
-  It uses native DOM event names which is all lowercase. If your options
-  has an event name and a callback function in events object
-  View will bind and listen those events automatically.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-443">line 443</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="createDomElement"><span class="type-signature"></span>createDomElement<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Creates the element with the configuration passed to constructor.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-59">line 59</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="disable"><span class="type-signature"></span>disable<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Disable view.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-285">line 285</a>
+				<a href="Store.js.html">core/Store.js</a>,
+				 <a href="Store.js.html#sunlight-1-line-155">line 155</a>
 			</li>
 		</ul>
 	</dd>
@@ -1154,7 +897,7 @@
         
             
 <dt>
-    <h4 class="name" id="enable"><span class="type-signature"></span>enable<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="fetch"><span class="type-signature"></span>fetch<span class="signature">(<span class="optional">callback</span>)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -1162,7 +905,11 @@
     
     
     <div class="description">
-        <p>Enable view.</p>
+        <p>Fetches the store data from server. Uses idKey property to find the store
+  on the server. You can use fetch to populate the store from the server or
+  when you want to update store data with latest data on the server.
+  Callback is optional. Depending the result <code>EventTypes.FETCHED</code> or
+  <code>EventTypes.FETCH_FAILED</code> events will be triggered.</p>
     </div>
     
 
@@ -1170,6 +917,67 @@
     
     
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+		<th>Argument</th>
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Callback function to handle the request.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
     
     
     
@@ -1199,8 +1007,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-298">line 298</a>
+				<a href="RemoteStore.js.html">core/RemoteStore.js</a>,
+				 <a href="RemoteStore.js.html#sunlight-1-line-82">line 82</a>
 			</li>
 		</ul>
 	</dd>
@@ -1316,7 +1124,7 @@
         
             
 <dt>
-    <h4 class="name" id="getAttribute"><span class="type-signature"></span>getAttribute<span class="signature">(name)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(key, <span class="optional">escape</span>)</span><span class="type-signature"> &rarr; {*}</span></h4>
     
     
 </dt>
@@ -1324,330 +1132,9 @@
     
     
     <div class="description">
-        <p>Native getAttribute wrapper.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Atrribute name.</p></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-266">line 266</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="getClass"><span class="type-signature"></span>getClass<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Returns class name of the element.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-115">line 115</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>Class name.</p>
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">string</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="getClassList"><span class="type-signature"></span>getClassList<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Returns class list of the element.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-125">line 125</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>List of class names.</p>
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Array</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="getCssClass"><span class="type-signature"></span>getCssClass<span class="signature">(options, <span class="optional">optionalClass</span>)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Helper method to set css class to options set.</p>
+        <p>Returns value of the given key from the store. String values will be encoded
+  by default to prevent possible XSS attacks. If you don't want the encoding
+  for some reason pass a second <code>false</code> parameter.</p>
     </div>
     
 
@@ -1683,13 +1170,13 @@
 
         <tr>
             
-                <td class="name"><code>options</code></td>
+                <td class="name"><code>key</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
@@ -1707,20 +1194,20 @@
 
             
 
-            <td class="description last"><p>Class options.</p></td>
+            <td class="description last"><p>Key to be returned.</p></td>
         </tr>
 
 	
 
         <tr>
             
-                <td class="name"><code>optionalClass</code></td>
+                <td class="name"><code>escape</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
             
@@ -1740,7 +1227,7 @@
 
             
 
-            <td class="description last"><p>Optinal CSS class which will added to default.</p></td>
+            <td class="description last"><p>Whether you want to espace the value or not.</p></td>
         </tr>
 
 	
@@ -1757,6 +1244,15 @@
 
 	
 
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="spark.core.Store.html#get">spark.core.Store#get</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1776,8 +1272,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-462">line 462</a>
+				<a href="Store.js.html">core/Store.js</a>,
+				 <a href="Store.js.html#sunlight-1-line-43">line 43</a>
 			</li>
 		</ul>
 	</dd>
@@ -1800,6 +1296,25 @@
     
     
     
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">*</span>
+
+
+	</dd>
+</dl>
+
+
+        
     
     
 </dd>
@@ -1915,7 +1430,7 @@
         
             
 <dt>
-    <h4 class="name" id="getDomId"><span class="type-signature"></span>getDomId<span class="signature">()</span><span class="type-signature"> &rarr; {string|null}</span></h4>
+    <h4 class="name" id="getKeys"><span class="type-signature"></span>getKeys<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
     
     
 </dt>
@@ -1923,7 +1438,7 @@
     
     
     <div class="description">
-        <p>Returns the DOM id if exists, otherwise it will return null.</p>
+        <p>Returns keys array.</p>
     </div>
     
 
@@ -1942,26 +1457,11 @@
 	
 
 	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-94">line 94</a>
+				<a href="spark.core.Store.html#getKeys">spark.core.Store#getKeys</a>
 			</li>
 		</ul>
 	</dd>
@@ -1972,80 +1472,6 @@
 	
 
 	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">string</span>
-|
-
-<span class="param-type">null</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="getElement"><span class="type-signature"></span>getElement<span class="signature">()</span><span class="type-signature"> &rarr; {Element}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Returns the DOM element.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
 
 	
 
@@ -2058,8 +1484,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-166">line 166</a>
+				<a href="Store.js.html">core/Store.js</a>,
+				 <a href="Store.js.html#sunlight-1-line-176">line 176</a>
 			</li>
 		</ul>
 	</dd>
@@ -2086,7 +1512,7 @@
     
             
 <div class="param-desc">
-    <p>DOM element of this view.</p>
+    <p>Keys array.</p>
 </div>
 
 
@@ -2097,106 +1523,7 @@
 	</dt>
 	<dd>
 		
-<span class="param-type">Element</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="getHeight"><span class="type-signature"></span>getHeight<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Returns the height of the element.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-368">line 368</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>View element height.</p>
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">number</span>
+<span class="param-type">Array</span>
 
 
 	</dd>
@@ -2535,7 +1862,7 @@
         
             
 <dt>
-    <h4 class="name" id="getWidth"><span class="type-signature"></span>getWidth<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="getUrl_"><span class="type-signature">&lt;private> </span>getUrl_<span class="signature">(method)</span><span class="type-signature"> &rarr; {string}</span></h4>
     
     
 </dt>
@@ -2543,7 +1870,16 @@
     
     
     <div class="description">
-        <p>Returns the width of the element.</p>
+        <p>This method allows RemoteStore to work with customized urls for different
+  request types. If the <code>url</code> in <code>options</code> is string then RemoteStore will
+  use it and don't touch it. It may also be a function which will return
+  different urls for different request types. See the following example.</p>
+<pre><code class="lang-coffee">    new spark.core.RemoteStore
+      url: (type) -&gt;
+        if type is 'GET'
+          return '/user/list'
+        else if type is 'POST'
+          return '/user'</code></pre>
     </div>
     
 
@@ -2551,6 +1887,55 @@
     
     
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>method</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Request type to customize request url.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
     
     
     
@@ -2580,8 +1965,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-356">line 356</a>
+				<a href="RemoteStore.js.html">core/RemoteStore.js</a>,
+				 <a href="RemoteStore.js.html#sunlight-1-line-164">line 164</a>
 			</li>
 		</ul>
 	</dd>
@@ -2608,7 +1993,7 @@
     
             
 <div class="param-desc">
-    <p>View element width.</p>
+    <p>The request url.</p>
 </div>
 
 
@@ -2619,6 +2004,636 @@
 	</dt>
 	<dd>
 		
+<span class="param-type">string</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="getValues"><span class="type-signature"></span>getValues<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Returns values array.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="spark.core.Store.html#getValues">spark.core.Store#getValues</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Store.js.html">core/Store.js</a>,
+				 <a href="Store.js.html#sunlight-1-line-186">line 186</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Values array.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Array</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="has"><span class="type-signature"></span>has<span class="signature">(key)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Returns <code>true</code> if the store has the given key.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Key to be searched in store.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="spark.core.Store.html#has">spark.core.Store#has</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Store.js.html">core/Store.js</a>,
+				 <a href="Store.js.html#sunlight-1-line-166">line 166</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Whether the store has the key or not.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">boolean</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="off"><span class="type-signature"></span>off<span class="signature">(eventName, callback)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Removes an event listener which was added with @on or @once.
+  See also goog.events.Listenable.prototype.unlisten</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>eventName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Name of the event.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Callback function for the event.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="spark.core.Object.html#off">spark.core.Object#off</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Object.js.html">core/Object.js</a>,
+				 <a href="Object.js.html#sunlight-1-line-161">line 161</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Whether any listener was removed.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">boolean</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="on"><span class="type-signature"></span>on<span class="signature">(eventName, callback)</span><span class="type-signature"> &rarr; {goog.events.ListenableKey|number}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Adds an event listener.
+  See also goog.events.Listenable.prototype.listen</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>eventName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Name of the event.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Callback function for the event.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="spark.core.Object.html#on">spark.core.Object#on</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Object.js.html">core/Object.js</a>,
+				 <a href="Object.js.html#sunlight-1-line-123">line 123</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Unique key for the listener.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">goog.events.ListenableKey</span>
+|
+
 <span class="param-type">number</span>
 
 
@@ -2634,7 +2649,7 @@
         
             
 <dt>
-    <h4 class="name" id="hasClass"><span class="type-signature"></span>hasClass<span class="signature">(cssClass)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="once"><span class="type-signature"></span>once<span class="signature">(eventName, callback)</span><span class="type-signature"> &rarr; {goog.events.ListenableKey|number}</span></h4>
     
     
 </dt>
@@ -2642,7 +2657,8 @@
     
     
     <div class="description">
-        <p>Returns true if element has that class name.</p>
+        <p>Adds an event listener that is removed automatically after the listener
+  fired once. See also goog.events.Listenable.prototype.listenOnce</p>
     </div>
     
 
@@ -2676,7 +2692,7 @@
 
         <tr>
             
-                <td class="name"><code>cssClass</code></td>
+                <td class="name"><code>eventName</code></td>
             
 
             <td class="type">
@@ -2692,7 +2708,30 @@
 
             
 
-            <td class="description last"><p>Name of the class which will be tested.</p></td>
+            <td class="description last"><p>Name of the event.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Callback function for the event.</p></td>
         </tr>
 
 	
@@ -2709,6 +2748,15 @@
 
 	
 
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="spark.core.Object.html#once">spark.core.Object#once</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -2728,8 +2776,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-156">line 156</a>
+				<a href="Object.js.html">core/Object.js</a>,
+				 <a href="Object.js.html#sunlight-1-line-135">line 135</a>
 			</li>
 		</ul>
 	</dd>
@@ -2756,7 +2804,7 @@
     
             
 <div class="param-desc">
-    <p>Whether element has a class name or not.</p>
+    <p>Unique key for the listener.</p>
 </div>
 
 
@@ -2767,741 +2815,97 @@
 	</dt>
 	<dd>
 		
-<span class="param-type">boolean</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="isDisabled"><span class="type-signature"></span>isDisabled<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Returns the current disabled state of the button.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-324">line 324</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="off"><span class="type-signature"></span>off<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Override Object::off to remove events binded to DOM element.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-432">line 432</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="on"><span class="type-signature"></span>on<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Override Object::on to support two way binding for DOM events.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-406">line 406</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="once"><span class="type-signature"></span>once<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Override Object::once to support two way binding for DOM events.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-419">line 419</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="removeAttribute"><span class="type-signature"></span>removeAttribute<span class="signature">(name)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Native removeAttribute wrapper.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Atrribute name.</p></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-276">line 276</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="removeClass"><span class="type-signature"></span>removeClass<span class="signature">(cssClass)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Remove a class name from the element.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>cssClass</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Name of the class which will be removed.</p></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-145">line 145</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="removeFromDocument"><span class="type-signature"></span>removeFromDocument<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Removes element from DOM if it is in DOM.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-217">line 217</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>Whether element removed from document or not.</p>
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">boolean</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="render"><span class="type-signature"></span>render<span class="signature">(target)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Renders element into another View instance or a DOM element. Be aware that
-  this method only appends the element of this class into another element.
-  If the parent element is not in DOM, this method will not append the parent
-  into DOM. Also you can use this method with <code>renderTo</code> option. If you pass
-  <code>renderTo</code> as a View instance or DOM element, View will call render method
-  by default.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>target</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="spark.core.View.html">spark.core.View</a></span>
+<span class="param-type">goog.events.ListenableKey</span>
 |
 
-<span class="param-type">Element</span>
+<span class="param-type">number</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="remove"><span class="type-signature"></span>remove<span class="signature">(<span class="optional">callback</span>)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Removes a store on the server by making a HTTP DELETE request. Handle the
+  response with a callback or emitted events. Depending the response
+  <code>EventTypes.REMOVED</code> or <code>EventTypes.REMOVE_FAILED</code> events will be emitted.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+		<th>Argument</th>
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>Target view or element to be rendered.</p></td>
+            <td class="description last"><p>Callback function to handle the request.</p></td>
         </tr>
 
 	
@@ -3537,8 +2941,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-385">line 385</a>
+				<a href="RemoteStore.js.html">core/RemoteStore.js</a>,
+				 <a href="RemoteStore.js.html#sunlight-1-line-120">line 120</a>
 			</li>
 		</ul>
 	</dd>
@@ -3568,7 +2972,7 @@
         
             
 <dt>
-    <h4 class="name" id="setAttribute"><span class="type-signature"></span>setAttribute<span class="signature">(name, value)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="save"><span class="type-signature"></span>save<span class="signature">(<span class="optional">callback</span>)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -3576,7 +2980,155 @@
     
     
     <div class="description">
-        <p>Native setAttribute wrapper.</p>
+        <p>Saves the data to server or updates it on the server. If your data has
+  <code>options.idKey</code> property it will make a PUT request to update the data
+  otherwise it will make a <code>POST</code> request to save it to server. If server
+  response includes an <code>options.idKey</code> RemoteStore will save the id and use
+  it to update the data.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+		<th>Argument</th>
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Callback function to handle the request.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="RemoteStore.js.html">core/RemoteStore.js</a>,
+				 <a href="RemoteStore.js.html#sunlight-1-line-39">line 39</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="set"><span class="type-signature"></span>set<span class="signature">(key, value)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Sets a new key value pair into store. It will also make a validation before
+  setting the new value. If you set a validation rule in options.validations
+  for that property, when validation failed, the property won't be updated.
+  Store::set will return no and emit a 'PropertyRejected' event otherwise
+  it will return true and it will also emit 'ProperySet'. Both events will
+  include key and value. If the key and value passed to set does not related
+  with a validation rule, it will directly set to store. This makes validation
+  optional.</p>
     </div>
     
 
@@ -3610,7 +3162,7 @@
 
         <tr>
             
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>key</code></td>
             
 
             <td class="type">
@@ -3626,7 +3178,7 @@
 
             
 
-            <td class="description last"><p>Atrribute name.</p></td>
+            <td class="description last"><p>Key to be returned.</p></td>
         </tr>
 
 	
@@ -3639,7 +3191,7 @@
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">*</span>
 
 
             
@@ -3649,7 +3201,7 @@
 
             
 
-            <td class="description last"><p>Attribute value.</p></td>
+            <td class="description last"><p>Value of the key.</p></td>
         </tr>
 
 	
@@ -3666,6 +3218,15 @@
 
 	
 
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="spark.core.Store.html#set">spark.core.Store#set</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -3685,8 +3246,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-256">line 256</a>
+				<a href="Store.js.html">core/Store.js</a>,
+				 <a href="Store.js.html#sunlight-1-line-70">line 70</a>
 			</li>
 		</ul>
 	</dd>
@@ -3709,132 +3270,29 @@
     
     
     
+    <h5>Returns:</h5>
     
-    
-</dd>
-
-        
             
-<dt>
-    <h4 class="name" id="setClass"><span class="type-signature"></span>setClass<span class="signature">(cssClass)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Sets the class name of element. This will override existing class names.
-  Use <code>@addClass</code> if you want to add new class name to the element.</p>
-    </div>
-    
+<div class="param-desc">
+    <p>Whether the set is completed or not.</p>
+</div>
 
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
-    <thead>
-	<tr>
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
 		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>cssClass</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Class name.</p></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-105">line 105</a>
-			</li>
-		</ul>
 	</dd>
-	
-
-	
-
-	
-
-	
 </dl>
 
-    
-    
 
-    
-
-    
-    
-    
-    
-    
+        
     
     
 </dd>
@@ -3947,260 +3405,6 @@
 			<li>
 				<a href="Object.js.html">core/Object.js</a>,
 				 <a href="Object.js.html#sunlight-1-line-72">line 72</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="setDomId"><span class="type-signature"></span>setDomId<span class="signature">(domId)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Sets DOM id.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>domId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Id of the element.</p></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-84">line 84</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="setHeight"><span class="type-signature"></span>setHeight<span class="signature">(height)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Sets height of this view's DOM element.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Height of the element. It can be string with
-  'px' value or just number.</p></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-346">line 346</a>
 			</li>
 		</ul>
 	</dd>
@@ -4364,161 +3568,6 @@
         
             
 <dt>
-    <h4 class="name" id="setTemplate"><span class="type-signature"></span>setTemplate<span class="signature">(<span class="optional">template</span>)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Basic templating support for Spark Framework. Currently templates can include
-  variable tags like in Mustache templates. This can be changed in the future
-  versions of the framework.</p>
-<p>  Variable tags should start with <code>{{</code> and end with <code>}}</code>. That's borrowed from
-  Mustache. Tags are not whitespace sensitive, so <code>{{name}}</code> and <code>{{ name }}</code>
-  is the same.</p>
-<p>  Template should also be a function. Just make sure that function returns a
-  string which will be the template. <code>setTemplate</code> will call the template
-  function by passing the data of this View. So you can use class data in your
-  template function. This will allow framework to easily integrate other
-  template engines.</p>
-<p>  Spark Framework will use Closure Templates as it's default template engine.
-  This is because to maintain the compiled code size advantage. I am also
-  considering to support Mustache and Handlebar templates in Spark.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-		<th>Argument</th>
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>template</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>HTML string of the element or function
-  which will return the html string. Function will be called with class data.
-  FIXME: Fix annotation for template variable, it should be <code>{string|Function}</code></p></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-194">line 194</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
     <h4 class="name" id="setUid_"><span class="type-signature">&lt;private> </span>setUid_<span class="signature">()</span><span class="type-signature"></span></h4>
     
     
@@ -4604,7 +3653,7 @@
         
             
 <dt>
-    <h4 class="name" id="setWidth"><span class="type-signature"></span>setWidth<span class="signature">(width)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="toObject"><span class="type-signature"></span>toObject<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
     
 </dt>
@@ -4612,7 +3661,115 @@
     
     
     <div class="description">
-        <p>Sets width of this view's DOM element.</p>
+        <p>Returns the current data as object.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="spark.core.Store.html#toObject">spark.core.Store#toObject</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Store.js.html">core/Store.js</a>,
+				 <a href="Store.js.html#sunlight-1-line-196">line 196</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Store data.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Object</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="unset"><span class="type-signature"></span>unset<span class="signature">(key)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Removes a key from strore.</p>
     </div>
     
 
@@ -4646,16 +3803,13 @@
 
         <tr>
             
-                <td class="name"><code>width</code></td>
+                <td class="name"><code>key</code></td>
             
 
             <td class="type">
             
                 
 <span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
 
 
             
@@ -4665,8 +3819,7 @@
 
             
 
-            <td class="description last"><p>Width of the element. It can be string with
-  'px' value or just number.</p></td>
+            <td class="description last"><p>Key to be removed.</p></td>
         </tr>
 
 	
@@ -4683,6 +3836,15 @@
 
 	
 
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="spark.core.Store.html#unset">spark.core.Store#unset</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -4702,8 +3864,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-335">line 335</a>
+				<a href="Store.js.html">core/Store.js</a>,
+				 <a href="Store.js.html#sunlight-1-line-146">line 146</a>
 			</li>
 		</ul>
 	</dd>
@@ -4726,6 +3888,29 @@
     
     
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Whether the key removed or not.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">boolean</span>
+
+
+	</dd>
+</dl>
+
+
+        
     
     
 </dd>
@@ -4733,7 +3918,7 @@
         
             
 <dt>
-    <h4 class="name" id="toggle"><span class="type-signature"></span>toggle<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="validate"><span class="type-signature"></span>validate<span class="signature">(key, value)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
     
 </dt>
@@ -4741,7 +3926,7 @@
     
     
     <div class="description">
-        <p>Toggle view state. Disable if enabled, enable if disabled.</p>
+        <p>Validates the given value for given key's validation rules.</p>
     </div>
     
 
@@ -4749,6 +3934,78 @@
     
     
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Key to be validated.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Value of the key to validate.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
     
     
     
@@ -4759,6 +4016,15 @@
 
 	
 
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="spark.core.Store.html#validate">spark.core.Store#validate</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -4778,8 +4044,116 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="View.js.html">core/View.js</a>,
-				 <a href="View.js.html#sunlight-1-line-311">line 311</a>
+				<a href="Store.js.html">core/Store.js</a>,
+				 <a href="Store.js.html#sunlight-1-line-100">line 100</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Whether the validation is passed or failed.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">boolean</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="validateAll"><span class="type-signature"></span>validateAll<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Validates all data and throw an error if validation fails.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="spark.core.Store.html#validateAll">spark.core.Store#validateAll</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Store.js.html">core/Store.js</a>,
+				 <a href="Store.js.html#sunlight-1-line-127">line 127</a>
 			</li>
 		</ul>
 	</dd>
