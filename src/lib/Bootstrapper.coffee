@@ -4,6 +4,7 @@ goog.require 'spark.core.Object'
 goog.require 'spark.core.View'
 goog.require 'spark.core.Router'
 goog.require 'spark.core.Store'
+goog.require 'spark.core.RemoteStore'
 
 goog.require 'spark.validation'
 
