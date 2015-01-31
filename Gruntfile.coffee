@@ -62,14 +62,6 @@ module.exports = (grunt) ->
         ]
 
 
-    spriteGenerator      :
-      sprite             :
-        src              : [ 'src/images/**/*.png' ]
-        spritePath       : 'build/images/icons.png'
-        stylesheet       : 'css'
-        stylesheetPath   : 'build/css/icons.css'
-
-
     coffee2closure       :
       all                :
         files            : [
@@ -215,7 +207,7 @@ module.exports = (grunt) ->
         tasks            : [ 'stylus:all', 'stylus:concat' ]
       images             :
         files            : [ 'src/images/**/*.png' ]
-        tasks            : [ 'spriteGenerator', 'stylus:all', 'styl:concat' ]
+        tasks            : [ 'stylus:all', 'styl:concat' ]
       examples           :
         files            : [ 'src/examples/**/*.styl', 'src/examples/**/*.coffee' ]
         tasks            : [ 'stylus:examples', 'coffee:examples', 'copy' ]
@@ -263,7 +255,6 @@ module.exports = (grunt) ->
     grunt.task.run [
       'clean'
       'mkdir'
-      'spriteGenerator'
       'stylus'
       'coffee'
       'coffee2closure'
@@ -281,7 +272,6 @@ module.exports = (grunt) ->
     grunt.task.run [
       'clean'
       'mkdir'
-      'spriteGenerator'
       'stylus'
       'templates'
       'coffee'
@@ -314,7 +304,6 @@ module.exports = (grunt) ->
     grunt.task.run [
       'clean'
       'mkdir'
-      'spriteGenerator'
       'stylus'
       'templates'
       'coffee'
