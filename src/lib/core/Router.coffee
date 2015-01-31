@@ -37,6 +37,7 @@ class spark.core.Router extends spark.core.Object
       unless @latestHandledRoute is path
         @handleRoute_ path
         @latestHandledRoute = path
+        @emit 'RouteChanged', path
 
     {routes} = options
 
