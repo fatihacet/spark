@@ -39,20 +39,22 @@ describe 'spark.components.Button', ->
       expect(element.tagName).toBe 'BUTTON'
 
 
-    it 'should not have icon element in template if iconClass is not passed', ->
+    it 'should have hidden icon element if iconClass is not passed', ->
       child = element.firstChild
 
       expect(child.tagName).toBe 'SPAN'
-      expect(child.classList.contains('icon')).toBeFalsy()
+      expect(child.classList.contains('icon')).toBeTruthy()
+      expect(child.classList.contains('hidden')).toBeTruthy()
 
 
-    it 'should have an extra icon element if iconClass passed', ->
+    it 'should have a visible icon element if iconClass passed', ->
       button  = new spark.components.Button iconClass: 'arrow'
       element = button.getElement()
       child   = element.firstChild
 
       expect(child.tagName).toBe 'SPAN'
       expect(child.classList.contains('icon')).toBeTruthy()
+      expect(child.classList.contains('hidden')).toBeFalsy()
 
 
   it 'should call callback when clicked', ->

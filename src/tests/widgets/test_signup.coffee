@@ -49,7 +49,7 @@ describe 'spark.widgets.SignUp', ->
     widget = new spark.widgets.SignUp buttonTitle: 'Register'
     button = widget.getForm().getButtons()[0]
 
-    expect(button.getElement().firstChild.innerHTML).toBe 'Register'
+    expect(button.getElement().lastChild.innerHTML).toBe 'Register'
 
 
   it 'should have two anchor elements', ->
