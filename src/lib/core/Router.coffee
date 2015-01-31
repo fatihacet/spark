@@ -189,7 +189,7 @@ class spark.core.Router extends spark.core.Object
     for some reason, you have to destroy previously created instances. Otherwise
     HistoryManager events will be triggered multiple times.
 
-    @expose
+    @export
   ###
   destroy: ->
     @historyManager.disposeInternal()
