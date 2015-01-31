@@ -44,7 +44,7 @@ spark.ajax.request = (options) ->
   { type, url, data, dataType, success, error } = options
 
   if data and spark.validation.isObject data
-    if type is 'GET'
+    if type is spark.ajax.RequestTypes.GET
       url = new goog.Uri url
       url.setParameterValue key, value  for key, value of data
       url = url.toString()
@@ -79,7 +79,7 @@ spark.ajax.request = (options) ->
 ###
 spark.ajax.getOptions_ = (options = {}) ->
   options    =
-    type     : options.type     or= options['type']     or 'GET'
+    type     : options.type     or= options['type']     or spark.ajax.RequestTypes.GET
     url      : options.url      or= options['url']      or ''
     data     : options.data     or= options['data']     or null
     dataType : options.dataType or= options['dataType'] or null
@@ -87,3 +87,16 @@ spark.ajax.getOptions_ = (options = {}) ->
     error    : options.error    or= options['error']    or ->
 
   return options
+
+
+###*
+  HTTP request methods map as enum.
+
+  @enum {string}
+  @export
+###
+spark.ajax.RequestTypes =
+  GET    : 'GET'
+  POST   : 'POST'
+  PUT    : 'PUT'
+  DELETE : 'DELETE'
