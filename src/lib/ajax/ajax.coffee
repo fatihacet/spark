@@ -78,7 +78,7 @@ spark.ajax.request = (options) ->
 
   @private
   @param {Object=} options Config object.
-  @returns {Object} Final object fallbacked with defaults.
+  @return {Object} Final object fallbacked with defaults.
 ###
 spark.ajax.getOptions_ = (options = {}) ->
   options    =
