@@ -234,6 +234,11 @@ module.exports = (grunt) ->
           name           : 'Fatih Acet'
           email          : 'fatih@fatihacet.com'
 
+    php                  :
+      dist               :
+        options          :
+          port           : 1111
+
 
   require('load-grunt-tasks')(grunt)
 
@@ -297,7 +302,8 @@ module.exports = (grunt) ->
       'coffee2closure'
       'deps'
       'karma:headless'
-      'http-server:debug'
+      # 'http-server:debug'
+      'php'
       'open:dev'
       'open:coverage'
       'watch'

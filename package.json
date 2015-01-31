@@ -43,7 +43,8 @@
     "karma-safari-launcher": "^0.1.1",
     "grunt-contrib-copy": "^0.7.0",
     "karma-env-preprocessor": "^0.1.0",
-    "load-grunt-tasks": "^3.1.0"
+    "load-grunt-tasks": "^3.1.0",
+    "grunt-php": "^1.1.1"
   },
   "scripts": {
     "test": "grunt test"
