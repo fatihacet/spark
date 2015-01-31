@@ -12,6 +12,11 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
 
+     preprocessors: {
+      'build/**/*.js': ['env']
+    },
+
+
     // list of files / patterns to load in the browser
     files: [
       'bower_components/jquery/index.js',
@@ -23,6 +28,11 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
+    ],
+
+
+    envPreprocessor: [
+      'MONGOLAB_API_KEY'
     ],
 
 

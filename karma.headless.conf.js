@@ -34,7 +34,7 @@ module.exports = function(config) {
     // },
     preprocessors: {
       'build/js/**/test_*.js': ['closure', 'closure-iit'], // tests are preprocessed for dependencies (closure) and for iits
-      'build/js/lib/**/*.js': ['closure', 'coverage'], // source files are preprocessed for dependencies
+      'build/js/lib/**/*.js': ['closure', 'coverage', 'env'], // source files are preprocessed for dependencies
       'bower_components/closure-library/closure/goog/deps.js': ['closure-deps'] // external deps
     },
 
@@ -54,6 +54,10 @@ module.exports = function(config) {
       type: 'lcov',
       dir: 'build/coverage/'
     },
+
+    envPreprocessor: [
+      'MONGOLAB_API_KEY'
+    ],
 
 
     // web server port
