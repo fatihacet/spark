@@ -169,6 +169,8 @@ class spark.components.Modal extends spark.components.DraggableView
     event handler binded to window to set positions correctly. If your modal
     don't closable or you want to handle close action programatically, when you
     want to remove the modal you should call this method.
+
+    @export
   ###
   destroy: ->
     @overlay?.removeFromDocument()
