@@ -162,19 +162,25 @@ describe 'spark.core.Router', ->
 
     r = new spark.core.Router
       routes:
-        '/users'  : -> visitedRoute = 'users'
-        '/profile': -> visitedRoute = 'profile'
+        '/users'  : -> visitedRoute = '/users'
+        '/profile': -> visitedRoute = '/profile'
 
     expect(visitedRoute).toBeNull()
 
     r.route '/users'
-    expect(visitedRoute).toBe 'users'
+    expect(visitedRoute).toBe '/users'
 
     r.route '/profile'
-    expect(visitedRoute).toBe 'profile'
+    expect(visitedRoute).toBe '/profile'
 
     r.back()
 
-    setTimeout ( -> expect(visitedRoute).toBe 'users' ; r.forward() ) , 0
-    setTimeout ( -> expect(visitedRoute).toBe 'profile' ), 100
-    setTimeout ( -> done() ), 200
+    r.once 'RouteChanged', (e) =>
+      expect(e.data).toBe '/users'
+
+      r.forward()
+
+      r.once 'RouteChanged', (e) =>
+        expect(e.data).toBe '/profile'
+
+        done()
