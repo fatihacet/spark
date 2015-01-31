@@ -39,6 +39,22 @@ describe 'spark.components.Button', ->
       expect(element.tagName).toBe 'BUTTON'
 
 
+    it 'should return icon view', ->
+      icon = button.getIcon()
+
+      expect(icon).toBeDefined()
+      expect(icon instanceof spark.core.View).toBeTruthy()
+      expect(icon.hasClass('hidden')).toBeTruthy()
+
+
+    it 'should return the title view', ->
+      title = button.getTitle()
+
+      expect(title).toBeDefined()
+      expect(title instanceof spark.core.View).toBeTruthy()
+      expect(title.hasClass('hidden')).toBeFalsy()
+
+
     it 'should have hidden icon element if iconClass is not passed', ->
       child = element.firstChild
 

@@ -64,3 +64,21 @@ class spark.components.Button extends spark.core.View
       renderTo : this
       template : title
 
+  ###*
+    Returns the icon view instance.
+
+    @export
+    @return {spark.core.View} The icon view.
+  ###
+  getIcon: ->
+    return @icon
+
+
+  ###*
+    Returns the title view instance.
+
+    @export
+    @return {spark.core.View} The title view.
+  ###
+  getTitle: ->
+    return @title
