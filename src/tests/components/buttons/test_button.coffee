@@ -40,7 +40,7 @@ describe 'spark.components.Button', ->
 
 
     it 'should return icon view', ->
-      icon = button.getIcon()
+      icon = button.getIconView()
 
       expect(icon).toBeDefined()
       expect(icon instanceof spark.core.View).toBeTruthy()
@@ -48,7 +48,7 @@ describe 'spark.components.Button', ->
 
 
     it 'should return the title view', ->
-      title = button.getTitle()
+      title = button.getTitleView()
 
       expect(title).toBeDefined()
       expect(title instanceof spark.core.View).toBeTruthy()

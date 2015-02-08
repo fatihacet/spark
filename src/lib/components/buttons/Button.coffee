@@ -4,12 +4,11 @@ goog.require 'spark.core.View'
 goog.require 'spark.validation'
 
 
-###*
-  Button component of Spark Framework.
-###
 class spark.components.Button extends spark.core.View
 
   ###*
+    Button component of Spark Framework.
+
     @constructor
     @export
     @param   {Object=} options Class options.
@@ -42,13 +41,13 @@ class spark.components.Button extends spark.core.View
   createIcon_: ->
     { iconClass } = @getOptions()
 
-    @icon      = new spark.core.View
+    @iconView  = new spark.core.View
       tagName  : 'span'
       renderTo : this
       cssClass : spark.utils.concatString 'icon', iconClass
 
     unless iconClass
-      @icon.addClass 'hidden'
+      @iconView.addClass 'hidden'
 
 
   ###*
@@ -59,7 +58,7 @@ class spark.components.Button extends spark.core.View
   createTitle_: ->
     { title } = @getOptions()
 
-    @title     = new spark.core.View
+    @titleView = new spark.core.View
       tagName  : 'span'
       renderTo : this
       template : title
@@ -70,8 +69,8 @@ class spark.components.Button extends spark.core.View
     @export
     @return {spark.core.View} The icon view.
   ###
-  getIcon: ->
-    return @icon
+  getIconView: ->
+    return @iconView
 
 
   ###*
