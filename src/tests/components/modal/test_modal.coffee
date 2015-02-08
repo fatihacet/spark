@@ -110,8 +110,8 @@ describe 'spark.components.Modal', ->
     expect(isClicked).toBeTruthy()
 
 
-  it 'should not remove overlay is removeOnOverlayClick is no', ->
-    m = new spark.components.Modal removeOnOverlayClick: no
+  it 'should not be removable if blocking is passed truthy', ->
+    m = new spark.components.Modal blocking: yes
     o = m.getOverlay()
 
     o.setDomId 'overrrlay'

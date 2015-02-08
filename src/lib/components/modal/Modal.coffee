@@ -24,7 +24,6 @@ class spark.components.Modal extends spark.components.DraggableView
   ###
   constructor: (options = {}, data) ->
 
-    @getCssClass       options, 'modal'
     options.title      or= options['title']     or 'Default modal title'
     options.content    or= options['content']   or 'Default modal content'
     options.renderTo   or= options['renderTo']  or document.body
@@ -32,8 +31,9 @@ class spark.components.Modal extends spark.components.DraggableView
     options.draggable   ?= options['draggable']  ? yes
     options.overlay     ?= options['overlay']    ? yes
     options.closable    ?= options['closable']   ? yes
+    options.blocking    ?= options['blocking']   ? no
 
-    options.removeOnOverlayClick  ?= options['removeOnOverlayClick'] ? yes
+    @getCssClass       options, 'modal'
 
     @createTitleView_ options.title
 
@@ -134,17 +134,17 @@ class spark.components.Modal extends spark.components.DraggableView
 
 
   ###*
-    Sets overlay for modal. Overlay and modal will be destroyed when overlay
-    clicked if `removeOnOverlayClick` options is passed true in modal options.
+    Sets overlay for modal. By default, modal will be destroyed when overlay is
+    clicked. To change this behaviour pass `blocking: false` in modal options.
 
     @private
   ###
   setOverlay_: ->
-    isRemovable = @getOptions().removeOnOverlayClick
-    @overlay    = new spark.components.Overlay
-      removeOnClick: isRemovable
+    isBlocking = @getOptions().blocking
+    @overlay   = new spark.components.Overlay
+      blocking : isBlocking
 
-    if isRemovable
+    unless isBlocking
       @overlay.once 'OverlayRemoved', =>
         @removeFromDocument()
 
