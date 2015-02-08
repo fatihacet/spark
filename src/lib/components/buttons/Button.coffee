@@ -63,6 +63,9 @@ class spark.components.Button extends spark.core.View
       renderTo : this
       template : title
 
+    @title = title
+
+
   ###*
     Returns the icon view instance.
 
@@ -79,5 +82,54 @@ class spark.components.Button extends spark.core.View
     @export
     @return {spark.core.View} The title view.
   ###
+  getTitleView: ->
+    return @titleView
+
+
+  ###*
+    Returns the current button title.
+
+    @return {string} The title of the button.
+  ###
   getTitle: ->
     return @title
+
+
+  ###*
+    Updates the button title.
+
+    @export
+    @param {!string} title The new button title.
+  ###
+  setTitle: (title) ->
+    @getTitleView().setTemplate title
+    @title = title
+
+
+  ###*
+    Shows the icon view of the button by removing the 'hidden' class.
+
+    @export
+  ###
+  showIcon: ->
+    @getIconView().removeClass 'hidden'
+
+
+  ###*
+    Hides the icon view of the button by adding the 'hidden' class.
+
+    @export
+  ###
+  hideIcon: ->
+    @getIconView().addClass 'hidden'
+
+
+  ###*
+    Shows the icon view and sets the given iconClass to icon element.
+
+    @export
+    @param {!string} iconClass The new icon class.
+  ###
+  setIcon: (iconClass) ->
+    @showIcon()
+    @getIconView().addClass iconClass

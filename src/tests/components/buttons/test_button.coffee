@@ -88,6 +88,47 @@ describe 'spark.components.Button', ->
     expect(flag).toBeTruthy()
 
 
+  it 'should update the button title', ->
+    expect(button.getTitle()).toBe 'Spark Button'
+
+    newTitle = 'Updated button title'
+
+    button.setTitle newTitle
+
+    expect(button.getTitle()).toBe newTitle
+
+
+  it 'should show the icon view', ->
+    expect(button.getIconView().hasClass 'hidden').toBeTruthy()
+
+    button.showIcon()
+
+    expect(button.getIconView().hasClass 'hidden').toBeFalsy()
+
+
+  it 'should hide the icon', ->
+    expect(button.getIconView().hasClass 'hidden').toBeTruthy()
+
+    button.hideIcon()
+    expect(button.getIconView().hasClass 'hidden').toBeTruthy()
+
+    button.showIcon()
+    expect(button.getIconView().hasClass 'hidden').toBeFalsy()
+
+    button.hideIcon()
+    expect(button.getIconView().hasClass 'hidden').toBeTruthy()
+
+
+  it 'should set icon', ->
+    expect(button.getIconView().hasClass 'hidden').toBeTruthy()
+    expect(button.getIconView().hasClass 'loading').toBeFalsy()
+
+    button.setIcon 'loading'
+
+    expect(button.getIconView().hasClass 'hidden').toBeFalsy()
+    expect(button.getIconView().hasClass 'loading').toBeTruthy()
+
+
   describe 'disable', ->
 
     it 'should add class `disabled` to button element', ->
