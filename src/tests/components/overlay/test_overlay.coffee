@@ -47,10 +47,10 @@ describe 'spark.components.Overlay', ->
     expect(element.tagName).toBe 'DIV'
 
 
-  it 'should be removable if removeOnClick passed as true in options', ->
+  it 'should be removable if blocking option is passed as falsy', ->
     overlay.removeFromDocument()
 
-    removable = new spark.components.Overlay removeOnClick: yes, domId: 'removable'
+    removable = new spark.components.Overlay blocking: no, domId: 'removable'
     fireClick removable.getElement()
     element = document.getElementById 'removable'
 

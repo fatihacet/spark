@@ -17,13 +17,14 @@ class spark.components.Overlay extends spark.core.View
   ###
   constructor: (options = {}, data) ->
 
+    options.blocking  ?= options['blocking']  ? yes
+    options.renderTo or= options['renderTo'] or document.body
+
     @getCssClass options, 'overlay'
-    options.removeOnClick ?= options['removeOnClick'] ? no
-    options.renderTo      or= options['renderTo']    or document.body
 
     super options, data
 
-    if options.removeOnClick
+    unless options.blocking
       @setRemovable()
 
 
