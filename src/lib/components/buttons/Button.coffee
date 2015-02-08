@@ -89,6 +89,7 @@ class spark.components.Button extends spark.core.View
   ###*
     Returns the current button title.
 
+    @export
     @return {string} The title of the button.
   ###
   getTitle: ->
