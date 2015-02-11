@@ -37,8 +37,8 @@ class spark.core.View extends spark.core.Object
 
     @children = []
 
-    @createDomElement()
-    @bindEvents()
+    @createDomElement_()
+    @bindEvents_()
 
     @disable() if options.disabled
 
@@ -49,8 +49,10 @@ class spark.core.View extends spark.core.Object
 
   ###*
     Creates the element with the configuration passed to constructor.
+
+    @private
   ###
-  createDomElement: ->
+  createDomElement_: ->
     {tagName, domId, cssClass, template, attributes} = @getOptions()
 
     @element = document.createElement tagName
@@ -410,12 +412,14 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
-    This method is responsible from binding DOM events to the element of this view.
-    It uses native DOM event names which is all lowercase. If your options
-    has an event name and a callback function in events object
-    View will bind and listen those events automatically.
+    This method is responsible from binding DOM events to the element of this
+    view. It uses native DOM event names which is all lowercase. If your options
+    has an event name and a callback function in events object View will bind
+    and listen those events automatically.
+
+    @private
   ###
-  bindEvents: ->
+  bindEvents_: ->
     eventTypes = spark.core.View.EventTypes
     element    = @getElement()
 
