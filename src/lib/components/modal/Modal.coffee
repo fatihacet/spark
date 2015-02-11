@@ -140,13 +140,11 @@ class spark.components.Modal extends spark.components.DraggableView
     @private
   ###
   setOverlay_: ->
-    isBlocking = @getOptions().blocking
     @overlay   = new spark.components.Overlay
-      blocking : isBlocking
+      blocking : @getOptions().blocking
 
-    unless isBlocking
-      @overlay.once 'OverlayRemoved', =>
-        @removeFromDocument()
+    @overlay.once spark.core.Object.EventTypes.DESTROYED, =>
+      @destroy()
 
 
   ###*
@@ -168,14 +166,15 @@ class spark.components.Modal extends spark.components.DraggableView
     Destroys the modal. Removes all elements from DOM and also unlistens resize
     event handler binded to window to set positions correctly. If your modal
     don't closable or you want to handle close action programatically, when you
-    want to remove the modal you should call this method.
+    want to remove the modal you should call this method to do a proper cleanup.
 
     @export
   ###
   destroy: ->
-    @overlay?.removeFromDocument()
-    @removeFromDocument()
+    @overlay.destroy()  if @overlay
     goog.events.unlistenByKey @resizeListenerKey
+
+    super
 
 
   ###*
