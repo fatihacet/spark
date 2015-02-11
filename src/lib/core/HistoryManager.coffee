@@ -37,8 +37,8 @@ class spark.core.HistoryManager extends spark.core.Object
     {useHtml5History} = options
 
     if isHtml5HistorySupported and useHtml5History
-      tokenTransformer = new spark.core.HistoryManager.TokenTransformer
-      @history = new goog.history.Html5History null, tokenTransformer
+      @tokenTransformer = new spark.core.HistoryManager.TokenTransformer
+      @history = new goog.history.Html5History null, @tokenTransformer
       @history.setPathPrefix  options.pathPrefix
       @history.setUseFragment no
     else
@@ -68,7 +68,25 @@ class spark.core.HistoryManager extends spark.core.Object
     @private
   ###
   getHistoryInput_: ->
-    return new spark.components.Input().getElement()
+    @historyInput_ = new spark.components.Input()
+    return @historyInput_.getElement()
+
+
+  ###*
+    Destroys the HistoryManager and goog.history instance.
+
+    @export
+    @override
+  ###
+  destroy: ->
+    unless @isDestroyed()
+      @history.disposeInternal()
+      @history = null
+
+      @historyInput_.destroy()
+      @tokenTransformer = null
+
+    super
 
 
 ###*
