@@ -13,10 +13,10 @@ describe 'spark.core.View', ->
   isClicked = null
   isHovered = null
 
-  fireEvent = (type) ->
+  fireEvent = (type, el = element) ->
     event = document.createEvent 'MouseEvents'
     event.initEvent type, yes, yes
-    element.dispatchEvent event
+    el.dispatchEvent event
 
   beforeEach ->
     isClicked     = null
@@ -51,7 +51,7 @@ describe 'spark.core.View', ->
 
   it 'should be appendable to document body', ->
     # it will throw an error if it couldn't append it to dom
-    # there is not assertion needed
+    # there is no assertion needed
     document.body.appendChild element
 
 
@@ -253,6 +253,7 @@ describe 'spark.core.View', ->
 
     expect(isRemoved).toBeTruthy()
 
+
   it 'should emit the event listener when event emitted from object and also DOM event triggered', ->
 
     fireEvent 'click' # simulate DOM click
@@ -364,3 +365,61 @@ describe 'spark.core.View', ->
     expect(v.getHeight()).toBe 133
     expect(v.getElement().style.width).toBe  '266px'
     expect(v.getElement().style.height).toBe '133px'
+
+
+  describe 'destroy', ->
+
+    it 'should destroy the view', ->
+      v = new spark.core.View
+      expect(v.isDestroyed()).toBeFalsy()
+
+      v.destroy()
+      expect(v.isDestroyed()).toBeTruthy()
+
+
+    it 'should unlisten the event listeners', ->
+      c = 0
+      v = new spark.core.View
+
+      v.on 'click',  -> c++
+      v.on 'custom', -> c++
+
+      v.emit 'click'
+      expect(c).toBe 1
+
+      v.emit 'custom'
+      expect(c).toBe 2
+
+      fireEvent 'click', v.getElement()
+      expect(c).toBe 3
+
+      v.destroy()
+
+      v.emit 'click'
+      v.emit 'custom'
+      fireEvent 'click'
+
+      expect(c).toBe 3
+
+
+    it 'should remove view from document', ->
+      v = new spark.core.View renderTo: document.body, domId: 'r2d2'
+      expect(document.getElementById('r2d2')).not.toBeNull()
+
+      v.destroy()
+
+      expect(document.getElementById('r2d2')).toBeNull()
+
+
+    it 'should destroy also children', ->
+      v = new spark.core.View
+      a = new spark.core.View renderTo: v
+      b = new spark.core.View renderTo: v
+
+      expect(v.children.length).toBe 2
+
+      v.destroy()
+
+      expect(v.children.length).toBe 0
+      expect(a.isDestroyed()).toBeTruthy()
+      expect(b.isDestroyed()).toBeTruthy()
