@@ -143,6 +143,8 @@ class spark.core.Object extends goog.events.EventTarget
     @param {*=} data Data which will passed to listeners
   ###
   emit: (eventName, data) ->
+    return no if @isDestroyed()
+
     @dispatchEvent { type: eventName, data }
 
 
