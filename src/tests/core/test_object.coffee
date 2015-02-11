@@ -157,3 +157,66 @@ describe 'spark.core.Object', ->
     o.prop = 42
 
     expect(o.prop).toBeUndefined()
+
+
+  describe 'destroy', ->
+
+    it 'should be destroyable and return the destroyed state', ->
+
+      o = new spark.core.Object
+      expect(o.isDestroyed()).toBeFalsy()
+
+      o.destroy()
+      expect(o.isDestroyed()).toBeTruthy()
+
+
+    it 'should set options and data to null', ->
+
+      o = new spark.core.Object { hello: 'world' }, { uid: 12, name: 'acet' }
+
+      expect(o.getData().uid).toBe 12
+      expect(o.getOptions().hello).toBe 'world'
+
+      o.destroy()
+
+      expect(o.getData()).toBeNull()
+      expect(o.getOptions()).toBeNull()
+
+
+    it 'should emit events before and after destroy', ->
+      flag = no
+      obj  = new spark.core.Object
+
+      obj.once 'Destroyed', -> flag = yes
+      obj.destroy()
+
+      expect(flag).toBeTruthy()
+
+
+    it 'should unlisten all events', ->
+      c = 0
+      o = new spark.core.Object
+
+      o.on 'event1', -> c++
+      o.on 'event2', -> c++
+      o.on 'event3', -> c++
+
+      f1 = o.emit 'event1'
+      f2 = o.emit 'event2'
+      f3 = o.emit 'event3'
+
+      expect(c).toBe 3
+      expect(f1).toBeTruthy()
+      expect(f2).toBeTruthy()
+      expect(f3).toBeTruthy()
+
+      o.destroy()
+
+      f4 = o.emit 'event1'
+      f5 = o.emit 'event2'
+      f6 = o.emit 'event3'
+
+      expect(c).toBe 3
+      expect(f4).toBeFalsy()
+      expect(f5).toBeFalsy()
+      expect(f6).toBeFalsy()

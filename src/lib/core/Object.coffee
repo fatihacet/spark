@@ -157,3 +157,33 @@ class spark.core.Object extends goog.events.EventTarget
   ###
   off: (eventName, callback) ->
     return @unlisten eventName, callback
+
+
+  ###*
+    Destroys the object. Emits the following events before and after the object
+    is destroyed. Sets data and options to null and calls the `dispose` and
+    `disposeInternal` on parent to make a proper clean up. Calling `dispose`
+    will set the `Object.isDisposed` to true and calling `disposeInternal` will
+    unlisten all binded events so there won't be any event and/or memory leak.
+
+    @export
+  ###
+  destroy: ->
+    @emit spark.core.Object.EventTypes.DESTROYED
+
+    @options = null
+    @data    = null
+
+    @dispose()
+    @disposeInternal()
+
+    @destroyed = yes
+
+
+  ###*
+    Events enum emitted by the Object at some point.
+
+    @enum {string}
+  ###
+  @EventTypes =
+    DESTROYED : 'Destroyed'
