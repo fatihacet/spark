@@ -232,7 +232,7 @@ describe 'spark.core.Store', ->
       error   = new Error 'Validation type foo does not exist.'
       options =
         validations: name: foo:  yes
-        validateWhenConstructed: no
+        validateOnInitialize: no
       data    = name: 'Acetz'
       store   = new spark.core.Store options, data
 

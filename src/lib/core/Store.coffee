@@ -18,14 +18,14 @@ class spark.core.Store extends spark.core.Object
   ###
   constructor: (options = {}, data) ->
 
-    options.validations or= options['validations'] or {}
-    options.validateWhenConstructed ?= options['validateWhenConstructed'] ? yes
+    options.validations or= options['validations'] or  {}
+    options.validateOnInitialize ?= options['validateOnInitialize'] ? yes
 
     super options, data
 
     @map_ = new goog.structs.Map data
 
-    if options.validateWhenConstructed
+    if options.validateOnInitialize
       @validateAll()
 
 
