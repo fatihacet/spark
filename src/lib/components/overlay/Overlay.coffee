@@ -34,6 +34,4 @@ class spark.components.Overlay extends spark.core.View
     @export
   ###
   setRemovable: ->
-    @on 'click', =>
-      @removeFromDocument()
-      @emit 'OverlayRemoved'
+    @on 'click', => @destroy()
