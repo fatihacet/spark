@@ -65,10 +65,15 @@ class spark.components.Textarea extends spark.components.Field
 
 
   ###*
-    Destroy the component.
+    Disposes the goog.ui.Textarea instance and calls the super to continue.
 
     @export
+    @override
   ###
   destroy: ->
-    @removeFromDocument()
-    @textarea_.disposeInternal()
+
+    unless @isDestroyed()
+      @textarea_.disposeInternal()
+      @textarea_ = null
+
+    super
