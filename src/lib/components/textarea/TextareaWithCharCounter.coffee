@@ -105,15 +105,17 @@ class spark.components.TextareaWithCharCounter extends spark.components.Textarea
 
 
   ###*
-    Destroy's the component.
+    Destroy's the component and it's dependencies.
 
     @export
+    @override
   ###
   destroy: ->
-    super
+    unless @isDestroyed()
+      @counter.disposeInternal()
+      @counter = null
 
-    @removeFromDocument()
-    @counter.disposeInternal()
-    @counter = null
-    @getCounterView().removeFromDocument()
-    @counterView = null
+      @getCounterView().destroy()
+      @counterView = null
+
+    super
