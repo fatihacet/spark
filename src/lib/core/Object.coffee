@@ -183,6 +183,16 @@ class spark.core.Object extends goog.events.EventTarget
 
 
   ###*
+    Returns the object's destroy state.
+
+    @export
+    @return {boolean} Whether the object is destroyed or not.
+  ###
+  isDestroyed: ->
+    return @destroyed or no
+
+
+  ###*
     Events enum emitted by the Object at some point.
 
     @enum {string}
