@@ -60,7 +60,7 @@ class spark.components.DraggableView extends spark.core.View
     if options.container
       @setContainer options.container
 
-    goog.events.listen window, 'resize', =>
+    @windowResizeListener = goog.events.listen window, 'resize', =>
       @setLimits_()
 
     @once 'ViewHasParent', =>
@@ -214,6 +214,27 @@ class spark.components.DraggableView extends spark.core.View
   ###
   getAxis: ->
     return @axis
+
+
+  ###*
+    Destroyes the component and removes the resize listener binded to window
+    and disposes the goog.fx.Dragger instance to make sure there is no leaking
+    event listeners.
+
+    @override
+    @export
+  ###
+  destroy: ->
+    # Make sure that the view is not destroyed already. It's the case when view
+    # is a child of another view and when parent destroyed View will also
+    # destroy the children and @dragger_ will be null.
+    unless @isDestroyed()
+      @dragger_.disposeInternal()
+      @dragger_ = null
+
+      goog.events.unlistenByKey @windowResizeListener
+
+    super
 
 
   ###*
