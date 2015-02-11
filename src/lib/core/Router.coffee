@@ -46,6 +46,7 @@ class spark.core.Router extends spark.core.Object
 
     @init()
 
+
   ###*
     Add route with callback function to handle it.
 
@@ -193,4 +194,8 @@ class spark.core.Router extends spark.core.Object
     @export
   ###
   destroy: ->
-    @historyManager.disposeInternal()
+    unless @isDestroyed()
+      @historyManager.destroy()
+      @historyManager = null
+
+    super
