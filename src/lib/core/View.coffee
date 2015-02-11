@@ -446,3 +446,28 @@ class spark.core.View extends spark.core.Object
     A transposed map of goog.events.EventType
   ###
   @EventTypes = goog.object.transpose goog.events.EventType
+
+
+  ###*
+    Destroys the view. It will unlisten all binded events including the DOM
+    events and destroy all child views finally remove the element from document.
+
+    @override
+    @export
+  ###
+  destroy: ->
+    domElement = @getElement()
+
+    @domEventListeners_.forEach (listener) =>
+      if listener?.listener
+        goog.events.unlisten domElement, listener.type, listener.listener
+
+    @children.forEach (child) =>
+      child.destroy()
+      child = null
+
+    @children = []
+
+    @removeFromDocument()
+
+    super
