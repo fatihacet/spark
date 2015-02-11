@@ -35,7 +35,8 @@ class spark.core.View extends spark.core.Object
 
     super options, data
 
-    @children = []
+    @children           = []
+    @domEventListeners_ = []
 
     @createDomElement_()
     @bindEvents_()
@@ -382,7 +383,8 @@ class spark.core.View extends spark.core.Object
   ###
   on: (eventName, callback) ->
     if spark.core.View.EventTypes[eventName]
-      goog.events.listen @getElement(), eventName, callback
+      listener = goog.events.listen @getElement(), eventName, callback
+      @domEventListeners_.push listener
 
     return goog.events.listen this, eventName, callback
 
