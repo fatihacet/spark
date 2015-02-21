@@ -183,7 +183,7 @@ class spark.core.View extends spark.core.Object
     if spark.validation.isFunction template
       template = template.call this, @getData()
 
-    @getElement().innerHTML = spark.utils.parseTemplateTags template, @getData()
+    @getElement().innerHTML = spark.utils.parseTemplate template, @getData()
 
 
   ###*

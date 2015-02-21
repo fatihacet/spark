@@ -59,7 +59,7 @@ spark.utils.concatString = (var_args) ->
         avatar    :
           full    : 'fatihacet.png'
 
-    spark.utils.parseTemplateTags template, data
+    spark.utils.parseTemplate template, data
     # will return "<img src="fatihacet.png" />\n<span>Fatih Acet - @fatihacet</span>"
   ```
 
@@ -70,7 +70,7 @@ spark.utils.concatString = (var_args) ->
   keyword doesn't exist in the given data.
   @return {string} Template with parsed and replaced data.
 ###
-spark.utils.parseTemplateTags = (template, data, defaultText) ->
+spark.utils.parseTemplate = (template, data, defaultText) ->
   TAG_MATCHER_REGEX = /({{\s*[a-zA-z0-9.]+\s*}})/g
   TAG_CAPTURE_REGEX = /(\s*[a-zA-z0-9.]+\s*)/
   defaultText    or= ''
