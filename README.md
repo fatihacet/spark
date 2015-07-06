@@ -2,7 +2,7 @@
 
 The Spark framework is a brand new JavaScript framework for modern web development. Focused on creating View based components, it aims to be test driven and well documented.
 
-Spark is heavily inspried from [Koding's KD Framework](https://github.com/koding/kd), and is built on top of Google's powerful Closure Library and awesome Closure Tools.
+Spark is heavily inspired from [Koding's KD Framework](https://github.com/koding/kd), and is built on top of Google's powerful Closure Library and awesome Closure Tools.
 
 
 ### Future Plans
