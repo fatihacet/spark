@@ -46,6 +46,8 @@ class spark.components.Loader extends spark.core.View
     configs = spark.components.Loader.TemplateConfigs
     type    = spark.components.Loader.LoaderTypes[options.type]
 
+    throw new Error "Invalid loader type, #{options.type}" unless type
+
     { baseClass, itemCount } = configs[type]
 
     base = """<div class="#{baseClass}">"""

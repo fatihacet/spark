@@ -35,6 +35,12 @@ describe 'spark.components.Loader', ->
 
       expect(output2).toBe(expected2)
 
+    it 'should return error for invalid loader type', ->
+
+      error = new Error 'Invalid loader type, hello'
+
+      expect( -> new spark.components.Loader type: 'hello' ).toThrow error
+
 
   it 'should have correct amount of elements', ->
 
