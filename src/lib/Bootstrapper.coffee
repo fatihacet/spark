@@ -39,7 +39,7 @@ class spark.Bootstrapper
   constructor: ->
 
 
-window.addEventListener "load", (->
-  new spark.Bootstrapper
-  return yes
-), no
+
+onLoad = -> new spark.Bootstrapper
+
+window.addEventListener 'load', onLoad, no
