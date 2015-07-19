@@ -5,7 +5,9 @@ goog.require 'spark.components.Modal'
 describe 'spark.components.Modal', ->
 
   modal     = null
+  modalId   = null
   overlay   = null
+  overlayId = null
   fireClick = (element) ->
     event = document.createEvent 'MouseEvents'
     event.initEvent 'click', yes, yes
@@ -13,13 +15,18 @@ describe 'spark.components.Modal', ->
 
 
   beforeEach ->
+    modal       = null
+    overlay     = null
+    modalId     = "modal#{spark.utils.getUid()}"
+    overlayId   = "overlay#{spark.utils.getUid()}"
     modal       = new spark.components.Modal
+      'domId'   : modalId
       'title'   : 'Are you sure you want to logout?'
       'content' : 'Your session will be ended and you will not be able to restore your cart.'
       'buttons' : spark.components.Modal.Buttons.YES_NO
 
-    overlay   = modal.getOverlay()
-    overlay.setDomId 'modal-overlay'
+    overlay = modal.getOverlay()
+    overlay.setDomId overlayId
 
 
   afterEach ->
@@ -90,13 +97,11 @@ describe 'spark.components.Modal', ->
 
 
   it 'should remove itself when overlay is clicked', ->
-    modal.setDomId 'modally'
+    expect(document.getElementById(modalId)).toBeDefined()
 
-    expect(document.getElementById('modally')).toBeDefined()
+    fireClick(overlay.getElement())
 
-    fireClick(overlay)
-
-    expect(document.getElementById('modally')).toBeNull()
+    expect(document.getElementById(modalId)).toBeNull()
 
 
   it 'should emit event for preset buttons', ->
@@ -114,10 +119,9 @@ describe 'spark.components.Modal', ->
     m = new spark.components.Modal blocking: yes
     o = m.getOverlay()
 
-    o.setDomId 'overrrlay'
     fireClick o.getElement()
 
-    expect(document.getElementById('overrrlay')).not.toBeNull()
+    expect(document.getElementById(overlayId)).not.toBeNull()
 
     m.removeFromDocument()
 
@@ -174,33 +178,21 @@ describe 'spark.components.Modal', ->
 
 
   it 'should be destroyable with close icon', ->
-    mid = spark.utils.getUid()
-    oid = spark.utils.getUid()
-
-    modal.setDomId mid
-    modal.getOverlay().setDomId oid
-
-    expect(document.getElementById(mid)).not.toBeNull()
-    expect(document.getElementById(oid)).not.toBeNull()
+    expect(document.getElementById(modalId)).not.toBeNull()
+    expect(document.getElementById(overlayId)).not.toBeNull()
 
     closeIcon = modal.getElement().querySelector '.modal-close'
     fireClick closeIcon
 
-    expect(document.getElementById(mid)).toBeNull()
-    expect(document.getElementById(oid)).toBeNull()
+    expect(document.getElementById(modalId)).toBeNull()
+    expect(document.getElementById(overlayId)).toBeNull()
 
 
   it 'should be destroyed after calling destoy method', ->
-    mid = spark.utils.getUid()
-    oid = spark.utils.getUid()
-
-    modal.setDomId mid
-    modal.getOverlay().setDomId oid
-
-    expect(document.getElementById(mid)).not.toBeNull()
-    expect(document.getElementById(oid)).not.toBeNull()
+    expect(document.getElementById(modalId)).not.toBeNull()
+    expect(document.getElementById(overlayId)).not.toBeNull()
 
     modal.destroy()
 
-    expect(document.getElementById(mid)).toBeNull()
-    expect(document.getElementById(oid)).toBeNull()
+    expect(document.getElementById(modalId)).toBeNull()
+    expect(document.getElementById(overlayId)).toBeNull()
