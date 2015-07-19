@@ -20,8 +20,8 @@ class spark.components.Loader extends spark.core.View
   ###
   constructor: (options = {}, data) ->
 
-    options.type     or= options['type']   or spark.components.Loader.LoaderTypes.CIRCLE
-    options.size      ?= options['size']    ? 50
+    options.type     or= spark.components.Loader.LoaderTypes.CIRCLE
+    options.size      ?= 50
     options.template   = @getLoaderTemplate_ options
 
     @getCssClass options, 'loader'
@@ -29,10 +29,10 @@ class spark.components.Loader extends spark.core.View
     super options, data
 
     loaderEl = @getElement().firstChild
-    { size } = @getOptions()
+    size     = "#{@getOptions().size}px"
 
-    goog.style.setWidth  loaderEl, size
-    goog.style.setHeight loaderEl, size
+    loaderEl.style.width  = size
+    loaderEl.style.height = size
 
 
   ###*
@@ -60,16 +60,16 @@ class spark.components.Loader extends spark.core.View
   ###*
     Enum for template configs.
 
-    @enum {string}
+    @enum {Object}
     @export
   ###
   @TemplateConfigs =
-    'SPINNER'     : { baseClass: 'spinner', itemCount: 12 }
-    'CIRCLE'      : { baseClass: 'circle',  itemCount: 3  }
-    'BOUNCE'      : { baseClass: 'bounce',  itemCount: 2  }
-    'BAR'         : { baseClass: 'bar',     itemCount: 5  }
-    'PULSE'       : { baseClass: 'pulse'  }
-    'SQUARE'      : { baseClass: 'square' }
+    'CIRCLE'  : { baseClass: 'circle',  itemCount: 3  }
+    'SPINNER' : { baseClass: 'spinner', itemCount: 12 }
+    'BOUNCE'  : { baseClass: 'bounce',  itemCount: 2  }
+    'BAR'     : { baseClass: 'bar',     itemCount: 5  }
+    'PULSE'   : { baseClass: 'pulse'  }
+    'SQUARE'  : { baseClass: 'square' }
 
 
   ###*
