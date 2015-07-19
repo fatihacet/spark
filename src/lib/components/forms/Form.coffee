@@ -113,11 +113,13 @@ class spark.components.Form extends spark.core.View
     @export
   ###
   setData: (data) ->
-    return unless @inputsByName
 
-    for name, value of data
-      input = @inputsByName[name]
-      input.setValue value if input
+    if @inputsByName
+      for name, value of data
+        input = @inputsByName[name]
+        input.setValue value if input
+
+    super
 
 
   ###*
