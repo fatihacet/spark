@@ -1,3 +1,13 @@
+0.0.1 / 2015-07-19
+==================
+##### Introduced Loader component.
+
+  - A customizable loader component.
+  - Fixed broken tests.
+  - Form: Call `super` in `setData`.
+  - View: Added `getChildren` getter.
+
+
 0.0.1 / 2015-01-31
 ==================
 ##### Introduced RemoteStore component.

@@ -21,6 +21,7 @@ goog.require 'spark.components.ComboBox'
 goog.require 'spark.components.DraggableView'
 goog.require 'spark.components.Overlay'
 goog.require 'spark.components.Modal'
+goog.require 'spark.components.Loader'
 
 goog.require 'spark.utils'
 goog.require 'spark.ajax'
