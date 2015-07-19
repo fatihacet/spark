@@ -17,8 +17,8 @@ module.exports = function(config) {
       'bower_components/jquery/index.js',
       'bower_components/jquery-simulate/jquery.simulate.js',
       'bower_components/closure-library/closure/goog/base.js',
-      'build/js/tests/**/test_*.js',
-      { pattern: 'build/js/**/*.js', included: false },
+      'dist/js/tests/**/test_*.js',
+      { pattern: 'dist/js/**/*.js', included: false },
       { pattern: 'bower_components/closure-library/closure/goog/deps.js', included: false, served: false }
     ],
 
@@ -33,8 +33,8 @@ module.exports = function(config) {
     // preprocessors: {
     // },
     preprocessors: {
-      'build/js/**/test_*.js': ['closure', 'closure-iit'], // tests are preprocessed for dependencies (closure) and for iits
-      'build/js/**/*.js': ['closure', 'coverage', 'env'], // source files are preprocessed for dependencies
+      'dist/js/**/test_*.js': ['closure', 'closure-iit'], // tests are preprocessed for dependencies (closure) and for iits
+      'dist/js/**/*.js': ['closure', 'coverage', 'env'], // source files are preprocessed for dependencies
       'bower_components/closure-library/closure/goog/deps.js': ['closure-deps'] // external deps
     },
 
@@ -53,7 +53,7 @@ module.exports = function(config) {
 
     coverageReporter: {
       type: 'lcov',
-      dir: 'build/coverage/'
+      dir: 'dist/coverage/'
     },
 
 

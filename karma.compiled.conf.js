@@ -13,7 +13,7 @@ module.exports = function(config) {
 
 
      preprocessors: {
-      'build/**/*.js': ['env']
+      'dist/**/*.js': ['env']
     },
 
 
@@ -21,8 +21,8 @@ module.exports = function(config) {
     files: [
       'bower_components/jquery/index.js',
       'bower_components/jquery-simulate/jquery.simulate.js',
-      'build/js/tests/**/test_*.js',
-      'build/compiled/compiled.js'
+      'dist/js/tests/**/test_*.js',
+      'dist/compiled/compiled.js'
     ],
 
 

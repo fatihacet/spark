@@ -6,7 +6,7 @@ module.exports = (grunt) ->
       all                :
         options          :
           force          : yes
-        src              : 'build'
+        src              : 'dist'
 
 
     mkdir                :
@@ -19,9 +19,9 @@ module.exports = (grunt) ->
             'src/themes/edge'
             'src/lib/templates'
             'src/third-party'
-            'build/css'
-            'build/compiled'
-            'build/images'
+            'dist/css'
+            'dist/compiled'
+            'dist/images'
           ]
 
 
@@ -30,13 +30,13 @@ module.exports = (grunt) ->
         expand           : yes
         cwd              : 'src/examples'
         src              : '**'
-        dest             : 'build/docs/examples'
+        dest             : 'dist/docs/examples'
       allJS              :
-        src              : 'build/compiled/compiled.js'
-        dest             : 'build/docs/compiled.js'
+        src              : 'dist/compiled/compiled.js'
+        dest             : 'dist/docs/compiled.js'
       allCSS             :
-        src              : 'build/css/spark.css'
-        dest             : 'build/docs/spark.css'
+        src              : 'dist/css/spark.css'
+        dest             : 'dist/docs/spark.css'
 
 
     coffee               :
@@ -47,7 +47,7 @@ module.exports = (grunt) ->
           expand         : yes
           cwd            : 'src'
           src            : [ 'lib/**/*.coffee', 'tests/**/*.coffee' ]
-          dest           : 'build/js/'
+          dest           : 'dist/js/'
           ext            : '.js'
         ]
       examples           :
@@ -66,7 +66,7 @@ module.exports = (grunt) ->
       all                :
         files            : [
           expand         : yes
-          src            : [ 'build/js/lib/**/*.js', '!build/js/lib/templates/**/*.js' ]
+          src            : [ 'dist/js/lib/**/*.js', '!dist/js/lib/templates/**/*.js' ]
           ext            : '.js'
         ]
 
@@ -80,7 +80,7 @@ module.exports = (grunt) ->
           expand         : yes
           cwd            : 'src/themes/edge'
           src            : [ '**/*.styl', '!imports.styl' ]
-          dest           : 'build/css'
+          dest           : 'dist/css'
           ext            : '.css'
         ]
       concat             :
@@ -88,7 +88,7 @@ module.exports = (grunt) ->
           expand         : yes
           cwd            : 'src/themes/edge'
           src            : 'imports.styl'
-          dest           : 'build/css/'
+          dest           : 'dist/css/'
           ext            : '.css'
         ]
       examples           :
@@ -105,18 +105,18 @@ module.exports = (grunt) ->
     templates            :
       all                :
         src              : 'src/lib/templates/**/*.soy'
-        dest             : 'build/js/lib/templates/'
+        dest             : 'dist/js/lib/templates/'
 
 
     deps                 :
       all                :
         options          :
-          outputFile     : 'build/deps.js'
+          outputFile     : 'dist/deps.js'
           prefix         : '../../../../'
           root           : [
             'bower_components/closure-library'
             'bower_components/closure-templates'
-            'build/js/'
+            'dist/js/'
           ]
 
 
@@ -135,7 +135,7 @@ module.exports = (grunt) ->
       all                :
         options          :
           namespace      : '*'
-          outputFilePath : 'build/compiled/compiled.js'
+          outputFilePath : 'dist/compiled/compiled.js'
       options            :
         root             : '<%= deps.all.options.root %>'
         depsPath         : '<%= deps.all.options.outputFile %>'
@@ -147,9 +147,9 @@ module.exports = (grunt) ->
           '--generate_exports'
           # '--formatting=PRETTY_PRINT'
           # '--externs=src/externs/externs.js'
-          '--create_source_map="build/compiled/source_map.js"'
-          '--property_renaming_report="build/compiled/properties.out"'
-          '--variable_renaming_report="build/compiled/variables.out"'
+          '--create_source_map="dist/compiled/source_map.js"'
+          '--property_renaming_report="dist/compiled/properties.out"'
+          '--variable_renaming_report="dist/compiled/variables.out"'
           '--jscomp_error=accessControls'
           '--jscomp_error=checkRegExp'
           '--jscomp_error=checkTypes'
@@ -179,10 +179,10 @@ module.exports = (grunt) ->
         path             : 'http://localhost:1111/public/debug'
         app              : 'Google Chrome'
       examples           :
-        path             : 'http://localhost:1111/build/docs/examples/'
+        path             : 'http://localhost:1111/dist/docs/examples/'
         app              : 'Google Chrome'
       coverage           :
-        path             : 'http://localhost:1111/build/coverage/PhantomJS 1.9.8 (Mac OS X)/lcov-report/index.html'
+        path             : 'http://localhost:1111/dist/coverage/PhantomJS 1.9.8 (Mac OS X)/lcov-report/index.html'
         app              : 'Google Chrome'
       build              :
         path             : 'http://localhost:2222/public/compiled'
@@ -215,9 +215,9 @@ module.exports = (grunt) ->
 
     jsdoc                :
       dist               :
-        src              : [ 'build/js/lib/**/*.js', 'README.md', '!build/js/lib/Bootstrapper.js' ],
+        src              : [ 'dist/js/lib/**/*.js', 'README.md', '!dist/js/lib/Bootstrapper.js' ],
         options          :
-          destination    : 'build/docs'
+          destination    : 'dist/docs'
           template       : 'node_modules/grunt-jsdoc/node_modules/ink-docstrap/template',
           configure      : 'jsdoc.conf.json'
 
@@ -225,7 +225,7 @@ module.exports = (grunt) ->
     'gh-pages'           :
       src                : '**/*'
       options            :
-        base             : 'build/docs'
+        base             : 'dist/docs'
         message          : 'Same as last commit with changes'
         repo             : "https://#{process.env.GH_TOKEN}@github.com/fatihacet/spark.git"
         silent           : yes
