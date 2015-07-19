@@ -156,6 +156,16 @@ class spark.core.View extends spark.core.Object
 
 
   ###*
+    Returns the child views.
+
+    @export
+    @return {Array<spark.core.View>} DOM element of this view.
+  ###
+  getChildren: ->
+    return @children
+
+
+  ###*
     Basic templating support for Spark Framework. Currently templates can include
     variable tags like in Mustache templates. This can be changed in the future
     versions of the framework.

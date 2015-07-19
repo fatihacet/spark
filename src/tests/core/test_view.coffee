@@ -416,10 +416,10 @@ describe 'spark.core.View', ->
       a = new spark.core.View renderTo: v
       b = new spark.core.View renderTo: v
 
-      expect(v.children.length).toBe 2
+      expect(v.getChildren().length).toBe 2
 
       v.destroy()
 
-      expect(v.children.length).toBe 0
+      expect(v.getChildren().length).toBe 0
       expect(a.isDestroyed()).toBeTruthy()
       expect(b.isDestroyed()).toBeTruthy()
