@@ -32,7 +32,7 @@ describe 'spark.components.ToggleSwitch', ->
   it 'should be checked if checked passed in options', ->
     toggle = new spark.components.ToggleSwitch checked: yes
 
-    expect(toggle.input.isChecked()).toBeTruthy()
+    expect(toggle.getInput().isChecked()).toBeTruthy()
 
 
   it 'should check/uncheck input and return the correct state', ->
@@ -40,7 +40,7 @@ describe 'spark.components.ToggleSwitch', ->
 
     toggle.check()
 
-    expect(toggle.input.isChecked()).toBeTruthy()
+    expect(toggle.getInput().isChecked()).toBeTruthy()
 
     toggle.uncheck()
 
